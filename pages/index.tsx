@@ -12,6 +12,8 @@ import {
 } from 'openai'
 import { useStateRef } from '@/src/useStateRef';
 import { ChatCompletionResponseMessage } from 'openai/api';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm'
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -139,7 +141,8 @@ export default function Index() {
                 return (
                   <Paper key={idx} elevation={1} sx={{mt: 1}}>
                     <Box p={1} pl={2} pr={2}>
-                      {message.content}
+                      {message.role === 'user' && <>{message.content}</>}
+                      {message.role !== 'user' && <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>}
                     </Box>
                   </Paper>
                 );
