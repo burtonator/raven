@@ -11,9 +11,9 @@ import {
   CreateChatCompletionRequest, OpenAIApi
 } from 'openai'
 import { useStateRef } from '@/src/useStateRef';
-import { ChatCompletionResponseMessage } from 'openai/api';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
+import rehypeHighlight from 'rehype-highlight'
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -75,7 +75,6 @@ export default function Index() {
           }
         }
 
-        console.log("FIXME: completion, ", res)
         const after = Date.now()
       } finally {
         setExecuting(false)
@@ -96,8 +95,12 @@ export default function Index() {
     (event: KeyboardEvent) => {
 
       if(event.key === 'Enter') {
-        handleExecution(inputRef.current)
-        updateInput('')
+
+        if (inputRef.current.trim() !== '') {
+          handleExecution(inputRef.current)
+          updateInput('')
+        }
+
       }
     },
     [handleExecution, updateInput]
@@ -142,7 +145,7 @@ export default function Index() {
                   <Paper key={idx} elevation={1} sx={{mt: 1}}>
                     <Box p={1} pl={2} pr={2}>
                       {message.role === 'user' && <>{message.content}</>}
-                      {message.role !== 'user' && <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.content}</ReactMarkdown>}
+                      {message.role !== 'user' && <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{message.content}</ReactMarkdown>}
                     </Box>
                   </Paper>
                 );
