@@ -45,8 +45,6 @@ export default function Index() {
     {"role": "system", "content": "You are a helpful assistant."},
   ])
 
-  // const [choices, setChoices] = useState<ReadonlyArray<ChatCompletionResponseMessage>>()
-
   const handleExecution = useCallback((command: string) => {
     async function doAsync() {
       try {
@@ -64,6 +62,17 @@ export default function Index() {
         const req = createCompletionRequest(messageRef.current)
         const before = Date.now()
         const res = await openai.createChatCompletion(req);
+
+        if (res.data.choices.length > 0) {
+          const first = res.data.choices[0]
+          if (first.message) {
+            setMessages([
+              ...messageRef.current,
+              first.message
+            ])
+          }
+        }
+
         console.log("FIXME: completion, ", res)
         const after = Date.now()
       } finally {
@@ -121,8 +130,14 @@ export default function Index() {
             <div style={{flexGrow: 1, overflow: 'auto'}} id='messages'>
 
               {messages.map((message, idx) => {
+
+                if (idx === 0) {
+                  // ignore the system message
+                  return null
+                }
+
                 return (
-                  <Paper elevation={1} key={idx} sx={{mt: 1}}>
+                  <Paper key={idx} elevation={1} sx={{mt: 1}}>
                     <Box p={1} pl={2} pr={2}>
                       {message.content}
                     </Box>
@@ -138,6 +153,7 @@ export default function Index() {
 
               <Paper elevation={2}>
                 <TextField placeholder="Enter a command for ChatGPT"
+                           inputProps={{ autoFocus: true }}
                            value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>
               </Paper>
             </Box>
