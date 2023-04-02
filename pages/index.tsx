@@ -6,20 +6,75 @@ import {
   TextField
 } from '@mui/material';
 import { ChangeEvent, useCallback, useRef, useState, KeyboardEvent } from 'react';
+import {
+  ChatCompletionRequestMessage, Configuration,
+  CreateChatCompletionRequest, OpenAIApi
+} from 'openai'
+import { useStateRef } from '@/src/useStateRef';
+import { ChatCompletionResponseMessage } from 'openai/api';
+
+export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
+
+  return {
+    model: 'gpt-3.5-turbo',
+    temperature: 0.0,
+    max_tokens: 256,
+    top_p: 1,
+    n: 1,
+    messages: [...messages]
+  }
+
+}
+
+const API_KEY_INPUTNEURON = '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'
+
+const conf = new Configuration({
+  apiKey: API_KEY_INPUTNEURON,
+  // basePath: computeBrowserBasePath()
+})
+
+const openai = new OpenAIApi(conf);
 
 export default function Index() {
-
-  type Message = {
-    readonly text: () => JSX.Element
-  }
 
   const [input, setInput] = useState('')
   const inputRef = useRef('')
 
-  const [executing,setExecuting] = useState(false)
-  const [messages, setMessages] = useState<ReadonlyArray<Message>>([])
-  const messagesRef = useRef<ReadonlyArray<Message>>([])
+  const [executing, setExecuting] = useState(false)
+  const [messages, setMessages, messageRef] = useStateRef<ReadonlyArray<ChatCompletionRequestMessage>>([
+    {"role": "system", "content": "You are a helpful assistant."},
+  ])
 
+  // const [choices, setChoices] = useState<ReadonlyArray<ChatCompletionResponseMessage>>()
+
+  const handleExecution = useCallback((command: string) => {
+    async function doAsync() {
+      try {
+
+        setMessages([
+          ...messageRef.current,
+          {
+            role: 'user',
+            content: command
+          }
+        ])
+
+        setExecuting(true)
+
+        const req = createCompletionRequest(messageRef.current)
+        const before = Date.now()
+        const res = await openai.createChatCompletion(req);
+        console.log("FIXME: completion, ", res)
+        const after = Date.now()
+      } finally {
+        setExecuting(false)
+      }
+    }
+
+    doAsync()
+      .catch(err => console.error('FIXME', err))
+
+  }, [messageRef, setMessages])
 
   const updateInput = useCallback((newInput: string) => {
     setInput(newInput)
@@ -30,11 +85,11 @@ export default function Index() {
     (event: KeyboardEvent) => {
 
       if(event.key === 'Enter') {
-        // handleExecution(inputRef.current)
+        handleExecution(inputRef.current)
         updateInput('')
       }
     },
-    [updateInput]
+    [handleExecution, updateInput]
   )
 
   const handleChange = useCallback(
@@ -66,11 +121,12 @@ export default function Index() {
             <div style={{flexGrow: 1, overflow: 'auto'}} id='messages'>
 
               {messages.map((message, idx) => {
-                const Text = message.text
                 return (
-                  <Box key={idx} p={1} pl={2} pr={2}>
-                    <Text/>
-                  </Box>
+                  <Paper elevation={1} key={idx} sx={{mt: 1}}>
+                    <Box p={1} pl={2} pr={2}>
+                      {message.content}
+                    </Box>
+                  </Paper>
                 );
               })}
 
@@ -90,4 +146,14 @@ export default function Index() {
       </main>
     </>
   )
+}
+
+function scrollMessagesIntoView() {
+  const messagesElement = document.getElementById('messages')
+
+  if (messagesElement) {
+    if (messagesElement.lastElementChild) {
+      messagesElement.lastElementChild.scrollIntoView({block: 'end'})
+    }
+  }
 }
