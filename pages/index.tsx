@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import { ChangeEvent, useCallback, useRef, useState, KeyboardEvent } from 'react';
 
-export default function Home() {
+export default function Index() {
 
   type Message = {
     readonly text: () => JSX.Element
