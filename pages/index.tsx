@@ -2,11 +2,10 @@ import Head from 'next/head'
 import {
   Box,
   LinearProgress,
-  makeStyles,
   Paper,
   TextField
 } from '@mui/material';
-import { ChangeEvent, useCallback, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useRef, useState, KeyboardEvent } from 'react';
 
 export default function Home() {
 
@@ -82,7 +81,7 @@ export default function Home() {
               {executing && <LinearProgress variant='indeterminate'/>}
 
               <Paper elevation={2}>
-                <TextField placeholder="Enter a command to ChatGPT"
+                <TextField placeholder="Enter a command for ChatGPT"
                            value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>
               </Paper>
             </Box>
