@@ -64,6 +64,7 @@ export function WhisperControl(props: WhisperControlProps) {
   const startedRecordingRef = useRef(false)
   const startedSpeakingRef = useRef(false)
   const stopRecordingRef = useRef(false)
+  const transcribedRef = useRef(false)
 
   const handleStopRecording = useCallback(() => {
 
@@ -104,9 +105,25 @@ export function WhisperControl(props: WhisperControlProps) {
   }, [props.autoStart, startRecording])
 
   useEffect(() => {
-    if (stopRecordingRef.current && transcript.text) {
-      onTranscription?.(transcript.text)
+    console.log("FIXME1")
+
+    if (stopRecordingRef.current) {
+      console.log("FIXME2")
+      if (transcript.text) {
+        console.log("FIXME3")
+        if (!transcribedRef.current) {
+          transcribedRef.current = true
+          onTranscription?.(transcript.text)
+        } else {
+          console.log("FIXME 3.1")
+        }
+      } else {
+        console.log("FIXME 2.1")
+      }
+    } else {
+      console.log("FIXME 1.1")
     }
+
   }, [onTranscription, transcript])
 
   return (

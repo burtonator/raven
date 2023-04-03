@@ -15,6 +15,7 @@ import { useStateRef } from '@/src/useStateRef';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
+import { WhisperControl } from '@/pages/whisper';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -82,6 +83,9 @@ export default function Index() {
   ])
 
   const handleExecution = useCallback((command: string) => {
+
+    console.log("Got command: " + command)
+
     async function doAsync() {
       try {
 
@@ -160,6 +164,13 @@ export default function Index() {
     [updateInput]
   )
 
+  const handleWhisper = useCallback((text: string) => {
+
+    console.log("FIXME: got whisper output but waiting... 1ms")
+    setTimeout(() => handleExecution(text), 1)
+
+  }, [handleExecution])
+
   return (
     <>
       <Head>
@@ -221,9 +232,11 @@ export default function Index() {
               {executing && <LinearProgress variant='indeterminate'/>}
 
               <Paper elevation={2}>
-                <TextField placeholder="Enter a command for ChatGPT"
-                           inputProps={{ autoFocus: true }}
-                           value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>
+                {/*<TextField placeholder="Enter a command for ChatGPT"*/}
+                {/*           inputProps={{ autoFocus: true }}*/}
+                {/*           value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>*/}
+
+                <WhisperControl autoStart={true} onTranscription={text => handleWhisper(text)}/>
               </Paper>
             </Box>
 
