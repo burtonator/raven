@@ -37,6 +37,7 @@ function WhisperDebug () {
 
 interface WhisperControlProps {
   readonly autoStart?: boolean
+  readonly onTranscription?: (text: string) => void
 }
 
 export function WhisperControl(props: WhisperControlProps) {
@@ -90,6 +91,12 @@ export function WhisperControl(props: WhisperControlProps) {
     }
   }, [props.autoStart, startRecording])
 
+  useEffect(() => {
+    if (stopRecordingRef.current && transcript.text) {
+      props.onTranscription?.(transcript.text)
+    }
+  }, [props.onTranscription, transcript])
+
   return (
     <div>
       <p>Recording: {recording ? 'true' : 'false'}</p>
@@ -105,7 +112,7 @@ export function WhisperControl(props: WhisperControlProps) {
 export default function Whisper() {
 
   return (
-    <WhisperControl autoStart={true}/>
+    <WhisperControl autoStart={true} onTranscription={text => console.log("Got transcription: " + text)}/>
   )
   // return (
   //   <WhisperDebug/>
