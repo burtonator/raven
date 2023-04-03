@@ -42,6 +42,23 @@ export type ChatCompletionRequestMessageWithDuration = {
   readonly duration?: number
 } & ChatCompletionRequestMessage
 
+async function convertToSpeech() {
+
+  const res = await fetch('https://content-texttospeech.googleapis.com/v1/text:synthesize?alt=json&key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM', {
+    headers: {
+      Authorization: 'Bearer ya29.a0Ael9sCNMbfKPwnAhZzcMGk1HOAPU-Xl1B0dG_GzIlDNvuBqOveomfjo68Q96Xep85WDaQPjQ1tsJ843U_7_nBkpuzzfvCb3-ySBkvrCpYLBmsZfyAfGUUJtnZwpL8o7eIi1Y7WNQEPpJ0SCdDdE76dEVKb3MvK9-YAaCgYKAUQSAQ8SFQF4udJh7X9mj3E3QiZvlb_bgXIoRA0169',
+      ContentType: 'text/json'
+    },
+    method: 'POST',
+    referrer: '',
+    mode: 'no-cors',
+    body: JSON.stringify({"input":{"text":"This is a test"},"audioConfig":{"audioEncoding":"MP3"},"voice":{"languageCode":"en"}})
+  })
+
+  return res.body
+
+}
+
 export default function Index() {
 
   const [input, setInput] = useState('')
@@ -66,12 +83,17 @@ export default function Index() {
 
         setExecuting(true)
 
+
+
         const req = createCompletionRequest(messageRef.current)
         const before = Date.now()
         const completion = openai.createChatCompletion(req)
         const res = await completion
         const after = Date.now()
         const duration = after - before
+
+        await convertToSpeech()
+
         if (res.data.choices.length > 0) {
           const first = res.data.choices[0]
           if (first.message) {
