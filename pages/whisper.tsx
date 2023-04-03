@@ -1,6 +1,5 @@
 import { useWhisper } from '@chengsokdara/use-whisper';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import LoadingButton from '@mui/lab/LoadingButton';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import { CircularProgress, IconButton } from '@mui/material';
 
@@ -106,25 +105,15 @@ export function WhisperControl(props: WhisperControlProps) {
   }, [props.autoStart, startRecording])
 
   useEffect(() => {
-    console.log("FIXME1")
 
     if (stopRecordingRef.current) {
-      console.log("FIXME2")
       if (transcript.text) {
-        console.log("FIXME3")
         if (!transcribedRef.current) {
           transcribedRef.current = true
           onTranscription?.(transcript.text)
-        } else {
-          console.log("FIXME 3.1")
         }
-      } else {
-        console.log("FIXME 2.1")
       }
-    } else {
-      console.log("FIXME 1.1")
     }
-
   }, [onTranscription, transcript])
 
   if (listening) {
