@@ -5,10 +5,11 @@ import {
   Paper,
   TextField
 } from '@mui/material';
-import { ChangeEvent, useCallback, useRef, useState, KeyboardEvent } from 'react';
+import React, { ChangeEvent, useCallback, useRef, useState, KeyboardEvent } from 'react';
 import {
-  ChatCompletionRequestMessage, Configuration,
-  CreateChatCompletionRequest, OpenAIApi
+  ChatCompletionRequestMessage,
+  Configuration, CreateChatCompletionRequest,
+  OpenAIApi
 } from 'openai'
 import { useStateRef } from '@/src/useStateRef';
 import ReactMarkdown from 'react-markdown';
@@ -37,14 +38,18 @@ const conf = new Configuration({
 
 const openai = new OpenAIApi(conf);
 
+export type ChatCompletionRequestMessageWithDuration = {
+  readonly duration?: number
+} & ChatCompletionRequestMessage
+
 export default function Index() {
 
   const [input, setInput] = useState('')
   const inputRef = useRef('')
 
   const [executing, setExecuting] = useState(false)
-  const [messages, setMessages, messageRef] = useStateRef<ReadonlyArray<ChatCompletionRequestMessage>>([
-    {"role": "system", "content": "You are a helpful assistant."},
+  const [messages, setMessages, messageRef] = useStateRef<ReadonlyArray<ChatCompletionRequestMessageWithDuration>>([
+    {"role": "system", "content": "You are a helpful assistant.  Limit all responses to one paragraph."},
   ])
 
   const handleExecution = useCallback((command: string) => {
@@ -63,26 +68,31 @@ export default function Index() {
 
         const req = createCompletionRequest(messageRef.current)
         const before = Date.now()
-        const res = await openai.createChatCompletion(req);
-
+        const completion = openai.createChatCompletion(req)
+        const res = await completion
+        const after = Date.now()
+        const duration = after - before
         if (res.data.choices.length > 0) {
           const first = res.data.choices[0]
           if (first.message) {
             setMessages([
               ...messageRef.current,
-              first.message
+              {
+                ...first.message,
+                duration
+              }
             ])
           }
         }
 
-        const after = Date.now()
       } finally {
         setExecuting(false)
       }
     }
 
     doAsync()
-      .catch(err => console.error('FIXME', err))
+      // FIXME properly handle errors in the UI...
+      .catch(err => console.error('Unhandled error', err))
 
   }, [messageRef, setMessages])
 
@@ -142,12 +152,21 @@ export default function Index() {
                 }
 
                 return (
-                  <Paper key={idx} elevation={1} sx={{mt: 1}}>
-                    <Box p={1} pl={2} pr={2}>
-                      {message.role === 'user' && <>{message.content}</>}
-                      {message.role !== 'user' && <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{message.content}</ReactMarkdown>}
-                    </Box>
-                  </Paper>
+                  <React.Fragment key={idx}>
+                    <Paper elevation={1} sx={{mt: 1}}>
+                      <Box p={1} pl={2} pr={2}>
+                        {message.role === 'user' && <>{message.content}</>}
+                        {message.role !== 'user' && <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{message.content}</ReactMarkdown>}
+
+                      </Box>
+                    </Paper>
+                    {message.duration && (
+                      <Box style={{textAlign: 'right', fontSize: '14px'}} color='text.disabled'>
+                        duration: {message.duration}
+                      </Box>
+                    )}
+
+                  </React.Fragment>
                 );
               })}
 
