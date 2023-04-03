@@ -2,6 +2,7 @@ import { useWhisper } from '@chengsokdara/use-whisper';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
+import { CircularProgress, IconButton } from '@mui/material';
 
 const API_KEY_INPUTNEURON = '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'
 
@@ -126,9 +127,18 @@ export function WhisperControl(props: WhisperControlProps) {
 
   }, [onTranscription, transcript])
 
-  return (
-    <LoadingButton loading={listening} color="primary" variant="contained" size="large" startIcon={<KeyboardVoiceIcon/>}/>
+  if (listening) {
+    return (
+      <IconButton size='medium' onClick={handleStopRecording}>
+        <CircularProgress variant='indeterminate' size={24} />
+      </IconButton>
+    )
+  }
 
+  return (
+    <IconButton size='medium'>
+      <KeyboardVoiceIcon/>
+    </IconButton>
   )
 }
 export default function Whisper() {
