@@ -23,6 +23,7 @@
     "eslint-config-next": "13.2.4",
     "install": "^0.13.0",
     "next": "13.2.4",
+    "next-http-proxy-middleware": "^1.2.5",
     "openai": "^3.2.1",
     "openai-edge": "^0.5.1",
     "react": "18.2.0",

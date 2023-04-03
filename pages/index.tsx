@@ -24,7 +24,12 @@ export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRe
     max_tokens: 256,
     top_p: 1,
     n: 1,
-    messages: [...messages]
+    messages: messages.map(current => {
+      const cpy = {...current}
+      delete cpy['duration']
+      delete cpy['audioContent']
+      return cpy
+    })
   }
 
 }
@@ -40,22 +45,29 @@ const openai = new OpenAIApi(conf);
 
 export type ChatCompletionRequestMessageWithDuration = {
   readonly duration?: number
+  readonly audioContent?: string
+
 } & ChatCompletionRequestMessage
 
-async function convertToSpeech() {
+interface AudioMessage {
+  readonly audioContent: string
+}
 
-  const res = await fetch('https://content-texttospeech.googleapis.com/v1/text:synthesize?alt=json&key=AIzaSyAa8yy0GdcGPHdtD083HiGGx_S0vMPScDM', {
+async function convertToSpeech(text: string): Promise<AudioMessage> {
+
+  if (! text) {
+    throw new Error("No text given")
+  }
+
+  const res = await fetch('/api/google_cloudspeech', {
     headers: {
-      Authorization: 'Bearer ya29.a0Ael9sCNMbfKPwnAhZzcMGk1HOAPU-Xl1B0dG_GzIlDNvuBqOveomfjo68Q96Xep85WDaQPjQ1tsJ843U_7_nBkpuzzfvCb3-ySBkvrCpYLBmsZfyAfGUUJtnZwpL8o7eIi1Y7WNQEPpJ0SCdDdE76dEVKb3MvK9-YAaCgYKAUQSAQ8SFQF4udJh7X9mj3E3QiZvlb_bgXIoRA0169',
       ContentType: 'text/json'
     },
     method: 'POST',
-    referrer: '',
-    mode: 'no-cors',
-    body: JSON.stringify({"input":{"text":"This is a test"},"audioConfig":{"audioEncoding":"MP3"},"voice":{"languageCode":"en"}})
+    body: JSON.stringify({text})
   })
 
-  return res.body
+  return await res.json()
 
 }
 
@@ -83,8 +95,6 @@ export default function Index() {
 
         setExecuting(true)
 
-
-
         const req = createCompletionRequest(messageRef.current)
         const before = Date.now()
         const completion = openai.createChatCompletion(req)
@@ -92,16 +102,21 @@ export default function Index() {
         const after = Date.now()
         const duration = after - before
 
-        await convertToSpeech()
 
         if (res.data.choices.length > 0) {
           const first = res.data.choices[0]
           if (first.message) {
+
+            const audio = await convertToSpeech(first.message.content)
+
+            console.log("FIXME: audio: ", audio)
+
             setMessages([
               ...messageRef.current,
               {
                 ...first.message,
-                duration
+                duration,
+                audioContent: audio.audioContent
               }
             ])
           }
@@ -187,6 +202,13 @@ export default function Index() {
                         duration: {message.duration}
                       </Box>
                     )}
+
+                    {message.audioContent && (
+                      <audio autoPlay="autoplay"
+                             controls={true}
+                             src={`data:audio/mp3;base64,${message.audioContent}`}
+                             />
+                      )}
 
                   </React.Fragment>
                 );
