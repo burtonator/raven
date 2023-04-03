@@ -1,5 +1,7 @@
 import { useWhisper } from '@chengsokdara/use-whisper';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import LoadingButton from '@mui/lab/LoadingButton';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 const API_KEY_INPUTNEURON = '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'
 
@@ -42,6 +44,9 @@ interface WhisperControlProps {
 
 export function WhisperControl(props: WhisperControlProps) {
 
+  const {onTranscription} = props
+  const [listening, setListening] = useState<boolean>(props.autoStart ?? false)
+
   const {
     recording,
     speaking,
@@ -60,6 +65,14 @@ export function WhisperControl(props: WhisperControlProps) {
   const startedSpeakingRef = useRef(false)
   const stopRecordingRef = useRef(false)
 
+  const handleStopRecording = useCallback(() => {
+
+    setListening(false)
+    stopRecording()
+      .catch(err => console.error(err))
+
+  }, [stopRecording])
+
   useEffect(() => {
 
     if(! startedSpeakingRef.current && speaking) {
@@ -72,12 +85,11 @@ export function WhisperControl(props: WhisperControlProps) {
       if (! stopRecordingRef.current) {
         console.log("OK... we stopped speaking! Let's stop recording...")
         stopRecordingRef.current = true
-        stopRecording()
-          .catch(err => console.error(err))
+        handleStopRecording()
       }
     }
 
-  }, [speaking, stopRecording])
+  }, [speaking, handleStopRecording])
 
   useEffect(() => {
     if (props.autoStart) {
@@ -93,20 +105,13 @@ export function WhisperControl(props: WhisperControlProps) {
 
   useEffect(() => {
     if (stopRecordingRef.current && transcript.text) {
-      props.onTranscription?.(transcript.text)
+      onTranscription?.(transcript.text)
     }
-  }, [props.onTranscription, transcript])
+  }, [onTranscription, transcript])
 
   return (
-    <div>
-      <p>Recording: {recording ? 'true' : 'false'}</p>
-      <p>Speaking: {speaking ? 'true' : 'false'}</p>
-      <p>Transcribing: {transcribing ? 'true' : 'false'}</p>
-      <p>Transcribed Text: {transcript.text}</p>
-      {/*<button onClick={() => startRecording()}>Start</button>*/}
-      {/*<button onClick={() => pauseRecording()}>Pause</button>*/}
-      {/*<button onClick={() => stopRecording()}>Stop</button>*/}
-    </div>
+    <LoadingButton loading={listening} color="primary" variant="contained" size="large" startIcon={<KeyboardVoiceIcon/>}/>
+
   )
 }
 export default function Whisper() {

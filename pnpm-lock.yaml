@@ -9,6 +9,7 @@ specifiers:
   '@fontsource/roboto': ^4.5.8
   '@google-cloud/text-to-speech': ^4.2.1
   '@mui/icons-material': ^5.11.11
+  '@mui/lab': 5.0.0-alpha.124
   '@mui/material': ^5.11.15
   '@types/node': 18.15.11
   '@types/react': 18.0.32
@@ -37,6 +38,7 @@ dependencies:
   '@fontsource/roboto': 4.5.8
   '@google-cloud/text-to-speech': 4.2.1
   '@mui/icons-material': 5.11.11_k5mvtc23fjbryag7e72enhgopa
+  '@mui/lab': 5.0.0-alpha.124_u6vtuavtj7rlncabgjrvxw3ks4
   '@mui/material': 5.11.15_3unrtkzlichk74gwhgfmuhukbm
   '@types/node': 18.15.11
   '@types/react': 18.0.32
@@ -370,6 +372,30 @@ packages:
       lodash: 4.17.21
     dev: false
 
+  /@mui/base/5.0.0-alpha.122_6hfup3cnntiu7o7txcf7sadj7u:
+    resolution: {integrity: sha512-IgZEFQyHa39J1+Q3tekVdhPuUm1fr3icddaNLmiAIeYTVXmR7KR5FhBAIL0P+4shlPq0liUPGlXryoTm0iCeFg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@emotion/is-prop-valid': 1.2.0
+      '@mui/types': 7.2.3_@types+react@18.0.32
+      '@mui/utils': 5.11.13_react@18.2.0
+      '@popperjs/core': 2.11.7
+      '@types/react': 18.0.32
+      clsx: 1.2.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-is: 18.2.0
+    dev: false
+
   /@mui/base/5.0.0-alpha.123_6hfup3cnntiu7o7txcf7sadj7u:
     resolution: {integrity: sha512-pxzcAfET3I6jvWqS4kijiLMn1OmdMw+mGmDa0SqmDZo3bXXdvLhpCCPqCkULG3UykhvFCOcU5HclOX3JCA+Zhg==}
     engines: {node: '>=12.0.0'}
@@ -413,6 +439,40 @@ packages:
       '@mui/material': 5.11.15_3unrtkzlichk74gwhgfmuhukbm
       '@types/react': 18.0.32
       react: 18.2.0
+    dev: false
+
+  /@mui/lab/5.0.0-alpha.124_u6vtuavtj7rlncabgjrvxw3ks4:
+    resolution: {integrity: sha512-K/XEv1zYyLi3tS63tyDta1mqWql+at5w7rWp5Yd63Jx1NjPUtgopAvyRZG2SVYPs/yBwfyDPW1iqQXpRw8h9Xw==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.5.0
+      '@emotion/styled': ^11.3.0
+      '@mui/material': ^5.0.0
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@emotion/react': 11.10.6_b7lksjcz5zr4rqebyeqormarua
+      '@emotion/styled': 11.10.6_jy6zgb344t5nav635xluh5rs6a
+      '@mui/base': 5.0.0-alpha.122_6hfup3cnntiu7o7txcf7sadj7u
+      '@mui/material': 5.11.15_3unrtkzlichk74gwhgfmuhukbm
+      '@mui/system': 5.11.15_ckhgufcgsetnyeobv4t2att26i
+      '@mui/types': 7.2.3_@types+react@18.0.32
+      '@mui/utils': 5.11.13_react@18.2.0
+      '@types/react': 18.0.32
+      clsx: 1.2.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-is: 18.2.0
     dev: false
 
   /@mui/material/5.11.15_3unrtkzlichk74gwhgfmuhukbm:
