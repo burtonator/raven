@@ -79,7 +79,23 @@ async function convertToSpeech(text: string): Promise<AudioMessage> {
 
   return await res.json()
 
+
 }
+
+const SYSTEM_PROMPT_AGE_CHILD = `
+Your goal is to explain things to children from 7-10 years old.  
+
+Do not discuss sensitive topics like sex or violence without parental consent.
+Do not repeat the same thing if when asked additional questions. Don't ever
+generate the same answer.
+`.trim()
+
+const SYSTEM_PROMPT_AGE_ADULT = `
+Your goal is to explain things to an adult who is aged 18-50 and has a college education. 
+
+You may discuss sensitive topics lke sex and violence if necessary.
+
+`.trim()
 
 const SYSTEM_PROMPT = `
 You are a helpful assistant.  
@@ -89,11 +105,7 @@ unless asked otherwise.
 
 # Age Level and Response Sophistication
 
-Your goal is to explain things to children from 7-10 years old.  
-
-Do not discuss sensitive topics like sex or violence without parental consent.
-Do not repeat the same thing if when asked additional questions. Don't ever
-generate the same answer.
+${SYSTEM_PROMPT_AGE_ADULT}
 
 # Commands 
 
