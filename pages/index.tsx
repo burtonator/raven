@@ -281,7 +281,7 @@ export default function Index() {
           {/*  </Toolbar>*/}
           {/*</AppBar>*/}
 
-          <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
+          <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column'}} id='messages'>
 
             {messages.length <= 1 && (
               <Box style={{textAlign: 'center'}}>
@@ -289,6 +289,7 @@ export default function Index() {
               </Box>
             )}
 
+            <div style-={{flexGrow: 1}}>
               {messages.map((message, idx) => {
 
                 if (idx === 0) {
@@ -328,6 +329,7 @@ export default function Index() {
                 );
               })}
 
+            </div>
               <Box style={{textAlign: 'center'}} mt={1} mb={1}>
                 <WhisperControl key={whisperKey}
                                 disabled={executing}
