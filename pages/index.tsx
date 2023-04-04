@@ -262,7 +262,7 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main style={{height: '100vh'}}>
+      <main style={{height: '100vh', maxHeight: '100vh',}}>
 
         <div style={{
             marginLeft: 'auto',
@@ -270,6 +270,7 @@ export default function Index() {
             maxWidth: '900px',
             display: 'flex',
             height: '100vh',
+            maxHeight: '100vh',
             flexDirection: 'column',
           }}>
 
@@ -290,6 +291,7 @@ export default function Index() {
             )}
 
             <div style-={{flexGrow: 1}}>
+
               {messages.map((message, idx) => {
 
                 if (idx === 0) {
@@ -329,7 +331,6 @@ export default function Index() {
                 );
               })}
 
-            </div>
               <Box style={{textAlign: 'center'}} mt={1} mb={1}>
                 <WhisperControl key={whisperKey}
                                 disabled={executing}
@@ -346,6 +347,7 @@ export default function Index() {
                                 }}/>
               </Box>
 
+            </div>
             </div>
 
           <Box pt={1} pb={1}>
