@@ -222,11 +222,10 @@ export default function Index() {
             paddingTop: '64px',
             marginLeft: 'auto',
             marginRight: 'auto',
-            maxWidth: '900px',
+            width: '900px',
             height: '100vh',
             display: 'flex',
             flexDirection: 'column',
-            margin: '5px'
           }}>
 
             <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
