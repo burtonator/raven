@@ -283,7 +283,7 @@ export default function Index() {
           </Toolbar>
         </AppBar>
 
-        <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column'}} id='messages'>
+        <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column', paddingTop: '64px'}} id='messages'>
 
           {messages.length <= 1 && (
             <Box style={{textAlign: 'center'}}>
