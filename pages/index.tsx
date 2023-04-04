@@ -5,7 +5,14 @@ import {
   Paper,
   TextField
 } from '@mui/material';
-import React, { ChangeEvent, useCallback, useRef, useState, KeyboardEvent } from 'react';
+import React, {
+  ChangeEvent,
+  useCallback,
+  useRef,
+  useState,
+  KeyboardEvent,
+  useEffect
+} from 'react';
 import {
   ChatCompletionRequestMessage,
   Configuration, CreateChatCompletionRequest,
@@ -79,7 +86,7 @@ export default function Index() {
 
   const [executing, setExecuting] = useState(false)
   const [messages, setMessages, messageRef] = useStateRef<ReadonlyArray<ChatCompletionRequestMessageWithDuration>>([
-    {"role": "system", "content": "You are a helpful assistant.  Limit all responses to one paragraph."},
+    {"role": "system", "content": "You are a helpful assistant.  Limit all responses to one paragraph. Your goal is to explain things to children from 7-10 years old.  Do not discuss sensitive topics like sex or violence without parental consent."},
   ])
 
   const handleExecution = useCallback((command: string) => {
@@ -170,6 +177,11 @@ export default function Index() {
     setTimeout(() => handleExecution(text), 1)
 
   }, [handleExecution])
+
+  useEffect(() => {
+    // make sure messages always scroll into view...
+    scrollMessagesIntoView()
+  }, [messages])
 
   return (
     <>

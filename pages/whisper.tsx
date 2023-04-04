@@ -44,6 +44,8 @@ interface WhisperControlProps {
 
 export function WhisperControl(props: WhisperControlProps) {
 
+  console.log("FIMXE: whispercontrol rendered")
+
   const {onTranscription} = props
   const [listening, setListening] = useState<boolean>(props.autoStart ?? false)
 
@@ -57,9 +59,12 @@ export function WhisperControl(props: WhisperControlProps) {
     stopRecording,
   } = useWhisper({
     apiKey: API_KEY_INPUTNEURON,
+    removeSilence: true,
     // streaming: true,
     // timeSlice: 1500
   })
+
+  const autoStartedRef = useRef(false)
 
   const startedRecordingRef = useRef(false)
   const startedSpeakingRef = useRef(false)
@@ -69,10 +74,23 @@ export function WhisperControl(props: WhisperControlProps) {
   const handleStopRecording = useCallback(() => {
 
     setListening(false)
+
     stopRecording()
       .catch(err => console.error(err))
 
   }, [stopRecording])
+
+  const handleStartRecording = useCallback(() => {
+
+    if (! startedRecordingRef.current) {
+      console.log("Going to autostart recording")
+      startedRecordingRef.current = true
+      setListening(true)
+      startRecording()
+        .catch(err => console.error(err))
+    }
+
+  }, [startRecording])
 
   useEffect(() => {
 
@@ -93,24 +111,34 @@ export function WhisperControl(props: WhisperControlProps) {
   }, [speaking, handleStopRecording])
 
   useEffect(() => {
-    if (props.autoStart) {
 
-      if (! startedRecordingRef.current) {
-        console.log("Going to autostart recording")
-        startedRecordingRef.current = true
-        startRecording()
-          .catch(err => console.error(err))
-      }
+    if (!autoStartedRef.current && props.autoStart) {
+      autoStartedRef.current = true
+      handleStartRecording()
     }
-  }, [props.autoStart, startRecording])
+
+  }, [props.autoStart, handleStartRecording])
 
   useEffect(() => {
 
+    console.log("FIXME: 1")
+
     if (stopRecordingRef.current) {
+      console.log("FIXME: 2")
       if (transcript.text) {
+        console.log("FIXME: 3")
+
         if (!transcribedRef.current) {
+          console.log("FIXME: 4")
+
           transcribedRef.current = true
           onTranscription?.(transcript.text)
+          // reset for next iteration...
+          startedRecordingRef.current = false
+          startedSpeakingRef.current = false
+          stopRecordingRef.current = false
+          transcribedRef.current = false
+
         }
       }
     }
@@ -125,7 +153,7 @@ export function WhisperControl(props: WhisperControlProps) {
   }
 
   return (
-    <IconButton size='medium'>
+    <IconButton size='medium' onClick={handleStartRecording}>
       <KeyboardVoiceIcon/>
     </IconButton>
   )
