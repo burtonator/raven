@@ -344,7 +344,7 @@ export default function Index() {
             {(executing || recording) && <LinearProgress variant='indeterminate'/>}
 
             <Paper elevation={2}>
-              <TextField placeholder="Enter a command for ChatGPT"
+              <TextField placeholder="Enter a command for Raven to execute... "
                          inputProps={{ autoFocus: true }}
                          value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>
 
