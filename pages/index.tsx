@@ -24,6 +24,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import { WhisperControl } from '@/pages/whisper';
+import { Splash } from '@/src/components/Splash';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -281,6 +282,12 @@ export default function Index() {
           {/*</AppBar>*/}
 
           <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
+
+            {messages.length === 0 && (
+              <Box style={{textAlign: 'center'}}>
+                <Splash/>
+              </Box>
+            )}
 
               {messages.map((message, idx) => {
 
