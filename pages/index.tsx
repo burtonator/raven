@@ -254,7 +254,7 @@ export default function Index() {
                     )}
 
                     {message.audioContent && (
-                      <audio autoPlay="autoplay"
+                      <audio autoPlay={true}
                              onPlay={event => {
                                console.log("Playing has started", event.currentTarget);
                                audioElementRef.current = event.currentTarget
