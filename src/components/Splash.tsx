@@ -1,7 +1,7 @@
 export function Splash() {
   return (
     <div>
-      Raven v0.0.4
+      Raven v0.0.5
     </div>
   )
 }

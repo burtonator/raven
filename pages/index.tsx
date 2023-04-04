@@ -261,108 +261,108 @@ export default function Index() {
         <meta name="description" content="Raven - OpenAI and GPT Bot" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href="/main.css" />
+
       </Head>
-      <main style={{height: '100vh', maxHeight: '100vh',}}>
 
-        <div style={{
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            maxWidth: '900px',
-            display: 'flex',
-            height: '100vh',
-            maxHeight: '100vh',
-            flexDirection: 'column',
-          }}>
+      <main style={{
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          maxWidth: '900px',
+          flexGrow: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%'
+        }}>
 
-          {/*<AppBar position='fixed'>*/}
-          {/*  <Toolbar>*/}
-          {/*    <Typography variant="h6" color="inherit" component="div">*/}
-          {/*      Raven*/}
-          {/*    </Typography>*/}
-          {/*  </Toolbar>*/}
-          {/*</AppBar>*/}
+        <AppBar position='fixed'>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" component="div">
+              Raven
+            </Typography>
+          </Toolbar>
+        </AppBar>
 
-          <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column'}} id='messages'>
+        <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column'}} id='messages'>
 
-            {messages.length <= 1 && (
-              <Box style={{textAlign: 'center'}}>
-                <Splash/>
-              </Box>
-            )}
+          {messages.length <= 1 && (
+            <Box style={{textAlign: 'center'}}>
+              <Splash/>
+            </Box>
+          )}
 
-            <div style-={{flexGrow: 1}}>
+          <div style-={{flexGrow: 1}}>
 
-              {messages.map((message, idx) => {
+            {messages.map((message, idx) => {
 
-                if (idx === 0) {
-                  // ignore the system message
-                  return null
-                }
+              if (idx === 0) {
+                // ignore the system message
+                return null
+              }
 
-                return (
-                  <React.Fragment key={idx}>
-                    <Paper elevation={1} sx={{mt: 1}}>
-                      <Box p={1} pl={2} pr={2}>
-                        {message.role === 'user' && <>{message.content}</>}
-                        {message.role !== 'user' && <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{message.content}</ReactMarkdown>}
+              return (
+                <React.Fragment key={idx}>
+                  <Paper elevation={1} sx={{mt: 1}}>
+                    <Box p={1} pl={2} pr={2}>
+                      {message.role === 'user' && <>{message.content}</>}
+                      {message.role !== 'user' && <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{message.content}</ReactMarkdown>}
 
-                      </Box>
-                    </Paper>
-                    {message.duration && (
-                      <Box style={{textAlign: 'right', fontSize: '14px'}} color='text.disabled'>
-                        duration: {message.duration}
-                      </Box>
+                    </Box>
+                  </Paper>
+                  {message.duration && (
+                    <Box style={{textAlign: 'right', fontSize: '14px'}} color='text.disabled'>
+                      duration: {message.duration}
+                    </Box>
+                  )}
+
+                  {message.audioContent && (
+                    <div style={{textAlign: 'center'}}>
+                      <audio autoPlay={true}
+                             onPlay={event => {
+                               console.log("Playing has started", event.currentTarget);
+                               audioElementRef.current = event.currentTarget
+                             }}
+                             controls={true}
+                             src={`data:audio/mp3;base64,${message.audioContent}`}
+                      />
+                    </div>
                     )}
 
-                    {message.audioContent && (
-                      <div style={{textAlign: 'center'}}>
-                        <audio autoPlay={true}
-                               onPlay={event => {
-                                 console.log("Playing has started", event.currentTarget);
-                                 audioElementRef.current = event.currentTarget
-                               }}
-                               controls={true}
-                               src={`data:audio/mp3;base64,${message.audioContent}`}
-                        />
-                      </div>
-                      )}
+                </React.Fragment>
+              );
+            })}
 
-                  </React.Fragment>
-                );
-              })}
+            <Box style={{textAlign: 'center'}} mt={1} mb={1}>
+              <WhisperControl key={whisperKey}
+                              disabled={executing}
+                              onStartRecording={() => {
+                                stopPlayingAudio()
+                                setRecording(true)
+                                scrollMessagesIntoView()
+                              }}
+                              onStopRecording={() => {
+                                setRecording(false)
+                              }}
+                              onTranscription={text => {
+                                handleWhisper(text);
+                              }}/>
+            </Box>
 
-              <Box style={{textAlign: 'center'}} mt={1} mb={1}>
-                <WhisperControl key={whisperKey}
-                                disabled={executing}
-                                onStartRecording={() => {
-                                  stopPlayingAudio()
-                                  setRecording(true)
-                                  scrollMessagesIntoView()
-                                }}
-                                onStopRecording={() => {
-                                  setRecording(false)
-                                }}
-                                onTranscription={text => {
-                                  handleWhisper(text);
-                                }}/>
-              </Box>
+          </div>
+          </div>
 
-            </div>
-            </div>
+        <Box pt={1} pb={1}>
 
-          <Box pt={1} pb={1}>
+          {(executing || recording) && <LinearProgress variant='indeterminate'/>}
 
-            {(executing || recording) && <LinearProgress variant='indeterminate'/>}
+          <Paper elevation={2}>
+            <TextField placeholder="Enter a command for Raven to execute... "
+                       inputProps={{ autoFocus: true }}
+                       value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>
 
-            <Paper elevation={2}>
-              <TextField placeholder="Enter a command for Raven to execute... "
-                         inputProps={{ autoFocus: true }}
-                         value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>
+          </Paper>
+        </Box>
 
-            </Paper>
-          </Box>
-
-        </div>
       </main>
     </>
   )
