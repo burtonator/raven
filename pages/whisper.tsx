@@ -38,15 +38,17 @@ function WhisperDebug () {
 }
 
 interface WhisperControlProps {
+  readonly disabled?: boolean
   readonly autoStart?: boolean
+  readonly onStartRecording?: () => void
+  readonly onStopRecording?: () => void
   readonly onTranscription?: (text: string) => void
+  readonly size?: string | number
 }
 
 export function WhisperControl(props: WhisperControlProps) {
 
-  console.log("FIMXE: whispercontrol rendered")
-
-  const {onTranscription} = props
+  const {onTranscription, onStartRecording, onStopRecording} = props
   const [listening, setListening] = useState<boolean>(props.autoStart ?? false)
 
   const {
@@ -59,7 +61,7 @@ export function WhisperControl(props: WhisperControlProps) {
     stopRecording,
   } = useWhisper({
     apiKey: API_KEY_INPUTNEURON,
-    removeSilence: true,
+    // removeSilence: true,
     // streaming: true,
     // timeSlice: 1500
   })
@@ -73,24 +75,26 @@ export function WhisperControl(props: WhisperControlProps) {
 
   const handleStopRecording = useCallback(() => {
 
+    onStopRecording?.()
     setListening(false)
 
     stopRecording()
       .catch(err => console.error(err))
 
-  }, [stopRecording])
+  }, [onStopRecording, stopRecording])
 
   const handleStartRecording = useCallback(() => {
 
+    onStartRecording?.()
+
     if (! startedRecordingRef.current) {
-      console.log("Going to autostart recording")
       startedRecordingRef.current = true
       setListening(true)
       startRecording()
         .catch(err => console.error(err))
     }
 
-  }, [startRecording])
+  }, [onStartRecording, startRecording])
 
   useEffect(() => {
 
@@ -113,6 +117,7 @@ export function WhisperControl(props: WhisperControlProps) {
   useEffect(() => {
 
     if (!autoStartedRef.current && props.autoStart) {
+      console.log("Going to autostart recording")
       autoStartedRef.current = true
       handleStartRecording()
     }
@@ -120,8 +125,6 @@ export function WhisperControl(props: WhisperControlProps) {
   }, [props.autoStart, handleStartRecording])
 
   useEffect(() => {
-
-    console.log("FIXME: 1")
 
     if (stopRecordingRef.current) {
       console.log("FIXME: 2")
@@ -144,17 +147,19 @@ export function WhisperControl(props: WhisperControlProps) {
     }
   }, [onTranscription, transcript])
 
+  const size='200px'
+
   if (listening) {
     return (
-      <IconButton size='medium' onClick={handleStopRecording}>
-        <CircularProgress variant='indeterminate' size={24} />
+      <IconButton onClick={handleStopRecording}>
+        <CircularProgress variant='indeterminate' size={size} />
       </IconButton>
     )
   }
 
   return (
-    <IconButton size='medium' onClick={handleStartRecording}>
-      <KeyboardVoiceIcon/>
+    <IconButton disabled={props.disabled ?? false} style={{height: size, width: size}} onClick={handleStartRecording} color="primary">
+      <KeyboardVoiceIcon style={{height: size, width: size}}/>
     </IconButton>
   )
 }

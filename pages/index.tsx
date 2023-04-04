@@ -84,10 +84,27 @@ export default function Index() {
   const [input, setInput] = useState('')
   const inputRef = useRef('')
 
+  const audioElementRef = useRef<HTMLAudioElement | undefined>(undefined)
+
+  // needed when we need to remount WhisperControl as it seems to get confused
+  // and keep emitting the same transcript
+  const [whisperKey, setWhisperKey, whisperKeyRef] = useStateRef(0)
+
   const [executing, setExecuting] = useState(false)
+  const [recording, setRecording] = useState(false)
   const [messages, setMessages, messageRef] = useStateRef<ReadonlyArray<ChatCompletionRequestMessageWithDuration>>([
-    {"role": "system", "content": "You are a helpful assistant.  Limit all responses to one paragraph. Your goal is to explain things to children from 7-10 years old.  Do not discuss sensitive topics like sex or violence without parental consent."},
+    {"role": "system", "content": "You are a helpful assistant.  Limit all responses to one paragraph maximum but make them as brief as possible unless asked otherwise. Your goal is to explain things to children from 7-10 years old.  Do not discuss sensitive topics like sex or violence without parental consent.  Do not repeat the same thing if when asked additional questions.  Don't ever generate the same answer."},
   ])
+
+  const stopPlayingAudio = useCallback(() => {
+
+    if (audioElementRef.current) {
+      audioElementRef.current.pause()
+    } else {
+      console.warn('no audio element')
+    }
+
+  }, [])
 
   const handleExecution = useCallback((command: string) => {
 
@@ -96,6 +113,8 @@ export default function Index() {
     async function doAsync() {
       try {
 
+        setExecuting(true)
+
         setMessages([
           ...messageRef.current,
           {
@@ -103,8 +122,6 @@ export default function Index() {
             content: command
           }
         ])
-
-        setExecuting(true)
 
         const req = createCompletionRequest(messageRef.current)
         const before = Date.now()
@@ -120,8 +137,6 @@ export default function Index() {
 
             const audio = await convertToSpeech(first.message.content)
 
-            console.log("FIXME: audio: ", audio)
-
             setMessages([
               ...messageRef.current,
               {
@@ -134,6 +149,7 @@ export default function Index() {
         }
 
       } finally {
+        setWhisperKey(whisperKeyRef.current + 1)
         setExecuting(false)
       }
     }
@@ -173,8 +189,7 @@ export default function Index() {
 
   const handleWhisper = useCallback((text: string) => {
 
-    console.log("FIXME: got whisper output but waiting... 1ms")
-    setTimeout(() => handleExecution(text), 1)
+    handleExecution(text)
 
   }, [handleExecution])
 
@@ -202,7 +217,7 @@ export default function Index() {
             flexDirection: 'column'
           }}>
 
-            <div style={{flexGrow: 1, overflow: 'auto'}} id='messages'>
+            <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
 
               {messages.map((message, idx) => {
 
@@ -228,6 +243,10 @@ export default function Index() {
 
                     {message.audioContent && (
                       <audio autoPlay="autoplay"
+                             onPlay={event => {
+                               console.log("Playing has started", event.currentTarget);
+                               audioElementRef.current = event.currentTarget
+                             }}
                              controls={true}
                              src={`data:audio/mp3;base64,${message.audioContent}`}
                              />
@@ -237,18 +256,33 @@ export default function Index() {
                 );
               })}
 
+              <Box style={{textAlign: 'center'}} mt={1} mb={1}>
+                <WhisperControl key={whisperKey}
+                                disabled={executing}
+                                onStartRecording={() => {
+                                  stopPlayingAudio()
+                                  setRecording(true)
+                                  scrollMessagesIntoView()
+                                }}
+                                onStopRecording={() => {
+                                  setRecording(false)
+                                }}
+                                onTranscription={text => {
+                                  handleWhisper(text);
+                                }}/>
+              </Box>
+
             </div>
 
             <Box pt={1} pb={1}>
 
-              {executing && <LinearProgress variant='indeterminate'/>}
+              {(executing || recording) && <LinearProgress variant='indeterminate'/>}
 
               <Paper elevation={2}>
-                {/*<TextField placeholder="Enter a command for ChatGPT"*/}
-                {/*           inputProps={{ autoFocus: true }}*/}
-                {/*           value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>*/}
+                <TextField placeholder="Enter a command for ChatGPT"
+                           inputProps={{ autoFocus: true }}
+                           value={input} autoFocus={true} fullWidth={true} autoComplete='off' onChange={handleChange} onKeyUp={handleKeyUp}/>
 
-                <WhisperControl autoStart={true} onTranscription={text => handleWhisper(text)}/>
               </Paper>
             </Box>
 
