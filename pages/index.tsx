@@ -278,12 +278,12 @@ export default function Index() {
         <AppBar position='fixed'>
           <Toolbar>
             <Typography variant="h6" color="inherit" component="div">
-              Raven v0.0.7
+              Raven v0.0.8
             </Typography>
           </Toolbar>
         </AppBar>
 
-        <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column', paddingTop: '64px'}} id='messages'>
+        <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column', paddingTop: '64px'}} id='messages' sx={{p: 1}}>
 
           {messages.length <= 1 && (
             <Box style={{textAlign: 'center'}}>
@@ -351,7 +351,7 @@ export default function Index() {
           </div>
           </div>
 
-        <Box pt={1} pb={1}>
+        <Box pt={1}>
 
           {(executing || recording) && <LinearProgress variant='indeterminate'/>}
 
