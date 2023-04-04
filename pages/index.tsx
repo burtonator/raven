@@ -1,9 +1,10 @@
 import Head from 'next/head'
 import {
+  AppBar,
   Box,
   LinearProgress,
   Paper,
-  TextField
+  TextField, Toolbar, Typography
 } from '@mui/material';
 import React, {
   ChangeEvent,
@@ -209,7 +210,16 @@ export default function Index() {
       </Head>
       <main>
 
-          <div style={{
+        <AppBar>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" component="div">
+              Raven
+            </Typography>
+          </Toolbar>
+        </AppBar>
+
+        <div style={{
+            paddingTop: '64px',
             marginLeft: 'auto',
             marginRight: 'auto',
             width: '900px',
