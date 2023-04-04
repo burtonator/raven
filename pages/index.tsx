@@ -273,13 +273,13 @@ export default function Index() {
             flexDirection: 'column',
           }}>
 
-          <AppBar position='fixed'>
-            <Toolbar>
-              <Typography variant="h6" color="inherit" component="div">
-                Raven
-              </Typography>
-            </Toolbar>
-          </AppBar>
+          {/*<AppBar position='fixed'>*/}
+          {/*  <Toolbar>*/}
+          {/*    <Typography variant="h6" color="inherit" component="div">*/}
+          {/*      Raven*/}
+          {/*    </Typography>*/}
+          {/*  </Toolbar>*/}
+          {/*</AppBar>*/}
 
           <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
 
