@@ -283,7 +283,7 @@ export default function Index() {
 
           <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
 
-            {messages.length === 0 && (
+            {messages.length <= 1 && (
               <Box style={{textAlign: 'center'}}>
                 <Splash/>
               </Box>
