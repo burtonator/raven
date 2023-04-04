@@ -290,12 +290,12 @@ export default function Index() {
         <AppBar position='fixed'>
           <Toolbar>
             <Typography variant="h6" color="inherit" component="div">
-              Raven 0.0.9
+              Raven 0.0.10
             </Typography>
           </Toolbar>
         </AppBar>
 
-        <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column', paddingTop: '64px'}} id='messages'>
+        <Box style={{flexGrow: 1, overflow: 'auto', padding: '8px', display: 'flex', flexDirection: 'column', paddingTop: '64px'}} id='messages' sx={{p: 2}}>
 
           {messages.length <= 1 && (
             <Box style={{textAlign: 'center'}}>
@@ -361,7 +361,7 @@ export default function Index() {
             </Box>
 
           </div>
-          </div>
+          </Box>
 
         <Box pt={1}>
 
