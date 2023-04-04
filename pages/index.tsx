@@ -290,7 +290,7 @@ export default function Index() {
         <AppBar position='fixed'>
           <Toolbar>
             <Typography variant="h6" color="inherit" component="div">
-              Raven v0.0.8
+              Raven 0.0.9
             </Typography>
           </Toolbar>
         </AppBar>
