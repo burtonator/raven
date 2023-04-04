@@ -34,7 +34,7 @@ export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRe
     top_p: 1,
     n: 1,
     messages: messages.map(current => {
-      const cpy = {...current}
+      const cpy: any = {...current}
       delete cpy['duration']
       delete cpy['audioContent']
       return cpy
