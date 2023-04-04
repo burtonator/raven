@@ -222,7 +222,7 @@ export default function Index() {
             paddingTop: '64px',
             marginLeft: 'auto',
             marginRight: 'auto',
-            width: '900px',
+            maxWidth: '900px',
             height: '100vh',
             display: 'flex',
             flexDirection: 'column',
