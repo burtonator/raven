@@ -113,6 +113,7 @@ export default function Index() {
     async function doAsync() {
       try {
 
+        stopPlayingAudio()
         setExecuting(true)
 
         setMessages([
@@ -158,7 +159,7 @@ export default function Index() {
       // FIXME properly handle errors in the UI...
       .catch(err => console.error('Unhandled error', err))
 
-  }, [messageRef, setMessages])
+  }, [messageRef, setMessages, setWhisperKey, stopPlayingAudio, whisperKeyRef])
 
   const updateInput = useCallback((newInput: string) => {
     setInput(newInput)
@@ -297,7 +298,7 @@ function scrollMessagesIntoView() {
 
   if (messagesElement) {
     if (messagesElement.lastElementChild) {
-      messagesElement.lastElementChild.scrollIntoView({block: 'end'})
+      messagesElement.lastElementChild.scrollIntoView()
     }
   }
 }
