@@ -3,7 +3,7 @@ import httpProxyMiddleware from 'next-http-proxy-middleware';
 
 const API_KEY = 'AIzaSyD2XKioI72J7eSgUDhwQeyHtmdaJ9xQ-kQ'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<unknown> {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const req_json = JSON.parse(req.body)
   const text = req_json.text
