@@ -264,7 +264,6 @@ export default function Index() {
       <main style={{height: '100vh'}}>
 
         <div style={{
-            paddingTop: '64px',
             marginLeft: 'auto',
             marginRight: 'auto',
             maxWidth: '900px',
@@ -281,7 +280,7 @@ export default function Index() {
           {/*  </Toolbar>*/}
           {/*</AppBar>*/}
 
-          <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
+          <div style={{flexGrow: 1, overflow: 'auto', padding: '8px', paddingTop: '64px'}} id='messages'>
 
               {messages.map((message, idx) => {
 
