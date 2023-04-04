@@ -253,14 +253,16 @@ export default function Index() {
                     )}
 
                     {message.audioContent && (
-                      <audio autoPlay={true}
-                             onPlay={event => {
-                               console.log("Playing has started", event.currentTarget);
-                               audioElementRef.current = event.currentTarget
-                             }}
-                             controls={true}
-                             src={`data:audio/mp3;base64,${message.audioContent}`}
-                             />
+                      <div style={{textAlign: 'center'}}>
+                        <audio autoPlay={true}
+                               onPlay={event => {
+                                 console.log("Playing has started", event.currentTarget);
+                                 audioElementRef.current = event.currentTarget
+                               }}
+                               controls={true}
+                               src={`data:audio/mp3;base64,${message.audioContent}`}
+                        />
+                      </div>
                       )}
 
                   </React.Fragment>

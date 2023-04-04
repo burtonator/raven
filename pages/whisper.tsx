@@ -48,6 +48,8 @@ interface WhisperControlProps {
 
 export function WhisperControl(props: WhisperControlProps) {
 
+  // FIXME I need onTranscripting... here...
+
   const {onTranscription, onStartRecording, onStopRecording} = props
   const [listening, setListening] = useState<boolean>(props.autoStart ?? false)
 
