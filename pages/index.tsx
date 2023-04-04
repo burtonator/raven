@@ -261,27 +261,27 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-
-        <AppBar>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" component="div">
-              Raven
-            </Typography>
-          </Toolbar>
-        </AppBar>
+      <main style={{height: '100vh'}}>
 
         <div style={{
             paddingTop: '64px',
             marginLeft: 'auto',
             marginRight: 'auto',
             maxWidth: '900px',
-            height: '100vh',
             display: 'flex',
+            height: '100vh',
             flexDirection: 'column',
           }}>
 
-            <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
+          <AppBar>
+            <Toolbar>
+              <Typography variant="h6" color="inherit" component="div">
+                Raven
+              </Typography>
+            </Toolbar>
+          </AppBar>
+
+          <div style={{flexGrow: 1, overflow: 'auto', padding: '8px'}} id='messages'>
 
               {messages.map((message, idx) => {
 
