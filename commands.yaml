@@ -1,0 +1,9 @@
+---
+
+summarize:
+  description: Summarize will fetch a new site via HTTP for a web resource with the given name by first resolving the name to a website.
+  parameters:
+    name:
+      description: The name of the site to fetch and then summarize.
+      type: string
+
