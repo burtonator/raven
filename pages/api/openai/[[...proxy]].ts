@@ -26,12 +26,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         replaceStr: '/v1/',
       }
     ],
-    debug: true,
-    logLevel: 'debug',
-    auth: () => OPENAI_API_KEY,
-    onProxyReq: function onProxyReq(proxyReq, req, res) {
-      // Log outbound request to remote target
-      console.log('-->  ', req.method, req.path, '->', proxyReq.path);
-    },
   })
 }
