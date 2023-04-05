@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import { CircularProgress, IconButton } from '@mui/material';
 
-function WhisperDebug () {
+export function WhisperDebug () {
 
   console.log('here')
 
