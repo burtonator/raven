@@ -9,12 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chengsokdara/use-whisper": "^0.2.0",
+    "@chengsokdara/use-whisper": "github:burtonator/use-whisper",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@ffmpeg/core": "^0.11.0",
     "@ffmpeg/ffmpeg": "^0.11.6",
     "@fontsource/roboto": "^4.5.8",
+    "@google-cloud/speech": "^5.4.0",
     "@google-cloud/text-to-speech": "^4.2.1",
     "@mui/icons-material": "^5.11.11",
     "@mui/lab": "5.0.0-alpha.124",

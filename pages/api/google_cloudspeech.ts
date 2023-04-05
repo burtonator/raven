@@ -28,11 +28,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         text
       },
       audioConfig: {
-        "audioEncoding":"MP3",
+        audioEncoding:"MP3",
         speakingRate: '1.35'
       },
-      "voice": {
-        "languageCode":"en"
+      voice: {
+        languageCode:"en"
       }
     })
   })

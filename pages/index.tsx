@@ -23,8 +23,8 @@ import { useStateRef } from '@/src/useStateRef';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
-import { WhisperControl } from '@/pages/whisper';
 import { Splash } from '@/src/components/Splash';
+import { WhisperControl } from '@/src/components/WhisperControl';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -164,8 +164,6 @@ url: https://www.msnbc.com/
 END OUTPUT
 
 `
-
-console.log('Using prompt: ', SYSTEM_PROMPT)
 
 export default function Index() {
 
