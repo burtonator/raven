@@ -25,7 +25,6 @@ import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import { Splash } from '@/src/components/Splash';
 import { WhisperControl } from '@/src/components/WhisperControl';
-import { StatusBox } from '@/src/components/StatusBox';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
