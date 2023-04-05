@@ -1,7 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import httpProxyMiddleware from 'next-http-proxy-middleware'
 
-
 // turn off default parser for current route
 export const config = {
   api: {
