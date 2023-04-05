@@ -47,7 +47,7 @@ export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRe
 function computeBrowserBasePath() {
 
   if (typeof document !== 'undefined') {
-    return document.location.origin + '/api/_proxy_/openai'
+    return document.location.origin + '/api/openai/proxy'
   }
 
   return undefined
