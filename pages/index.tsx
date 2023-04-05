@@ -29,8 +29,8 @@ import { WhisperControl } from '@/src/components/WhisperControl';
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
   return {
-    model: 'gpt-4',
-    // model: 'gpt-3.5-turbo',
+    // model: 'gpt-4',
+    model: 'gpt-3.5-turbo',
     temperature: 0.0,
     max_tokens: 256,
     top_p: 1,
