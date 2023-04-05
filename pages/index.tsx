@@ -44,11 +44,18 @@ export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRe
 
 }
 
-const API_KEY_INPUTNEURON = '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'
+function computeBrowserBasePath() {
+
+  if (typeof document !== 'undefined') {
+    return document.location.origin + '/api/_proxy_/openai'
+  }
+
+  return undefined
+
+}
 
 const conf = new Configuration({
-  apiKey: API_KEY_INPUTNEURON,
-  // basePath: computeBrowserBasePath()
+  basePath: computeBrowserBasePath()
 })
 
 const openai = new OpenAIApi(conf);

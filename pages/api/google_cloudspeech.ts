@@ -1,12 +1,16 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import httpProxyMiddleware from 'next-http-proxy-middleware';
 
-const API_KEY = 'AIzaSyD2XKioI72J7eSgUDhwQeyHtmdaJ9xQ-kQ'
+const API_KEY = process.env.GOOGLE_TTS_API_KEY
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const req_json = JSON.parse(req.body)
   const text = req_json.text
+
+  if (! API_KEY) {
+    throw new Error("No GOOGLE_TTS_API_KEY")
+  }
 
   if (! text) {
     throw new Error("No text")
