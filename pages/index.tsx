@@ -200,6 +200,7 @@ export default function Index() {
     async function doAsync() {
       try {
 
+        scrollMessagesIntoView()
         stopPlayingAudio()
         setExecuting(true)
 
@@ -370,6 +371,7 @@ export default function Index() {
                               onStatus={status => {
                                 setRecording(status.recording)
                                 setTranscribing(status.transcribing)
+                                scrollMessagesIntoView()
                               }}
                               onStartRecording={() => {
                                 stopPlayingAudio()
@@ -377,6 +379,7 @@ export default function Index() {
                               }}
                               onTranscription={text => {
                                 handleWhisper(text);
+                                scrollMessagesIntoView()
                               }}/>
 
               {/*{transcribing && <StatusBox text='Transcribing...'/>}*/}
@@ -409,7 +412,7 @@ function scrollMessagesIntoView() {
 
   if (messagesElement) {
     if (messagesElement.lastElementChild) {
-      messagesElement.lastElementChild.scrollIntoView()
+      messagesElement.lastElementChild.scrollIntoView({block: 'end'})
     }
   }
 }
