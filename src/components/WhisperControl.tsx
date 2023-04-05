@@ -26,9 +26,6 @@ export function WhisperControl(props: WhisperControlProps) {
   const endpoint = useProxyURL('openai')
   const {onTranscription, onStartRecording, onStopRecording, onStatus} = props
   const [listening, setListening] = useState<boolean>(props.autoStart ?? false)
-  const apiKey = useLocalStorage('OPENAI_API_KEY')
-
-  console.log("Using endpoint: " + endpoint)
 
   const {
     recording,
