@@ -311,7 +311,7 @@ export default function Index() {
         <AppBar position='fixed'>
           <Toolbar>
             <Typography variant="h6" color="inherit" component="div">
-              Raven 0.1.1
+              Raven 0.1.2
             </Typography>
           </Toolbar>
         </AppBar>
@@ -388,7 +388,7 @@ export default function Index() {
           </div>
           </Box>
 
-        <Box pt={1}>
+        <Box p={1}>
 
           {(executing || recording || transcribing) && <LinearProgress variant='indeterminate'/>}
 
