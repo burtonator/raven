@@ -25,6 +25,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import { Splash } from '@/src/components/Splash';
 import { WhisperControl } from '@/src/components/WhisperControl';
+import { StatusBox } from '@/src/components/StatusBox';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -178,6 +179,7 @@ export default function Index() {
 
   const [executing, setExecuting] = useState(false)
   const [recording, setRecording] = useState(false)
+  const [transcribing, setTranscribing] = useState(false)
   const [messages, setMessages, messageRef] = useStateRef<ReadonlyArray<ChatCompletionRequestMessageWithDuration>>([
     {"role": "system", "content": SYSTEM_PROMPT.trim()},
   ])
@@ -366,17 +368,21 @@ export default function Index() {
             <Box style={{textAlign: 'center'}} mt={1} mb={1}>
               <WhisperControl key={whisperKey}
                               disabled={executing}
+                              onStatus={status => {
+                                setRecording(status.recording)
+                                setTranscribing(status.transcribing)
+                              }}
                               onStartRecording={() => {
                                 stopPlayingAudio()
-                                setRecording(true)
                                 scrollMessagesIntoView()
-                              }}
-                              onStopRecording={() => {
-                                setRecording(false)
                               }}
                               onTranscription={text => {
                                 handleWhisper(text);
                               }}/>
+
+              {/*{transcribing && <StatusBox text='Transcribing...'/>}*/}
+              {/*{recording && <StatusBox text='Recording...'/>}*/}
+
             </Box>
 
           </div>
@@ -384,7 +390,7 @@ export default function Index() {
 
         <Box pt={1}>
 
-          {(executing || recording) && <LinearProgress variant='indeterminate'/>}
+          {(executing || recording || transcribing) && <LinearProgress variant='indeterminate'/>}
 
           <Paper elevation={2}>
             <TextField placeholder="Enter a command for Raven to execute... "
