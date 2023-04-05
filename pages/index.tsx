@@ -323,7 +323,7 @@ export default function Index() {
             </Box>
           )}
 
-          <div style-={{flexGrow: 1}}>
+          <div style={{flexGrow: 1}}>
 
             {messages.map((message, idx) => {
 
