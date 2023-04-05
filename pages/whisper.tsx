@@ -37,12 +37,19 @@ function WhisperDebug () {
   )
 }
 
+export interface WhisperStatus {
+  readonly recording: boolean
+  readonly speaking: boolean
+  readonly transcribing: boolean
+}
+
 interface WhisperControlProps {
   readonly disabled?: boolean
   readonly autoStart?: boolean
   readonly onStartRecording?: () => void
   readonly onStopRecording?: () => void
   readonly onTranscription?: (text: string) => void
+  readonly onStatus?: (status: WhisperStatus) => void
   readonly size?: string | number
 }
 
@@ -50,7 +57,7 @@ export function WhisperControl(props: WhisperControlProps) {
 
   // FIXME I need onTranscripting... here...
 
-  const {onTranscription, onStartRecording, onStopRecording} = props
+  const {onTranscription, onStartRecording, onStopRecording, onStatus} = props
   const [listening, setListening] = useState<boolean>(props.autoStart ?? false)
 
   const {
@@ -148,6 +155,10 @@ export function WhisperControl(props: WhisperControlProps) {
       }
     }
   }, [onTranscription, transcript])
+
+  useEffect(() => {
+    onStatus?.({recording, transcribing, speaking})
+  }, [onStatus, recording, transcribing, speaking])
 
   const size='200px'
 

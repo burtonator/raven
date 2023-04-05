@@ -113,8 +113,8 @@ Here is list of commands you can run, their description, and parameters.
 
 When you're given a prompt, determine if it maps to one of the commands. 
 
-If it does, return a JSON document which contains the name of the command, and the
-values of its parameters. The command is just a JSON document with a command
+If it does, return a YAML document which contains the name of the command, and the
+values of its parameters. The command is just a YAML document with a command
 property that contains the name of the command.  Do not include text in a 
 response output.
 
@@ -123,12 +123,14 @@ normal prompt.
 
 Here is the List of commands in YAML format:
 
-summarize
+---
+summarize:
   description: Summarize will fetch a news site via HTTP for a web resource with the given name by first resolving the name to a website.
   parameters:
     url:
       description: The URL of the site to fetch and then summarize.  This is determined from the name the user gives for the site they want to summarize.
       type: string
+...
 
 ## Examples
 
@@ -136,15 +138,27 @@ Here are some examples of input and output when executing a command:
 
 ### Example 1
 
-Input: Could you please summarize the news from CNN?
-Output: {"command": "summarize", "url": "https://www.cnn.com/"} 
+INPUT: Could you please summarize the news from CNN?
+BEGIN OUTPUT
+---
+command: summarize
+url: https://www.cnn.com/
+...
+END OUTPUT
 
 ### Example 2 
 
-Input: Give me the latest news from MSNBC.
-Output: {"command": "summarize", "url": "https://www.msnbc.com/"} 
+INPUT: Give me the latest news from MSNBC.
+BEGIN OUTPUT
+---
+command: summarize
+url: https://www.msnbc.com/
+...
+END OUTPUT
 
 `
+
+console.log('Using prompt: ', SYSTEM_PROMPT)
 
 export default function Index() {
 
