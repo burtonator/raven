@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@chengsokdara/use-whisper": "github:burtonator/use-whisper",
+    "@burtonator/use-whisper": "^0.2.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@ffmpeg/core": "^0.11.0",

@@ -1,7 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import httpProxyMiddleware from 'next-http-proxy-middleware'
 
-export default function handler(req: NextApiRequest, res: NextApiResponse): Promise<unknown> {
+
+// turn off default parser for current route
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY
   if (! OPENAI_API_KEY) {
@@ -11,10 +19,20 @@ export default function handler(req: NextApiRequest, res: NextApiResponse): Prom
   return httpProxyMiddleware(req, res, {
     target: 'https://api.openai.com',
     headers: {
-      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      Authorization: `Bearer ${OPENAI_API_KEY}`
     },
-    pathRewrite: {
-      '^/api/openai/proxy/': '/v1/',
+    pathRewrite: [
+      {
+        patternStr: '^/api/openai/proxy/',
+        replaceStr: '/v1/',
+      }
+    ],
+    debug: true,
+    logLevel: 'debug',
+    auth: () => OPENAI_API_KEY,
+    onProxyReq: function onProxyReq(proxyReq, req, res) {
+      // Log outbound request to remote target
+      console.log('-->  ', req.method, req.path, '->', proxyReq.path);
     },
   })
 }

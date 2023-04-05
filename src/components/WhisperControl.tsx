@@ -1,4 +1,4 @@
-import { useWhisper } from '@chengsokdara/use-whisper';
+import { useWhisper } from '@burtonator/use-whisper';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import { CircularProgress, IconButton } from '@mui/material';
@@ -24,11 +24,11 @@ interface WhisperControlProps {
 export function WhisperControl(props: WhisperControlProps) {
 
   const endpoint = useProxyURL('openai')
-
   const {onTranscription, onStartRecording, onStopRecording, onStatus} = props
   const [listening, setListening] = useState<boolean>(props.autoStart ?? false)
-
   const apiKey = useLocalStorage('OPENAI_API_KEY')
+
+  console.log("Using endpoint: " + endpoint)
 
   const {
     recording,
@@ -39,8 +39,15 @@ export function WhisperControl(props: WhisperControlProps) {
     startRecording,
     stopRecording,
   } = useWhisper({
-    apiKey: apiKey ?? 'none',
-    endpoint: endpoint ?? null,
+    apiKey: apiKey ?? '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',
+    whisperConfig: {
+      // https://api.openai.com/v1/audio/transcriptions
+      // http://localhost:3000/api/openai/proxy/v1/audio/transcriptions
+      // http://localhost:3000/api/openai/proxy/audio/transcriptions
+      // http://localhost:3000/api/openai/proxy/audio/transcriptions
+      // http://localhost:3000/api/openai/proxy/audio/transcriptions
+      endpoint: endpoint + '/audio/'
+    }
     // removeSilence: true,
     // streaming: true,
     // timeSlice: 1500
@@ -107,12 +114,9 @@ export function WhisperControl(props: WhisperControlProps) {
   useEffect(() => {
 
     if (stopRecordingRef.current) {
-      console.log("FIXME: 2")
       if (transcript.text) {
-        console.log("FIXME: 3")
 
         if (!transcribedRef.current) {
-          console.log("FIXME: 4")
 
           transcribedRef.current = true
           onTranscription?.(transcript.text)

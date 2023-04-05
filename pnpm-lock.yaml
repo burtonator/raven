@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@chengsokdara/use-whisper': github:burtonator/use-whisper
+  '@burtonator/use-whisper': ^0.2.1
   '@emotion/react': ^11.10.6
   '@emotion/styled': ^11.10.6
   '@ffmpeg/core': ^0.11.0
@@ -31,7 +31,7 @@ specifiers:
   typescript: 5.0.3
 
 dependencies:
-  '@chengsokdara/use-whisper': 0.2.0_react@18.2.0
+  '@burtonator/use-whisper': 0.2.1_react@18.2.0
   '@emotion/react': 11.10.6_b7lksjcz5zr4rqebyeqormarua
   '@emotion/styled': 11.10.6_jy6zgb344t5nav635xluh5rs6a
   '@ffmpeg/core': 0.11.0
@@ -119,16 +119,8 @@ packages:
       to-fast-properties: 2.0.0
     dev: false
 
-  /@chengsokdara/react-hooks-async/0.0.2_react@18.2.0:
-    resolution: {integrity: sha512-m7fyEj3b4qLADHHrAkucVBBpuJJ+ZjrQjTSyj/TmQTZrmgDS5MDEoYLaN48+YSho1z8YxelUwDTgUEdSjR03fw==}
-    peerDependencies:
-      react: '*'
-    dependencies:
-      react: 18.2.0
-    dev: false
-
-  /@chengsokdara/use-whisper/0.2.0_react@18.2.0:
-    resolution: {integrity: sha512-3AKdXiJ4DiEQ8VRHi5P8iSpOVkL1VhAa/Fvp/u1IOeUI+Ztk09J0uKFD3sZxGdoXXkc6MrUN66mkMMGOHypvWA==}
+  /@burtonator/use-whisper/0.2.1_react@18.2.0:
+    resolution: {integrity: sha512-6lauv+X5hLULatQJeUStMfuQLwXy5+DLbUsjmOVzTV7W8UUzNB4273wmk2udgKH72ffqpKxOu7Jg3AhYKUMLMQ==}
     peerDependencies:
       react: '*'
     dependencies:
@@ -142,6 +134,14 @@ packages:
     transitivePeerDependencies:
       - debug
       - encoding
+    dev: false
+
+  /@chengsokdara/react-hooks-async/0.0.2_react@18.2.0:
+    resolution: {integrity: sha512-m7fyEj3b4qLADHHrAkucVBBpuJJ+ZjrQjTSyj/TmQTZrmgDS5MDEoYLaN48+YSho1z8YxelUwDTgUEdSjR03fw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@emotion/babel-plugin/11.10.6:

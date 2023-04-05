@@ -1,10 +1,7 @@
-import { useWhisper } from '@chengsokdara/use-whisper';
+import { useWhisper } from '@burtonator/use-whisper';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 import { CircularProgress, IconButton } from '@mui/material';
-
-const API_KEY_INPUTNEURON = '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'
-
 
 function WhisperDebug () {
 
@@ -19,7 +16,7 @@ function WhisperDebug () {
     startRecording,
     stopRecording,
   } = useWhisper({
-    apiKey: API_KEY_INPUTNEURON,
+    apiKey: 'none',
     // streaming: true,
     // timeSlice: 1500
   })
