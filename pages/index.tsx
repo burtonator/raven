@@ -242,7 +242,7 @@ export default function Index() {
     }
 
     doAsync()
-      // FIXME properly handle errors in the UI...
+      // TODO properly handle errors in the UI...
       .catch(err => console.error('Unhandled error', err))
 
   }, [messageRef, setMessages, setWhisperKey, stopPlayingAudio, whisperKeyRef])
