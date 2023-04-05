@@ -39,13 +39,8 @@ export function WhisperControl(props: WhisperControlProps) {
     startRecording,
     stopRecording,
   } = useWhisper({
-    apiKey: apiKey ?? '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',
+    apiKey: 'none',
     whisperConfig: {
-      // https://api.openai.com/v1/audio/transcriptions
-      // http://localhost:3000/api/openai/proxy/v1/audio/transcriptions
-      // http://localhost:3000/api/openai/proxy/audio/transcriptions
-      // http://localhost:3000/api/openai/proxy/audio/transcriptions
-      // http://localhost:3000/api/openai/proxy/audio/transcriptions
       endpoint: endpoint + '/audio/'
     }
     // removeSilence: true,
