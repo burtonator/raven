@@ -1,5 +1,11 @@
 import { Box, LinearProgress, TextField } from '@mui/material';
-import React, { KeyboardEvent, useCallback, useRef, useState } from 'react';
+import React, {
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -115,7 +121,7 @@ const openai = new OpenAIApi(conf);
 interface NodeProps {
   readonly question: string | undefined
   readonly content: string | undefined
-  readonly defaultExpanded?: boolean
+  readonly expanded?: boolean
 }
 
 export function Node(props: NodeProps) {
@@ -205,6 +211,15 @@ export function Node(props: NodeProps) {
     handleExecution(question)
   }, [handleExecution])
 
+  // auto execution can happen the first time the parent is expanded...
+
+  useEffect(() => {
+
+    // FIXME: if the parent is expanded, and we do not have content, then we
+    // need to auto execute and expand this.
+
+  }, [])
+
   return (
     <div>
 
@@ -218,7 +233,7 @@ export function Node(props: NodeProps) {
         <Box pl={3} pt={2}>
           {items.map((item, idx) => (
             <div key={idx}>
-              <Node question={item.content}/>
+              <Node question={item.content} parentExpanded={true}/>
             </div>
           ))}
           <InputBox onPrompt={() => console.log('hello')} placeholder="... or ask another question."/>
