@@ -40,6 +40,18 @@ interface NodeProps {
   readonly items: ReadonlyArray<IItem> | undefined
 }
 
+export function computePrompt(text: string) {
+  return `  
+Answer the following query/question/prompt from the user:
+
+${text}
+
+After that, based on the response to that question, and the question itself, provide five more questions that I'm most likely to ask about.  
+
+The questions should be prefixed by "\\n---\\n"  and should have one question per line.  `.trim()
+
+}
+
 export function Node(props: NodeProps) {
 
   const [expanded, setExpanded] = useState(false)
