@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import {
-  ChatCompletionRequestMessage, Configuration,
+  Configuration,
   CreateChatCompletionRequest, OpenAIApi
 } from 'openai';
 import { CreateChatCompletionResponse } from 'openai/api';
@@ -61,13 +61,8 @@ export function ResponseBox(props: ResponseBoxProps) {
   )
 }
 
-interface IItem {
+interface Item {
   readonly content: string
-}
-
-interface NodeProps {
-  readonly content: string | undefined
-  readonly items: ReadonlyArray<IItem> | undefined
 }
 
 const SYSTEM_PROMPT = `You are a helpful assistant.`
@@ -80,7 +75,7 @@ ${text}
 
 After that, based on the response to that question, and the question itself, provide five more questions that I'm most likely to ask about.  
 
-The list of questions should be prefixed by "\n---\n"  and should have one question per line.  `.trim()
+The list of questions should be prefixed by "\n---\n"  and should have one question per line.  Do not number them or prefix them with a hyphen.  `.trim()
 
 }
 
@@ -117,28 +112,36 @@ const conf = new Configuration({
 
 const openai = new OpenAIApi(conf);
 
+interface NodeProps {
+  readonly question: string | undefined
+  readonly content: string | undefined
+  readonly defaultExpanded?: boolean
+}
+
 export function Node(props: NodeProps) {
 
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(props.defaultExpanded ?? false)
+  const [question, setQuestion] = useState(props.question)
   const [content, setContent] = useState(props.content)
   const [executing, setExecuting] = useState(false)
+  const [items, setItems] = useState<ReadonlyArray<Item> | undefined>(undefined)
 
-  const handleExecution = useCallback((prompt: string) => {
+  const handleExecution = useCallback((question: string) => {
 
-    console.log("Got command: " + prompt)
+    console.log("Got question: " + question)
 
     async function doAsync() {
       try {
 
         setExecuting(true)
-        const req = createCompletionRequest(prompt)
+        const req = createCompletionRequest(question)
         const before = Date.now()
         const completion: Promise<AxiosResponse<CreateChatCompletionResponse>> = openai.createChatCompletion(req)
         const res = await completion
         const after = Date.now()
         const duration = after - before
 
-        function createContentFromResponse() {
+        function createTestFromResponseMessage() {
 
           if (res.data.choices.length > 0) {
             const first = res.data.choices[0]
@@ -149,11 +152,40 @@ export function Node(props: NodeProps) {
 
         }
 
-        const content = createContentFromResponse()
+        const text = createTestFromResponseMessage()
 
-        if (content) {
-          console.log("FIXME: got content: ", content)
-          setContent(content)
+        interface ContentAndQuestions {
+          readonly content: string
+          readonly questions: readonly string[]
+        }
+
+        function splitContentAndQuestions(text: string): ContentAndQuestions | undefined {
+
+          const token = "---\n"
+          const idx = text.lastIndexOf(token)
+
+          if (idx !== -1) {
+            const content = text.substring(0, idx)
+            const question_block = text.substring(idx + token.length, text.length - 1)
+            const questions = question_block.split("\n")
+            return {content, questions}
+          }
+
+          return undefined
+        }
+
+        const contentAndQuestions = splitContentAndQuestions(text)
+
+        if (contentAndQuestions) {
+          console.log("FIXME: got content: ", text)
+          setContent(contentAndQuestions.content)
+          setItems(contentAndQuestions.questions.map(current => {
+            return {
+              content: current
+            }
+          }))
+          setExpanded(true)
+
         }
 
 
@@ -168,27 +200,29 @@ export function Node(props: NodeProps) {
 
   }, [])
 
-  const handlePrompt = useCallback((prompt: string) => {
-    //setContent(prompt)
-    handleExecution(prompt)
+  const handleQuestion = useCallback((question: string) => {
+    setQuestion(question)
+    handleExecution(question)
   }, [handleExecution])
 
   return (
     <div>
 
+      {question !== undefined && <div>{question}</div>}
+
       {content !== undefined && <div>{content}</div>}
 
-      {content === undefined && <InputBox onPrompt={handlePrompt} placeholder="Let's get started.  What would you like to know about?"/>}
+      {question === undefined && <InputBox onPrompt={handleQuestion} placeholder="Let's get started.  What would you like to know about?"/>}
 
-      {props.items !== undefined && (
-        <>
-          {props.items.map((item, idx) => (
+      {expanded && items !== undefined && (
+        <Box pl={3} pt={2}>
+          {items.map((item, idx) => (
             <div key={idx}>
-
+              <Node question={item.content}/>
             </div>
           ))}
           <InputBox onPrompt={() => console.log('hello')} placeholder="... or ask another question."/>
-        </>
+        </Box>
       )}
 
       {executing && <LinearProgress variant='indeterminate'/>}
@@ -202,7 +236,8 @@ export default function Tree() {
 
   return (
     <Box p={2}>
-      <Node />
+      {/*<Node question="What is WWII?"/>*/}
+      <Node question={undefined}/>
     </Box>
   )
 
