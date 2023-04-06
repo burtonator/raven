@@ -80,7 +80,7 @@ ${text}
 
 After that, based on the response to that question, and the question itself, provide five more questions that I'm most likely to ask about.  
 
-The questions should be prefixed by "\\n---\\n"  and should have one question per line.  `.trim()
+The list of questions should be prefixed by "\n---\n"  and should have one question per line.  `.trim()
 
 }
 
@@ -138,12 +138,24 @@ export function Node(props: NodeProps) {
         const after = Date.now()
         const duration = after - before
 
-        if (res.data.choices.length > 0) {
-          const first = res.data.choices[0]
-          if (first.message) {
-            setContent(first.message.content)
+        function createContentFromResponse() {
+
+          if (res.data.choices.length > 0) {
+            const first = res.data.choices[0]
+            if (first.message) {
+              return first.message.content
+            }
           }
+
         }
+
+        const content = createContentFromResponse()
+
+        if (content) {
+          console.log("FIXME: got content: ", content)
+          setContent(content)
+        }
+
 
       } finally {
         setExecuting(false)
