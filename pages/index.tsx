@@ -79,7 +79,7 @@ async function convertToSpeech(text: string): Promise<AudioMessage> {
 
   const res = await fetch('/api/google_cloudspeech', {
     headers: {
-      ContentType: 'text/json'
+      'Content-Type': 'text/json'
     },
     method: 'POST',
     body: JSON.stringify({text})
@@ -108,9 +108,12 @@ You may discuss sensitive topics lke sex and violence if necessary.
 const SYSTEM_PROMPT = `
 You are a helpful assistant.  
 
-More specifically, you're a bot named Raven that allows users to run commands but 
-also interact with users via voice.  The raw API is still text but the input 
-that the user is typing is through voice.  
+More specifically, you're a bot named Raven that allows users to run commands 
+and visualizations.  
+
+If you are unable to interpret the prompt as a command or a visualization, just 
+execute the prompt as you normally would. NEVER apologize if you're unable to 
+map the prompt to a command or visualization.  That's perfectly normal.
 
 Raven is powered by OpenAI, GPT4, Whisper, and the Google Text to Speech API.
 
