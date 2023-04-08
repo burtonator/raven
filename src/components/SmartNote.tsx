@@ -6,7 +6,24 @@ import { Tooltip } from '@mui/material';
 
 const content = `Hello, this is documentation about [World War II](https://www.wikipedia.org)`
 
-export function SmartNote() {
+export type MarkdownStr = string
+
+/**
+ * A reference to another note like "World War II" or "San Francisco"
+ */
+export type NodeRefStr = string
+
+interface NoteEntry {
+  readonly content: MarkdownStr
+}
+
+const index: {[key in NodeRefStr]: NoteEntry} = {}
+
+interface SmartNoteProps {
+  readonly ref: NodeRefStr
+}
+
+export function SmartNote(props: SmartNoteProps) {
   return (
     <ReactMarkdown remarkPlugins={[remarkGfm]}
                    components={{
@@ -20,4 +37,8 @@ export function SmartNote() {
                    }}
                    rehypePlugins={[rehypeHighlight]}>{content}</ReactMarkdown>
   )
+}
+
+export function SmartNoteView() {
+
 }
