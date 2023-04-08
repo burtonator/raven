@@ -34,3 +34,7 @@
   - ability to copy raw output.. .
   - ability to ask GPT4 the same thing...
     - 
+
+
+- https://github.com/remarkjs/react-markdown#use-custom-components-syntax-highlight
+- custom syntax highlightings
