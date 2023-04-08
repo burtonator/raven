@@ -25,6 +25,8 @@ import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import { Splash } from '@/src/components/Splash';
 import { WhisperControl } from '@/src/components/WhisperControl';
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
+import { CodeEditor } from '@/src/components/CodeEditor';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -422,7 +424,34 @@ export default function Index() {
                   <Paper elevation={1} sx={{mt: 1}}>
                     <Box p={1} pl={2} pr={2}>
                       {message.role === 'user' && <>{message.content}</>}
-                      {message.role !== 'user' && <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>{message.content}</ReactMarkdown>}
+                      {message.role !== 'user' && <ReactMarkdown
+                          remarkPlugins={[remarkGfm]}
+                          components={{
+                            code({node, inline, className, children, ...props}) {
+                              const match = /language-(\w+)/.exec(className || '')
+
+                              const language = match[1]
+                              const code = children
+                              return (
+                                <CodeEditor defaultValue={code} language={language}/>
+                              )
+
+                              // return !inline && match ? (
+                              //   <SyntaxHighlighter
+                              //     {...props}
+                              //     children={String(children).replace(/\n$/, '')}
+                              //     style={dark}
+                              //     language={match[1]}
+                              //     PreTag="div"
+                              //   />
+                              // ) : (
+                              //   <code {...props} className={className}>
+                              //     {children}
+                              //   </code>
+                              // )
+                            }
+                          }}
+                          rehypePlugins={[rehypeHighlight]}>{message.content}</ReactMarkdown>}
 
                     </Box>
                   </Paper>
