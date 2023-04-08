@@ -1,4 +1,10 @@
-import { Box, LinearProgress, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  Collapse,
+  LinearProgress,
+  TextField
+} from '@mui/material';
 import React, {
   KeyboardEvent,
   useCallback,
@@ -15,6 +21,7 @@ import {
 } from 'openai';
 import { CreateChatCompletionResponse } from 'openai/api';
 import { AxiosResponse } from 'axios';
+import { useStateRef } from '@/src/useStateRef';
 
 interface InputBoxProps {
   readonly onPrompt: (text: string) => void
@@ -121,16 +128,41 @@ const openai = new OpenAIApi(conf);
 interface NodeProps {
   readonly question: string | undefined
   readonly content: string | undefined
-  readonly expanded?: boolean
+  readonly defaultExpanded?: boolean
+  readonly root?: boolean
 }
 
 export function Node(props: NodeProps) {
+  const {autoExecute, root} = props
 
-  const [expanded, setExpanded] = useState(props.defaultExpanded ?? false)
+  const [expand, setExpand] = useState(props.defaultExpanded ?? false)
   const [question, setQuestion] = useState(props.question)
   const [content, setContent] = useState(props.content)
   const [executing, setExecuting] = useState(false)
   const [items, setItems] = useState<ReadonlyArray<Item> | undefined>(undefined)
+
+  const [error, setError] = useState<unknown | undefined>(undefined)
+
+  const [expanded, setExpanded, expandedRef] = useStateRef(false)
+
+
+  useEffect(() => {
+
+    if (! root && ! expandedRef.current && expand) {
+      expandedRef.current = true
+    }
+
+  }, [expand, root])
+
+  const handleExpand = useCallback(() => {
+
+    if (! expandedRef.current) {
+      setExpanded(true)
+    }
+
+    setExpand(! expand)
+
+  }, [expandedRef, setExpanded, expand])
 
   const handleExecution = useCallback((question: string) => {
 
@@ -183,14 +215,13 @@ export function Node(props: NodeProps) {
         const contentAndQuestions = splitContentAndQuestions(text)
 
         if (contentAndQuestions) {
-          console.log("FIXME: got content: ", text)
           setContent(contentAndQuestions.content)
           setItems(contentAndQuestions.questions.map(current => {
             return {
               content: current
             }
           }))
-          setExpanded(true)
+          setExpand(true)
 
         }
 
@@ -202,7 +233,10 @@ export function Node(props: NodeProps) {
 
     doAsync()
       // TODO properly handle errors in the UI...
-      .catch(err => console.error('Unhandled error', err))
+      .catch(err => {
+        console.error('Unhandled error', err);
+        setError(err)
+      })
 
   }, [])
 
@@ -215,29 +249,35 @@ export function Node(props: NodeProps) {
 
   useEffect(() => {
 
-    // FIXME: if the parent is expanded, and we do not have content, then we
-    // need to auto execute and expand this.
+    if (autoExecute && question && ! content) {
+     // if we need to auto execute, and we have a question, and we have content,
+     // go ahead and render ...
+      console.log("FIXME: auto executing node... ")
+      handleExecution(question)
+    }
 
-  }, [])
+  }, [autoExecute, content, question, handleExecution])
 
   return (
     <div>
+
+      {content && <Button onClick={handleExpand}>Expand</Button>}
+
+      {question === undefined && <InputBox onPrompt={handleQuestion} placeholder="Let's get started.  What would you like to know about?"/>}
 
       {question !== undefined && <div>{question}</div>}
 
       {content !== undefined && <div>{content}</div>}
 
-      {question === undefined && <InputBox onPrompt={handleQuestion} placeholder="Let's get started.  What would you like to know about?"/>}
-
-      {expanded && items !== undefined && (
-        <Box pl={3} pt={2}>
+      {expand && items !== undefined && (
+        <Collapse pl={3} pt={2} in={expand} timeout='auto' sx={{pl: 3}}>
           {items.map((item, idx) => (
             <div key={idx}>
-              <Node question={item.content} parentExpanded={true}/>
+              <Node question={item.content} autoExecute={expanded ?? root ?? false}/>
             </div>
           ))}
           <InputBox onPrompt={() => console.log('hello')} placeholder="... or ask another question."/>
-        </Box>
+        </Collapse>
       )}
 
       {executing && <LinearProgress variant='indeterminate'/>}
@@ -252,7 +292,7 @@ export default function Tree() {
   return (
     <Box p={2}>
       {/*<Node question="What is WWII?"/>*/}
-      <Node question={undefined}/>
+      <Node question={undefined} defaultExpanded={true} root={true}/>
     </Box>
   )
 
