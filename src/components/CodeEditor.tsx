@@ -32,10 +32,23 @@ export function CodeEditor(props: CodeEditorProps) {
 
   const monacoTheme = theme.palette.mode === 'dark' ? 'vs-dark' : 'vs'
 
+  const nrLines = props.defaultValue.split("\n").length
+  const lineHeight = 18
+
+  const height = nrLines * lineHeight
+
   return <Editor options={options}
-                 height={(props.defaultValue.split("\n").length) * 18}
+                 height={height}
                  defaultLanguage={props.language}
                  theme={monacoTheme}
-                 style={{padding: 0, margin: 0, overflow: 'hidden'}}
+                 style={{
+                   padding: 0,
+                   paddingTop: 0,
+                   paddingBottom: 0,
+                   paddingLeft: 0,
+                   paddingRight: 0,
+                   margin: 0,
+                   overflow: 'hidden'
+                 }}
                  defaultValue={props.defaultValue} />;
 }
