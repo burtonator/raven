@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box,
+  Box, Paper,
   Typography
 } from '@mui/material';
 import { MarkdownViewer } from './MarkdownViewer';
@@ -48,11 +48,13 @@ export function SmartNote(props: SmartNoteProps) {
   }
 
   return (
-    <>
-      <Box pt={1} pb={1} pl={0}>
-        <Typography variant="h5">{note.name}</Typography>
+    <Paper elevation={1} style={{width: '600px'}} square={true}>
+      <Box p={1}>
+        <Box pt={1} pb={1} pl={0}>
+          <Typography variant="h5">{note.name}</Typography>
+        </Box>
+        <MarkdownViewer content={note.content}/>
       </Box>
-      <MarkdownViewer content={note.content}/>
-    </>
+    </Paper>
   )
 }

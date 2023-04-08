@@ -5,7 +5,9 @@ export default {
   component: MarkdownViewer,
 } as Meta
 
-export const BasicCodeEditor = () => <MarkdownViewer content={"This is some markdown"}/>
+export const BasicMarkdownViewer = () => <MarkdownViewer content={"This is some markdown"}/>
+
+export const MultiLine = () => <MarkdownViewer content={"This is \nsome markdown\n\nanother para"}/>
 
 const markdownWithSourceCode = `
 Sure, here's an example of a simple React component written in Typescript:

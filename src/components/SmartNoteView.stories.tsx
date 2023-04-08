@@ -3,6 +3,7 @@ import { Meta } from '@storybook/react';
 import {
   SmartNoteIndexProvider
 } from './SmartNoteIndexProvider';
+import { Divider } from '@mui/material';
 
 export default {
   component: SmartNote,
@@ -10,7 +11,11 @@ export default {
 
 const Delegate = () => {
   return (
-    <SmartNote name="World War II"/>
+    <div style={{display: 'flex'}}>
+      <SmartNote name="World War II"/>
+      <Divider orientation='vertical'/>
+      <SmartNote name="United States"/>
+    </div>
   )
 }
 
