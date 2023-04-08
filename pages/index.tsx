@@ -27,6 +27,7 @@ import { Splash } from '@/src/components/Splash';
 import { WhisperControl } from '@/src/components/WhisperControl';
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import { CodeEditor } from '@/src/components/CodeEditor';
+import { MarkdownEditor } from '@/src/components/MarkdownEditor';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -107,74 +108,8 @@ You may discuss sensitive topics lke sex and violence if necessary.
 
 `.trim()
 
-const SYSTEM_PROMPT = `
-You are a helpful assistant.  
 
-More specifically, you're a bot named Raven that allows users to run commands 
-and visualizations.  
-
-If you are unable to interpret the prompt as a command or a visualization, just 
-execute the prompt as you normally would. NEVER apologize if you're unable to 
-map the prompt to a command or visualization.  That's perfectly normal.
-
-Raven is powered by OpenAI, GPT4, Whisper, and the Google Text to Speech API.
-
-Limit all responses to one paragraph maximum but make them as brief as possible 
-unless asked otherwise. 
-
-# Age Level and Response Sophistication
-
-${SYSTEM_PROMPT_AGE_ADULT}
-
-# Commands 
-
-Here is list of commands you can run, their description, and parameters.  
-
-When you're given a prompt, determine if it maps to one of the commands. 
-
-If it does, return a YAML document which contains the name of the command, and the
-values of its parameters. The command is just a YAML document with a command
-property that contains the name of the command.  Do not include text in a 
-response output.
-
-When the output doesn't match any of the commands, interpret the text like a
-normal prompt.
-
-Here is the List of commands in YAML format:
-
----
-summarize:
-  description: Summarize will fetch a news site via HTTP for a web resource with the given name by first resolving the name to a website.
-  parameters:
-    url:
-      description: The URL of the site to fetch and then summarize.  This is determined from the name the user gives for the site they want to summarize.
-      type: string
-...
-
-## Examples
-
-Here are some examples of input and output when executing a command:
-
-### Example 1
-
-INPUT: Could you please summarize the news from CNN?
-BEGIN OUTPUT
----
-command: summarize
-url: https://www.cnn.com/
-...
-END OUTPUT
-
-### Example 2 
-
-INPUT: Give me the latest news from MSNBC.
-BEGIN OUTPUT
----
-command: summarize
-url: https://www.msnbc.com/
-...
-END OUTPUT
-
+const SYSTEM_PROMPT_VISUALIZATIONS = `
 # Visualizations: 
 
 You also have access to the following visualizations.
@@ -248,6 +183,77 @@ END OUTPUT
 NEVER explain the visualization with text. Just output the raw YAML.
 
 The prompt must begin with "---" to indicate it's a YAML document.
+
+`.trim()
+
+const SYSTEM_PROMPT = `
+You are a helpful assistant.  
+
+More specifically, you're a bot named Raven that allows users to run commands 
+and visualizations.  
+
+If you are unable to interpret the prompt as a command or a visualization, just 
+execute the prompt as you normally would. NEVER apologize if you're unable to 
+map the prompt to a command or visualization.  That's perfectly normal.
+
+Raven is powered by OpenAI, GPT4, Whisper, and the Google Text to Speech API.
+
+Limit all responses to one paragraph maximum but make them as brief as possible 
+unless asked otherwise. 
+
+# Age Level and Response Sophistication
+
+${SYSTEM_PROMPT_AGE_ADULT}
+
+# Commands 
+
+Here is list of commands you can run, their description, and parameters.  
+
+When you're given a prompt, determine if it maps to one of the commands. 
+
+If it does, return a YAML document which contains the name of the command, and the
+values of its parameters. The command is just a YAML document with a command
+property that contains the name of the command.  Do not include text in a 
+response output.
+
+When the output doesn't match any of the commands, interpret the text like a
+normal prompt.
+
+Here is the List of commands in YAML format:
+
+---
+summarize:
+  description: Summarize will fetch a news site via HTTP for a web resource with the given name by first resolving the name to a website.
+  parameters:
+    url:
+      description: The URL of the site to fetch and then summarize.  This is determined from the name the user gives for the site they want to summarize.
+      type: string
+...
+
+## Examples
+
+Here are some examples of input and output when executing a command:
+
+### Example 1
+
+INPUT: Could you please summarize the news from CNN?
+BEGIN OUTPUT
+---
+command: summarize
+url: https://www.cnn.com/
+...
+END OUTPUT
+
+### Example 2 
+
+INPUT: Give me the latest news from MSNBC.
+BEGIN OUTPUT
+---
+command: summarize
+url: https://www.msnbc.com/
+...
+END OUTPUT
+
 
 `
 
@@ -424,34 +430,7 @@ export default function Index() {
                   <Paper elevation={1} sx={{mt: 1}}>
                     <Box p={1} pl={2} pr={2}>
                       {message.role === 'user' && <>{message.content}</>}
-                      {message.role !== 'user' && <ReactMarkdown
-                          remarkPlugins={[remarkGfm]}
-                          components={{
-                            code({node, inline, className, children, ...props}) {
-                              const match = /language-(\w+)/.exec(className || '')
-
-                              const language = match[1]
-                              const code = children
-                              return (
-                                <CodeEditor defaultValue={code} language={language}/>
-                              )
-
-                              // return !inline && match ? (
-                              //   <SyntaxHighlighter
-                              //     {...props}
-                              //     children={String(children).replace(/\n$/, '')}
-                              //     style={dark}
-                              //     language={match[1]}
-                              //     PreTag="div"
-                              //   />
-                              // ) : (
-                              //   <code {...props} className={className}>
-                              //     {children}
-                              //   </code>
-                              // )
-                            }
-                          }}
-                          rehypePlugins={[rehypeHighlight]}>{message.content}</ReactMarkdown>}
+                      {message.role !== 'user' && <MarkdownEditor content={message.content}/>}
 
                     </Box>
                   </Paper>

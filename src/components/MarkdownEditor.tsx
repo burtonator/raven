@@ -1,6 +1,5 @@
 import remarkGfm from 'remark-gfm';
 import { CodeEditor } from './CodeEditor';
-import rehypeHighlight from 'rehype-highlight';
 import ReactMarkdown from 'react-markdown';
 import React from 'react';
 
@@ -20,21 +19,22 @@ export function MarkdownEditor(props: MarkdownEditorProps) {
 
           console.log("FIXME: props: ", props)
           const {node, inline, className, children} = props
-          const match = /language-(\w+)/.exec(className || '')
-          const language = match[1]
-          const code = children
-
-          console.log("FIXME: ", node)
-          console.log("FIXME: ", node.outerHTML)
 
           const sourcecode = String(children).replace(/\n$/, '')
 
-          // FIXME: support inline...
+          const match = /language-(\w+)/.exec(className || '')
 
-          console.log("FIXME: ", {language, sourcecode, children, node})
-          return (
-            <CodeEditor defaultValue={sourcecode} language={language}/>
-          )
+          if (match &&  ! inline) {
+            const language = match[1]
+            return (
+              <CodeEditor defaultValue={sourcecode} language={language}/>
+            )
+          } else {
+            return (
+              <code>{sourcecode}</code>
+            )
+          }
+
         }
       }}
       rehypePlugins={[]}>{content}</ReactMarkdown>

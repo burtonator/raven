@@ -26,8 +26,6 @@ const options = {
 
 
 export function CodeEditor(props: CodeEditorProps) {
-  // FIXME: the minimap is disabled but not the scrollbar
-  //
   return <Editor options={options}
                  height={(props.defaultValue.split("\n").length + 1) * 18}
                  defaultLanguage={props.language}
