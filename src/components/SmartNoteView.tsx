@@ -1,6 +1,8 @@
 
 export function SmartNoteView() {
 
+  return (
 
+  )
 
 }

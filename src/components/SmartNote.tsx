@@ -1,15 +1,10 @@
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import ReactMarkdown from 'react-markdown';
 import React from 'react';
 import {
   Box,
-  Tooltip, tooltipClasses,
-  TooltipProps,
   Typography
 } from '@mui/material';
-import { styled } from '@mui/system';
-import { MarkdownViewer } from '@/src/components/MarkdownViewer';
+import { MarkdownViewer } from './MarkdownViewer';
+import { useSmartNote } from './SmartNoteIndexProvider';
 
 const content = `Hello, this is documentation about [World War II](https://www.wikipedia.org)`
 
@@ -26,11 +21,6 @@ export interface NoteEntry {
   readonly items: ReadonlyArray<NodeNameStr>
 }
 
-const index: {[key in NodeNameStr]: NoteEntry} = {}
-
-interface SmartNoteProps {
-  readonly entry: NoteEntry
-}
 
 //
 // const HtmlTooltip = styled((props: TooltipProps) => (
@@ -45,24 +35,24 @@ interface SmartNoteProps {
 //   },
 // }));
 
-
-// const CustomTooltip = (props: TooltipProps) => {
-//   return <Tooltip {...props}/>
-// }
-
-const unitedStates: NoteEntry = {
-  name: 'United States',
-  content: "This is the node for United States",
-  items: [
-  ]
+interface SmartNoteProps {
+  readonly name: string
 }
+
 export function SmartNote(props: SmartNoteProps) {
+
+  const note = useSmartNote(props.name)
+
+  if (! note) {
+    return <div>Not Found</div>
+  }
+
   return (
     <>
       <Box pt={1} pb={1} pl={0}>
-        <Typography variant="h4">{props.entry.name}</Typography>
+        <Typography variant="h5">{note.name}</Typography>
       </Box>
-      <MarkdownViewer content={content}/>
+      <MarkdownViewer content={note.content}/>
     </>
   )
 }
