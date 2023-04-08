@@ -7,8 +7,6 @@ export default {
 
 export const BasicCodeEditor = () => <MarkdownEditor content={"This is some markdown"}/>
 
-
-
 const markdownWithSourceCode = `
 Sure, here's an example of a simple React component written in Typescript:
 

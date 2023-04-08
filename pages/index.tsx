@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import {
   AppBar,
-  Box,
+  Box, Button,
   LinearProgress,
   Paper,
   TextField, Toolbar, Typography
@@ -20,13 +20,8 @@ import {
   OpenAIApi
 } from 'openai'
 import { useStateRef } from '@/src/useStateRef';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm'
-import rehypeHighlight from 'rehype-highlight'
 import { Splash } from '@/src/components/Splash';
 import { WhisperControl } from '@/src/components/WhisperControl';
-import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import { CodeEditor } from '@/src/components/CodeEditor';
 import { MarkdownEditor } from '@/src/components/MarkdownEditor';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
@@ -200,6 +195,9 @@ Raven is powered by OpenAI, GPT4, Whisper, and the Google Text to Speech API.
 
 Limit all responses to one paragraph maximum but make them as brief as possible 
 unless asked otherwise. 
+
+When you output markdown, and it includes source code, use GFM and include the 
+source code type in all source examples.
 
 # Age Level and Response Sophistication
 
@@ -434,11 +432,17 @@ export default function Index() {
 
                     </Box>
                   </Paper>
-                  {message.duration && (
-                    <Box style={{textAlign: 'right', fontSize: '14px'}} color='text.disabled'>
-                      duration: {message.duration}
-                    </Box>
-                  )}
+
+                  <div style={{display: 'flex'}}>
+                    <Button size="small" onClick={() => navigator.clipboard.writeText(message.content)}>copy</Button>
+
+                    {message.duration && (
+                      <Box style={{textAlign: 'right', fontSize: '14px'}} color='text.disabled'>
+                        duration: {message.duration}
+                      </Box>
+                    )}
+
+                  </div>
 
                   {message.audioContent && (
                     <div style={{textAlign: 'center'}}>
