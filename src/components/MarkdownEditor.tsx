@@ -16,8 +16,6 @@ export function MarkdownEditor(props: MarkdownEditorProps) {
       remarkPlugins={[remarkGfm]}
       components={{
         code(props) {
-
-          console.log("FIXME: props: ", props)
           const {node, inline, className, children} = props
 
           const sourcecode = String(children).replace(/\n$/, '')
