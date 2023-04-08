@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/react";
+import MaterialApp from '../src/components/MaterialApp';
 
 const preview: Preview = {
   parameters: {
@@ -11,5 +12,19 @@ const preview: Preview = {
     },
   },
 };
+
+
+const withMui = (Story, context) => {
+  return (
+    <MaterialApp>
+      <Story {...context} />
+    </MaterialApp>
+  )
+}
+
+
+export const decorators = [
+  withMui
+]
 
 export default preview;
