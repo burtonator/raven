@@ -22,7 +22,7 @@ import {
 import { useStateRef } from '@/src/useStateRef';
 import { Splash } from '@/src/components/Splash';
 import { WhisperControl } from '@/src/components/WhisperControl';
-import { MarkdownEditor } from '@/src/components/MarkdownEditor';
+import { MarkdownViewer } from '@/src/components/MarkdownViewer';
 
 export function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
@@ -428,7 +428,7 @@ export default function Index() {
                   <Paper elevation={1} sx={{mt: 1}}>
                     <Box p={1} pl={2} pr={2}>
                       {message.role === 'user' && <>{message.content}</>}
-                      {message.role !== 'user' && <MarkdownEditor content={message.content}/>}
+                      {message.role !== 'user' && <MarkdownViewer content={message.content}/>}
 
                     </Box>
                   </Paper>

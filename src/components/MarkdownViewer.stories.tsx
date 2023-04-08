@@ -1,11 +1,11 @@
 import { Meta } from '@storybook/react';
-import { MarkdownEditor } from './MarkdownEditor';
+import { MarkdownViewer } from './MarkdownViewer';
 
 export default {
-  component: MarkdownEditor,
+  component: MarkdownViewer,
 } as Meta
 
-export const BasicCodeEditor = () => <MarkdownEditor content={"This is some markdown"}/>
+export const BasicCodeEditor = () => <MarkdownViewer content={"This is some markdown"}/>
 
 const markdownWithSourceCode = `
 Sure, here's an example of a simple React component written in Typescript:
@@ -34,7 +34,7 @@ Finally, we export the component as the default export so it can be used in othe
 export const SourceCode = () => {
   return (
     <div style={{height: '100vh'}}>
-      <MarkdownEditor content={markdownWithSourceCode}/>
+      <MarkdownViewer content={markdownWithSourceCode}/>
     </div>
   )
 }

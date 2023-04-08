@@ -7,7 +7,7 @@ interface MarkdownEditorProps {
   readonly content: string
 }
 
-export function MarkdownEditor(props: MarkdownEditorProps) {
+export function MarkdownViewer(props: MarkdownEditorProps) {
 
   const {content} = props
 
