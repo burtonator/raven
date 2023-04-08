@@ -38,3 +38,8 @@
 
 - https://github.com/remarkjs/react-markdown#use-custom-components-syntax-highlight
 - custom syntax highlightings
+- remove the source code from the voice output...
+
+- PDF upload and use zilliz to inddex qustions you have
+- knowledge manager for GPT...
+- 

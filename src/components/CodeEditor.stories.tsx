@@ -5,4 +5,4 @@ export default {
   component: CodeEditor,
 } as Meta
 
-export const BasicCodeEditor = () => <CodeEditor defaultValue={""} language="typescript"/>
+export const BasicCodeEditor = () => <CodeEditor defaultValue={"function hello() {}"} language="typescript"/>
