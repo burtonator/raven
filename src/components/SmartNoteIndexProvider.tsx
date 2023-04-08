@@ -22,7 +22,10 @@ export interface INoteContext {
 const NoteContext = createContext<INoteContext>({index: {}})
 
 export function useSmartNote(name: string): NoteEntry | undefined {
-  const index = useContext(NoteContext).index
+  const context = useContext(NoteContext)
+  const {index} = context
+
+  console.log("FIXME: Working with index: ", index)
   return index[name]
 }
 

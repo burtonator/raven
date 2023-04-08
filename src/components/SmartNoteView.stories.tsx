@@ -1,4 +1,4 @@
-import { NoteEntry, SmartNote } from './SmartNote';
+import { SmartNote } from './SmartNote';
 import { Meta } from '@storybook/react';
 import {
   SmartNoteIndexProvider
@@ -8,10 +8,16 @@ export default {
   component: SmartNote,
 } as Meta
 
+const Delegate = () => {
+  return (
+    <SmartNote name="World War II"/>
+  )
+}
+
 export const Basic = () => {
   return (
     <SmartNoteIndexProvider>
-      <SmartNote name="World War II"/>
+      <Delegate/>
     </SmartNoteIndexProvider>
   )
 }
