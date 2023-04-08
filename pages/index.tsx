@@ -104,6 +104,58 @@ You may discuss sensitive topics lke sex and violence if necessary.
 `.trim()
 
 
+const SYSTEM_PROMPT_COMMANDS = `
+# Commands 
+
+Here is list of commands you can run, their description, and parameters.  
+
+When you're given a prompt, determine if it maps to one of the commands. 
+
+If it does, return a YAML document which contains the name of the command, and the
+values of its parameters. The command is just a YAML document with a command
+property that contains the name of the command.  Do not include text in a 
+response output.
+
+When the output doesn't match any of the commands, interpret the text like a
+normal prompt.
+
+Here is the List of commands in YAML format:
+
+---
+summarize:
+  description: Summarize will fetch a news site via HTTP for a web resource with the given name by first resolving the name to a website.
+  parameters:
+    url:
+      description: The URL of the site to fetch and then summarize.  This is determined from the name the user gives for the site they want to summarize.
+      type: string
+...
+
+## Examples
+
+Here are some examples of input and output when executing a command:
+
+### Example 1
+
+INPUT: Could you please summarize the news from CNN?
+BEGIN OUTPUT
+---
+command: summarize
+url: https://www.cnn.com/
+...
+END OUTPUT
+
+### Example 2 
+
+INPUT: Give me the latest news from MSNBC.
+BEGIN OUTPUT
+---
+command: summarize
+url: https://www.msnbc.com/
+...
+END OUTPUT
+
+`.trim()
+
 const SYSTEM_PROMPT_VISUALIZATIONS = `
 # Visualizations: 
 
@@ -207,54 +259,6 @@ The idea output length, should be two or three paragraphs.
 
 ${SYSTEM_PROMPT_AGE_ADULT}
 
-# Commands 
-
-Here is list of commands you can run, their description, and parameters.  
-
-When you're given a prompt, determine if it maps to one of the commands. 
-
-If it does, return a YAML document which contains the name of the command, and the
-values of its parameters. The command is just a YAML document with a command
-property that contains the name of the command.  Do not include text in a 
-response output.
-
-When the output doesn't match any of the commands, interpret the text like a
-normal prompt.
-
-Here is the List of commands in YAML format:
-
----
-summarize:
-  description: Summarize will fetch a news site via HTTP for a web resource with the given name by first resolving the name to a website.
-  parameters:
-    url:
-      description: The URL of the site to fetch and then summarize.  This is determined from the name the user gives for the site they want to summarize.
-      type: string
-...
-
-## Examples
-
-Here are some examples of input and output when executing a command:
-
-### Example 1
-
-INPUT: Could you please summarize the news from CNN?
-BEGIN OUTPUT
----
-command: summarize
-url: https://www.cnn.com/
-...
-END OUTPUT
-
-### Example 2 
-
-INPUT: Give me the latest news from MSNBC.
-BEGIN OUTPUT
----
-command: summarize
-url: https://www.msnbc.com/
-...
-END OUTPUT
 
 
 `
