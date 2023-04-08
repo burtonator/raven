@@ -2,6 +2,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import ReactMarkdown from 'react-markdown';
 import React from 'react';
+import { Tooltip } from '@mui/material';
 
 const content = `Hello, this is documentation about [World War II](https://www.wikipedia.org)`
 
@@ -11,7 +12,9 @@ export function SmartNote() {
                    components={{
                      a: (props) => {
                        return (
-                         <a {...props}>hello world</a>
+                         <Tooltip arrow title="This is the tooltip... ">
+                           <a {...props}>hello world</a>
+                         </Tooltip>
                        )
                      }
                    }}
