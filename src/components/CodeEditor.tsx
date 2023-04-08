@@ -1,6 +1,19 @@
 import Editor from '@monaco-editor/react';
-import { useTheme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+import { useTheme } from '@mui/system';
 
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    root: {
+
+      '& section': {
+        padding: 0,
+        margin: 0
+      },
+
+    },
+  }),
+);
 interface CodeEditorProps {
   readonly language: string
   readonly defaultValue: string
@@ -29,6 +42,7 @@ const options = {
 export function CodeEditor(props: CodeEditorProps) {
 
   const theme = useTheme()
+  const classes = useStyles()
 
   const monacoTheme = theme.palette.mode === 'dark' ? 'vs-dark' : 'vs'
 
@@ -41,6 +55,7 @@ export function CodeEditor(props: CodeEditorProps) {
                  height={height}
                  defaultLanguage={props.language}
                  theme={monacoTheme}
+                 className={classes.root}
                  style={{
                    padding: 0,
                    paddingTop: 0,
