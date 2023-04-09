@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useCallback, useContext } from 'react';
 
 export type MarkdownStr = string
 
@@ -15,17 +15,20 @@ export interface NoteEntry {
 
 export type NoteIndex = {[key: string]: NoteEntry}
 
-export interface INoteContext {
+export interface NoteContextDatastore {
   readonly index: NoteIndex
+  readonly writeNote: (note: NoteEntry) => void
 }
 
-const NoteContext = createContext<INoteContext>({index: {}})
+const NoteContext = createContext<NoteContextDatastore>({
+  index: {},
+  writeNote: () => console.log('writeNote: noop...')
+})
 
 export function useSmartNote(name: string): NoteEntry | undefined {
   const context = useContext(NoteContext)
   const {index} = context
 
-  console.log("FIXME: Working with index: ", index)
   return index[name]
 }
 
@@ -62,8 +65,13 @@ const index = {
 }
 
 export const SmartNoteIndexProvider = (props: SmartNodeIndexProviderProps) => {
+
+  const writeNote = useCallback((note: NoteEntry) => {
+    index[note.name] = note
+  }, [])
+
   return (
-    <NoteContext.Provider value={{index}}>
+    <NoteContext.Provider value={{index, writeNote}}>
       {props.children}
     </NoteContext.Provider>
   )
