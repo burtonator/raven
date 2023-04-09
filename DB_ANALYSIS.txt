@@ -1,0 +1,99 @@
+I want you to act as a database developer and build clever and valuable SQL reports for visualizing our data.
+
+I will give you a CSV and you will figure out interesting SQL statements and then determine what reports and charts we should generate.
+
+You will also describe each SQL statement and what it shows the user.
+
+I need you to return the report with the following properties:
+
+ - type: May be one of the following values
+   - table: A tabular report of data
+   - pie_chart: a pie chart of data
+   - line_chart: a line chart of data
+
+If the type is line_chart I need you to give me the x and y axis column names.
+
+Here's an example of a pie chart:
+
+    ```sql
+    SELECT "Model_Year", COUNT(*) as "Number_of_Vehicles"
+    FROM vehicles
+    GROUP BY "Model_Year"
+    ORDER BY "Model_Year";
+    ```
+
+    name: Find the number of vehicles per Model Year
+    description: Line chart displaying the number of vehicles per Model Year. (X-axis: Model Year, Y-axis: Number of Vehicles)
+    type: line_chart
+    x_axis: Model_Year
+    y_axis: Number_of_Vehicles
+
+--
+
+This dataset shows the Battery Electric Vehicles (BEVs) and Plug-in Hybrid Electric Vehicles (PHEVs) that are currently registered through Washington State Department of Licensing (DOL).
+
+
+The column descriptions are as follows:
+
+VIN_1_10: The first ten digits of the vehicle VIN number
+County: The county in which this vehicle is registered
+City: The city in which this vehicle is registered
+State: The city in which this vehicle is registered
+Postal_Code: The US postal code that this car is registered.
+Model_Year: The 4-digit year the model of this car was produced.  For example 2020, 2019, 1995, ...
+Make: The Make of this car.  Nissan, Toyota, Ford
+Model: The model of this car. Example, Tacoma, F150, Altima, ...
+Electric_Vehicle_Type: The type of this electric vehicle.
+Electric_Range: The range, in miles, of this vehicle.
+Base_MSRP: The MSRP price in USD at time of purchase.
+
+Here is the data in CSV format:
+
+VIN_1_10,County,City,State,Postal_Code,Model_Year,Make,Model,Electric_Vehicle_Type,Clean_Alternative_Fuel_Vehicle_Eligibility,Electric_Range,Base_MSRP,Legislative_District,DOL_Vehicle_ID,Vehicle_Location,Electric_Utility,2020_Census_Tract
+5YJ3E1EB2J,Suffolk,Suffolk,VA,23435,2018,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,215,0,,476647986,POINT (-76.42443 36.8752),,51800075203
+5YJ3E1ECXL,Yakima,Yakima,WA,98908,2020,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,308,0,14,103490145,POINT (-120.56916 46.58514),PACIFICORP,53077000401
+WA1LAAGE7M,Yakima,Yakima,WA,98908,2021,AUDI,E-TRON,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,222,0,14,144941534,POINT (-120.56916 46.58514),PACIFICORP,53077002801
+5YJ3E1EA1K,Danville,Danville,VA,24541,2019,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,220,0,,168513922,POINT (-79.4172 36.58598),,51590001100
+1FADP5CU9E,Norfolk,Norfolk,VA,23518,2014,FORD,C-MAX,Plug-in Hybrid Electric Vehicle (PHEV),Not eligible due to low battery range,19,0,,150749378,POINT (-76.21549 36.92478),,51710006502
+1N4AZ0CP1F,Thurston,Olympia,WA,98502,2015,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,84,0,22,226741833,POINT (-122.92333 47.03779),PUGET SOUND ENERGY INC,53067010600
+1G1RH6E48D,Thurston,Tenino,WA,98589,2013,CHEVROLET,VOLT,Plug-in Hybrid Electric Vehicle (PHEV),Clean Alternative Fuel Vehicle Eligible,38,0,20,183558777,POINT (-122.85135 46.85752),PUGET SOUND ENERGY INC,53067012610
+5YJSA1E13G,Snohomish,Bothell,WA,98021,2016,TESLA,MODEL S,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,210,0,1,135989157,POINT (-122.18384 47.8031),PUGET SOUND ENERGY INC,53061051937
+1N4AZ1CP0J,King,Seattle,WA,98112,2018,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,151,0,43,349862502,POINT (-122.30716 47.62687),CITY OF SEATTLE - (WA)|CITY OF TACOMA - (WA),53033006400
+5YJ3E1EB0J,Kittitas,Cle Elum,WA,98922,2018,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,215,0,13,473459815,POINT (-120.93943 47.195),PUGET SOUND ENERGY INC,53037975101
+5YJXCBE28G,Snohomish,Snohomish,WA,98296,2016,TESLA,MODEL X,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,200,0,1,208620772,POINT (-122.1389 47.87115),PUGET SOUND ENERGY INC,53061052112
+1G1FW6S0XJ,Chelan,Leavenworth,WA,98826,2018,CHEVROLET,BOLT EV,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,238,0,12,122982548,POINT (-120.65754 47.5982),PUD NO 1 OF CHELAN COUNTY,53007960201
+KNDCE3LG9L,King,Kirkland,WA,98033,2020,KIA,NIRO,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,239,0,48,153982097,POINT (-122.2066 47.67887),PUGET SOUND ENERGY INC||CITY OF TACOMA - (WA),53033022702
+1N4AZ1CP0J,Kitsap,Port Orchard,WA,98366,2018,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,151,0,26,192769097,POINT (-122.63847 47.54103),PUGET SOUND ENERGY INC,53035092600
+5YJ3E1EA8K,Snohomish,Lake Stevens,WA,98258,2019,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,220,0,44,476748793,POINT (-122.06402 48.01497),PUGET SOUND ENERGY INC,53061052604
+1N4AZ0CP8D,Snohomish,Lake Stevens,WA,98258,2013,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,75,0,44,120397357,POINT (-122.06402 48.01497),PUGET SOUND ENERGY INC,53061052506
+5YJ3E1EB6J,Skagit,Mount Vernon,WA,98274,2018,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,215,0,10,168971449,POINT (-122.32267 48.41626),PUGET SOUND ENERGY INC,53057951200
+3C3CFFGE5H,Snohomish,Bothell,WA,98012,2017,FIAT,500,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,84,0,1,123235990,POINT (-122.21061 47.83448),PUGET SOUND ENERGY INC,53061052107
+1N4AZ0CP0F,DeKalb,Decatur,GA,30030,2015,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,84,0,,133085886,POINT (-84.29658 33.77437),,13089022700
+5YJ3E1EA2K,Grant,Moses Lake,WA,98837,2019,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,220,0,13,171036680,POINT (-119.2771 47.13196),PUD NO 2 OF GRANT COUNTY,53025011001
+KNDCC3LD0J,Thurston,Olympia,WA,98502,2018,KIA,NIRO,Plug-in Hybrid Electric Vehicle (PHEV),Not eligible due to low battery range,26,0,22,201921373,POINT (-122.92333 47.03779),PUGET SOUND ENERGY INC,53067010520
+1G1RC6S50G,Skagit,Anacortes,WA,98221,2016,CHEVROLET,VOLT,Plug-in Hybrid Electric Vehicle (PHEV),Clean Alternative Fuel Vehicle Eligible,53,0,40,475638236,POINT (-122.61214 48.51748),PUGET SOUND ENERGY INC,53057940403
+1FADP5CU3E,Garfield,Pomeroy,WA,99347,2014,FORD,C-MAX,Plug-in Hybrid Electric Vehicle (PHEV),Not eligible due to low battery range,19,0,9,342528266,POINT (-117.58937 46.47398),PACIFICORP,53023970300
+1N4BZ1DPXL,Walla Walla,Walla Walla,WA,99362,2020,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,215,0,16,101669648,POINT (-118.34261 46.07068),PACIFICORP,53071920801
+5YJ3E1EAXJ,Skagit,Bow,WA,98232,2018,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,215,0,40,3338996,POINT (-122.397 48.56045),PUGET SOUND ENERGY INC,53057950802
+5UXTA6C09M,Kittitas,Ronald,WA,98940,2021,BMW,X5,Plug-in Hybrid Electric Vehicle (PHEV),Clean Alternative Fuel Vehicle Eligible,30,0,13,132655575,POINT (-121.02627 47.23781),PUGET SOUND ENERGY INC,53037975101
+1G1RD6E46D,Whitman,Pullman,WA,99163,2013,CHEVROLET,VOLT,Plug-in Hybrid Electric Vehicle (PHEV),Clean Alternative Fuel Vehicle Eligible,38,0,9,174517626,POINT (-117.18147 46.73015),AVISTA CORP,53075000300
+5YJ3E1EA1K,Snohomish,Bothell,WA,98021,2019,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,220,0,1,270270773,POINT (-122.18384 47.8031),PUGET SOUND ENERGY INC,53061051926
+5YJYGDEE8L,Skagit,Anacortes,WA,98221,2020,TESLA,MODEL Y,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,291,0,10,132488996,POINT (-122.61214 48.51748),PUGET SOUND ENERGY INC,53057940302
+1G1FW6S05H,Thurston,Olympia,WA,98504,2017,CHEVROLET,BOLT EV,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,238,0,22,168485502,,PUGET SOUND ENERGY INC,53067010100
+5YJ3E1EB7J,Kitsap,Gig Harbor,WA,98329,2018,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,215,0,26,475438554,POINT (-122.72457 47.38165),PUGET SOUND ENERGY INC,53035092902
+1N4AZ1CP5K,Thurston,Yelm,WA,98597,2019,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,150,0,20,196343584,POINT (-122.60735 46.94239),PUGET SOUND ENERGY INC,53067012510
+1G1RC6S57H,Kitsap,Poulsbo,WA,98370,2017,CHEVROLET,VOLT,Plug-in Hybrid Electric Vehicle (PHEV),Clean Alternative Fuel Vehicle Eligible,53,0,23,317182134,POINT (-122.64681 47.73689),PUGET SOUND ENERGY INC,53035940100
+1N4AZ0CP3F,Thurston,Tumwater,WA,98501,2015,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,84,0,22,108065814,POINT (-122.89166 47.03956),PUGET SOUND ENERGY INC,53067010400
+1N4AZ0CP7E,Yakima,Yakima,WA,98902,2014,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,84,0,14,252680032,POINT (-120.52301 46.60138),PACIFICORP,53077000500
+1N4BZ0CP3G,Yakima,Yakima,WA,98908,2016,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,84,0,14,103715314,POINT (-120.56916 46.58514),PACIFICORP,53077000401
+1N4AZ0CPXD,Thurston,Olympia,WA,98506,2013,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,75,0,22,177742428,POINT (-122.87741 47.05997),PUGET SOUND ENERGY INC,53067010200
+WBA8E1C53J,Island,Langley,WA,98260,2018,BMW,330E,Plug-in Hybrid Electric Vehicle (PHEV),Not eligible due to low battery range,14,45600,10,104647266,POINT (-122.40618 48.0399),PUGET SOUND ENERGY INC,53029971900
+1N4AZ0CP9D,Kitsap,Poulsbo,WA,98370,2013,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,75,0,23,263375976,POINT (-122.64681 47.73689),PUGET SOUND ENERGY INC,53035090400
+5YJ3E1EB3K,Thurston,Olympia,WA,98501,2019,TESLA,MODEL 3,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,220,0,22,244764243,POINT (-122.89166 47.03956),PUGET SOUND ENERGY INC,53067011721
+KMHC65LD5K,Yakima,Selah,WA,98942,2019,HYUNDAI,IONIQ,Plug-in Hybrid Electric Vehicle (PHEV),Not eligible due to low battery range,29,0,15,323959233,POINT (-120.53113 46.65404),PACIFICORP,53077003200
+YV4BR0DL8N,Thurston,Olympia,WA,98502,2022,VOLVO,XC60,Plug-in Hybrid Electric Vehicle (PHEV),Not eligible due to low battery range,18,0,22,192758177,POINT (-122.92333 47.03779),PUGET SOUND ENERGY INC,53067010600
+2C4RC1H78J,Oldham,Goshen,KY,40026,2018,CHRYSLER,PACIFICA,Plug-in Hybrid Electric Vehicle (PHEV),Clean Alternative Fuel Vehicle Eligible,33,0,,277234681,POINT (-85.57785 38.40025),,21185030802
+1G1FY6S03K,Skagit,Sedro Woolley,WA,98284,2019,CHEVROLET,BOLT EV,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,238,0,39,117030469,POINT (-122.23857 48.50858),PUGET SOUND ENERGY INC,53057951501
+1G1FY6S05K,Chelan,Cashmere,WA,98815,2019,CHEVROLET,BOLT EV,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,238,0,12,8977888,POINT (-120.47005 47.5224),PUD NO 1 OF CHELAN COUNTY,53007960501
+1N4AZ0CP4E,Snohomish,Marysville,WA,98270,2014,NISSAN,LEAF,Battery Electric Vehicle (BEV),Clean Alternative Fuel Vehicle Eligible,84,0,44,138632175,POINT (-122.1769 48.06114),PUGET SOUND ENERGY INC,53061052707
+
