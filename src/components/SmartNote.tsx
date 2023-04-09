@@ -51,7 +51,7 @@ export function SmartNote(props: SmartNoteProps) {
   }
 
   return (
-    <Paper elevation={1} style={{width: '600px'}} square={true}>
+    <Paper elevation={1} style={{width: '800px'}} square={true}>
       <Box p={1}>
         <Box pt={1} pb={1} pl={0}>
           <Typography variant="h5">{note.name}</Typography>
