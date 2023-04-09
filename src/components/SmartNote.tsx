@@ -65,7 +65,7 @@ export function SmartNote(props: SmartNoteProps) {
             <ul>
               {note.items.map(current => (
                 <li key={current}>
-                  <Link href={router.pathname + ',' + encodeURIComponent(current)}>{current}</Link>
+                  <Link href={router.asPath + ',' + encodeURIComponent(current)}>{current}</Link>
                 </li>
               ))}
             </ul>

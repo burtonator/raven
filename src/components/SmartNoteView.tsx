@@ -19,7 +19,6 @@ export function useSmartNoteRouter() {
   const prefix = "smart/"
   const idx = router.asPath.indexOf(prefix)
 
-  console.log("FIXME: asPath " + router.asPath)
   if (idx === -1) {
     console.log("No routes")
     return []
