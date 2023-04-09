@@ -16,12 +16,16 @@ import { useRouter } from 'next/router';
 export function useSmartNoteRouter() {
 
   const router = useRouter()
-  const idx = router.pathname.lastIndexOf("smart/")
+  const prefix = "smart/"
+  const idx = router.asPath.indexOf(prefix)
+
+  console.log("FIXME: asPath " + router.asPath)
   if (idx === -1) {
+    console.log("No routes")
     return []
   }
 
-  const suffix = router.pathname.substring(idx + 1, router.pathname.length)
+  const suffix = router.asPath.substring(idx + prefix.length, router.asPath.length)
   return suffix.split(",").map(current => decodeURIComponent(current))
 
 }
@@ -34,8 +38,6 @@ interface SmartNoteViewProps {
 export function SmartNoteView(props: SmartNoteViewProps) {
 
   const {stack} = props
-
-  console.log("FIXME", {stack})
 
   return (
     <div style={{...props.style, display: 'flex'}}>

@@ -47,7 +47,7 @@ export function SmartNote(props: SmartNoteProps) {
   const note = useSmartNote(props.name)
 
   if (! note) {
-    return <div>Not Found</div>
+    return <div>Not Found: `{props.name}`</div>
   }
 
   return (
