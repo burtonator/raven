@@ -67,7 +67,8 @@ const index = {
 export const SmartNoteIndexProvider = (props: SmartNodeIndexProviderProps) => {
 
   const writeNote = useCallback((note: NoteEntry) => {
-    index[note.name] = note
+    const key = note.name as string
+    //index[key] = note
   }, [])
 
   return (

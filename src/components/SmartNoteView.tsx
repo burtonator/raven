@@ -13,15 +13,15 @@ import { useRouter } from 'next/router';
  * desktop...
  *
  */
-function useSmartNoteRouter() {
+export function useSmartNoteRouter() {
 
   const router = useRouter()
-  const idx = router.pathname.lastIndexOf("/")
+  const idx = router.pathname.lastIndexOf("smart/")
   if (idx === -1) {
     return []
   }
 
-  const suffix = router.pathname.substring(idx + 1, router.pathname.length - 1)
+  const suffix = router.pathname.substring(idx + 1, router.pathname.length)
   return suffix.split(",").map(current => decodeURIComponent(current))
 
 }
@@ -34,6 +34,8 @@ interface SmartNoteViewProps {
 export function SmartNoteView(props: SmartNoteViewProps) {
 
   const {stack} = props
+
+  console.log("FIXME", {stack})
 
   return (
     <div style={{...props.style, display: 'flex'}}>
