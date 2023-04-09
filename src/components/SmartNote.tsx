@@ -5,24 +5,7 @@ import {
 } from '@mui/material';
 import { MarkdownViewer } from './MarkdownViewer';
 import { NoteNameStr, useSmartNote } from './SmartNoteIndexProvider';
-import { useSmartNoteRouterNotesStack } from '@/src/components/SmartNoteView';
 import NextLink from 'next/link'
-
-const content = `Hello, this is documentation about [World War II](https://www.wikipedia.org)`
-
-export type MarkdownStr = string
-
-/**
- * A reference to another note like "World War II" or "San Francisco"
- */
-export type NodeNameStr = string
-
-export interface NoteEntry {
-  readonly name: NodeNameStr
-  readonly content: MarkdownStr
-  readonly items: ReadonlyArray<NodeNameStr>
-}
-
 
 //
 // const HtmlTooltip = styled((props: TooltipProps) => (
@@ -80,7 +63,7 @@ export function SmartNote(props: SmartNoteProps) {
               {note.items.map(current => (
                 <li key={current}>
                   <NextLink href={computeRouteForNote(current)}>
-                    <Link variant="body2">{current}</Link>
+                    <Link variant="body1">{current}</Link>
                   </NextLink>
                 </li>
               ))}

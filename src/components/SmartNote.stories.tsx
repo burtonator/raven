@@ -1,4 +1,4 @@
-import { NoteEntry, SmartNote } from './SmartNote';
+import { SmartNote } from './SmartNote';
 import { Meta } from '@storybook/react';
 
 export default {
