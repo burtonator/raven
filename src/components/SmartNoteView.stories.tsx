@@ -28,10 +28,17 @@ export const Basic = () => {
   )
 }
 
-export const StandardUsageWithRoot = () => {
+export const StandardUsageWithOneEntry = () => {
   return (
     <SmartNoteIndexProvider>
-      <SmartNoteView root="World War II"/>
+      <SmartNoteView stack={["World War II"]}/>
+    </SmartNoteIndexProvider>
+  )
+}
+export const StandardUsageWithTwoEntries = () => {
+  return (
+    <SmartNoteIndexProvider>
+      <SmartNoteView stack={["World War II", "Nazi Germany"]}/>
     </SmartNoteIndexProvider>
   )
 }

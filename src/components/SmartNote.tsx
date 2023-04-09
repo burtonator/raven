@@ -58,15 +58,19 @@ export function SmartNote(props: SmartNoteProps) {
         </Box>
         <MarkdownViewer content={note.content}/>
 
-        <Typography variant="h6">Do You Want to Know More?</Typography>
+        {note.items.length > 0 && (
+          <>
+            <Typography variant="h6">Do You Want to Know More?</Typography>
 
-        <ul>
-          {note.items.map(current => (
-            <li key={current}>
-              <Link href={router.pathname + ',' + encodeURIComponent(current)}>{current}</Link>
-            </li>
-          ))}
-        </ul>
+            <ul>
+              {note.items.map(current => (
+                <li key={current}>
+                  <Link href={router.pathname + ',' + encodeURIComponent(current)}>{current}</Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
 
       </Box>
     </Paper>

@@ -55,7 +55,7 @@ const index = {
   },
   "Nazi Germany": {
     name: 'Nazi Germany',
-    content: "Nazi Germany[h] (officially known as the German Reich[i] from 1933 until 1943, and the Greater German Reich[j] from 1943 to 1945) was the German state between 1933 and 1945, when Adolf Hitler and the Nazi Party controlled the country, transforming it into a dictatorship. Under Hitler's rule, Germany quickly became a totalitarian state where nearly all aspects of life were controlled by the government. The Third Reich,[k] meaning \"Third Realm\" or \"Third Empire\", alluded to the Nazi claim that Nazi Germany was the successor to the earlier Holy Roman Empire (800–1806) and German Empire (1871–1918). The Third Reich, which Hitler and the Nazis referred to as the Thousand-Year Reich,[l] ended in May 1945 after 12 years when the Allies defeated Germany, ending World War II in Europe.",
+    content: "Nazi Germany (officially known as the German Reich[i] from 1933 until 1943, and the Greater German Reich[j] from 1943 to 1945) was the German state between 1933 and 1945, when Adolf Hitler and the Nazi Party controlled the country, transforming it into a dictatorship. Under Hitler's rule, Germany quickly became a totalitarian state where nearly all aspects of life were controlled by the government. The Third Reich,[k] meaning \"Third Realm\" or \"Third Empire\", alluded to the Nazi claim that Nazi Germany was the successor to the earlier Holy Roman Empire (800–1806) and German Empire (1871–1918). The Third Reich, which Hitler and the Nazis referred to as the Thousand-Year Reich,[l] ended in May 1945 after 12 years when the Allies defeated Germany, ending World War II in Europe.",
     items: []
   }
 

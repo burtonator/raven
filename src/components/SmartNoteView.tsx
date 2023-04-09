@@ -1,20 +1,39 @@
 import { SmartNote } from './SmartNote';
-import { Divider } from '@mui/material';
+import { Box, Divider } from '@mui/material';
 import { CSSProperties, useState } from 'react';
 import {
   NoteNameStr
 } from './SmartNoteIndexProvider';
 
 import {Fragment} from 'react'
+import { useRouter } from 'next/router';
+
+/**
+ * Route paths are going to be something like /Foo,Bar and be a stack on
+ * desktop...
+ *
+ */
+function useSmartNoteRouter() {
+
+  const router = useRouter()
+  const idx = router.pathname.lastIndexOf("/")
+  if (idx === -1) {
+    return []
+  }
+
+  const suffix = router.pathname.substring(idx + 1, router.pathname.length - 1)
+  return suffix.split(",").map(current => decodeURIComponent(current))
+
+}
 
 interface SmartNoteViewProps {
-  readonly root: NoteNameStr
+  readonly stack: ReadonlyArray<NoteNameStr>
   readonly style?: CSSProperties
 }
 
 export function SmartNoteView(props: SmartNoteViewProps) {
 
-  const [stack, setStack] = useState<ReadonlyArray<NoteNameStr>>([props.root])
+  const {stack} = props
 
   return (
     <div style={{...props.style, display: 'flex'}}>
@@ -23,17 +42,17 @@ export function SmartNoteView(props: SmartNoteViewProps) {
           return (
             <Fragment key={current}>
 
-              {current > 0 && (
+              {index > 0 && (
                 <Divider orientation='vertical'/>
               )}
 
-              <SmartNote name={current}/>
+              <Box mr={1}>
+                <SmartNote name={current}/>
+              </Box>
             </Fragment>
           );
         }
       )}
-      {/*<SmartNote name="World War II"/>*/}
-      {/*<SmartNote name="United States"/>*/}
     </div>
   )
 
