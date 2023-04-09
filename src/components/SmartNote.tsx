@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  Box, Paper,
+  Box, Button, Paper,
   Typography
 } from '@mui/material';
 import { MarkdownViewer } from './MarkdownViewer';
-import { useSmartNote } from './SmartNoteIndexProvider';
+import { NoteNameStr, useSmartNote } from './SmartNoteIndexProvider';
 
 const content = `Hello, this is documentation about [World War II](https://www.wikipedia.org)`
 
@@ -36,7 +36,7 @@ export interface NoteEntry {
 // }));
 
 interface SmartNoteProps {
-  readonly name: string
+  readonly name: NoteNameStr
 }
 
 export function SmartNote(props: SmartNoteProps) {
@@ -54,6 +54,17 @@ export function SmartNote(props: SmartNoteProps) {
           <Typography variant="h5">{note.name}</Typography>
         </Box>
         <MarkdownViewer content={note.content}/>
+
+        <Typography variant="h6">Do You Want to Know More?</Typography>
+
+        <ul>
+          {note.items.map(current => (
+            <li key={current}>
+              <Button variant="link" href="asdf">{current}</Button>
+            </li>
+          ))}
+        </ul>
+
       </Box>
     </Paper>
   )
