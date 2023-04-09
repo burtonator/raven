@@ -43,22 +43,22 @@ interface SmartNoteProps {
 
 export function SmartNote(props: SmartNoteProps) {
 
-  const notesStack = useSmartNoteRouterNotesStack()
-
   const note = useSmartNote(props.name)
 
   const computeRouteForNote = useCallback((note: NoteNameStr) => {
 
-    const idx = notesStack.indexOf(props.name)
+    // const idx = notesStack.indexOf(props.name)
+    //
+    // const currentNoteStackPath = notesStack.splice(idx)
+    // const newStack = [...currentNoteStackPath, note]
+    //
+    // const base = '/smart/'
+    //
+    // return base + newStack.map(encodeURIComponent).join(',')
 
-    const currentNoteStackPath = notesStack.splice(idx)
-    const newStack = [...currentNoteStackPath, note]
+    return '/smart/' + encodeURIComponent(note)
 
-    const base = '/smart/'
-
-    return base + newStack.map(encodeURIComponent).join(',')
-
-  }, [notesStack, props.name])
+  }, [])
 
   if (! note) {
     return <div>Not Found: `{props.name}`</div>

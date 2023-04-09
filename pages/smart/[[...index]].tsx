@@ -24,7 +24,11 @@ export default function Index() {
 
   return (
     <SmartNoteIndexProvider>
-      <SmartNoteView stack={path}/>
+
+      <Box mt={1}>
+        <SmartNoteView stack={path}
+                       style={{flexGrow: 1, justifyContent: 'center'}}/>
+      </Box>
     </SmartNoteIndexProvider>
   )
 
