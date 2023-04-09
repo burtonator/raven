@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-  Box, Button, Paper,
+  Box, Button, Link, Paper,
   Typography
 } from '@mui/material';
 import { MarkdownViewer } from './MarkdownViewer';
 import { NoteNameStr, useSmartNote } from './SmartNoteIndexProvider';
+import { useRouter } from 'next/router';
 
 const content = `Hello, this is documentation about [World War II](https://www.wikipedia.org)`
 
@@ -41,6 +42,8 @@ interface SmartNoteProps {
 
 export function SmartNote(props: SmartNoteProps) {
 
+  const router = useRouter()
+
   const note = useSmartNote(props.name)
 
   if (! note) {
@@ -60,7 +63,7 @@ export function SmartNote(props: SmartNoteProps) {
         <ul>
           {note.items.map(current => (
             <li key={current}>
-              <Button variant="link" href="asdf">{current}</Button>
+              <Link href={router.pathname + ',' + encodeURIComponent(current)}>{current}</Link>
             </li>
           ))}
         </ul>

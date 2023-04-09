@@ -38,7 +38,8 @@ const index = {
     name: 'World War II',
     content: "World War II or the Second World War, often abbreviated as WWII or WW2, was a global conflict that lasted from 1939 to 1945. The vast majority of the world's countries, including all of the great powers, fought as part of two opposing military alliances: the Allies and the Axis. Many participants threw their economic, industrial, and scientific capabilities behind this total war, blurring the distinction between civilian and military resources. Aircraft played a major role, enabling the strategic bombing of population centres and the delivery of the only two nuclear weapons ever used in war.",
     items: [
-      "Military history of the United States during World War II"
+      "Military history of the United States during World War II",
+      "Nazi Germany"
     ]
   },
   "United States":  {
@@ -50,6 +51,11 @@ const index = {
   "Military history of the United States during World War II": {
     name: 'Military history of the United States during World War II',
     content: "The military history of the United States during World War II covers the victorious Allied war against the Axis Powers, starting with the 7 December 1941 attack on Pearl Harbor and ending with the 2 September 1945 surrender of Japan. During the first two years of World War II, the United States had maintained formal neutrality, which was officially announced in the Quarantine Speech delivered by US President Franklin D. Roosevelt in 1937. While officially neutral, the US supplied Britain, the Soviet Union, and China with war materiel through the Lend-Lease Act signed into law on 11 March 1941, and deployed the US military to replace the British forces stationed in Iceland. Following the \"Greer incident\" Roosevelt publicly confirmed the \"shoot on sight\" order on 11 September 1941, effectively declaring naval war on Germany and Italy in the Battle of the Atlantic.[1] In the Pacific Theater, there was unofficial early US combat activity such as the Flying Tigers.",
+    items: []
+  },
+  "Nazi Germany": {
+    name: 'Nazi Germany',
+    content: "Nazi Germany[h] (officially known as the German Reich[i] from 1933 until 1943, and the Greater German Reich[j] from 1943 to 1945) was the German state between 1933 and 1945, when Adolf Hitler and the Nazi Party controlled the country, transforming it into a dictatorship. Under Hitler's rule, Germany quickly became a totalitarian state where nearly all aspects of life were controlled by the government. The Third Reich,[k] meaning \"Third Realm\" or \"Third Empire\", alluded to the Nazi claim that Nazi Germany was the successor to the earlier Holy Roman Empire (800–1806) and German Empire (1871–1918). The Third Reich, which Hitler and the Nazis referred to as the Thousand-Year Reich,[l] ended in May 1945 after 12 years when the Allies defeated Germany, ending World War II in Europe.",
     items: []
   }
 
