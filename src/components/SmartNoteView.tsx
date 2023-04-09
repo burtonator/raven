@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
  * desktop...
  *
  */
-export function useSmartNoteRouter() {
+export function useSmartNoteRouterNotesStack() {
 
   const router = useRouter()
   const prefix = "smart/"

@@ -1,6 +1,6 @@
 import {
   SmartNoteView,
-  useSmartNoteRouter
+  useSmartNoteRouterNotesStack
 } from '@/src/components/SmartNoteView';
 import {
   SmartNoteIndexProvider
@@ -10,7 +10,7 @@ import { Box } from '@mui/material';
 
 export default function Index() {
 
-  const path = useSmartNoteRouter()
+  const path = useSmartNoteRouterNotesStack()
 
   if (path.length === 0) {
     return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   Box, Button, Link, Paper,
   Typography
@@ -6,6 +6,8 @@ import {
 import { MarkdownViewer } from './MarkdownViewer';
 import { NoteNameStr, useSmartNote } from './SmartNoteIndexProvider';
 import { useRouter } from 'next/router';
+import { useSmartNoteRouterNotesStack } from '@/src/components/SmartNoteView';
+import { replacer } from 'telejson';
 
 const content = `Hello, this is documentation about [World War II](https://www.wikipedia.org)`
 
@@ -42,9 +44,22 @@ interface SmartNoteProps {
 
 export function SmartNote(props: SmartNoteProps) {
 
-  const router = useRouter()
+  const notesStack = useSmartNoteRouterNotesStack()
 
   const note = useSmartNote(props.name)
+
+  const computeRouteForNote = useCallback((note: NoteNameStr) => {
+
+    const idx = notesStack.indexOf(props.name)
+
+    const currentNoteStackPath = notesStack.splice(idx)
+    const newStack = [...currentNoteStackPath, note]
+
+    const base = '/smart/'
+
+    return base + newStack.map(encodeURIComponent).join(',')
+
+  }, [notesStack, props.name])
 
   if (! note) {
     return <div>Not Found: `{props.name}`</div>
@@ -65,7 +80,7 @@ export function SmartNote(props: SmartNoteProps) {
             <ul>
               {note.items.map(current => (
                 <li key={current}>
-                  <Link href={router.asPath + ',' + encodeURIComponent(current)}>{current}</Link>
+                  <Link href={computeRouteForNote(current)}>{current}</Link>
                 </li>
               ))}
             </ul>
