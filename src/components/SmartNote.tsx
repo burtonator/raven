@@ -5,9 +5,8 @@ import {
 } from '@mui/material';
 import { MarkdownViewer } from './MarkdownViewer';
 import { NoteNameStr, useSmartNote } from './SmartNoteIndexProvider';
-import { useRouter } from 'next/router';
 import { useSmartNoteRouterNotesStack } from '@/src/components/SmartNoteView';
-import { replacer } from 'telejson';
+import NextLink from 'next/link'
 
 const content = `Hello, this is documentation about [World War II](https://www.wikipedia.org)`
 
@@ -80,7 +79,9 @@ export function SmartNote(props: SmartNoteProps) {
             <ul>
               {note.items.map(current => (
                 <li key={current}>
-                  <Link href={computeRouteForNote(current)}>{current}</Link>
+                  <NextLink href={computeRouteForNote(current)}>
+                    <Link variant="body2">{current}</Link>
+                  </NextLink>
                 </li>
               ))}
             </ul>
