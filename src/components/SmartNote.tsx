@@ -48,9 +48,9 @@ export function SmartNote(props: SmartNoteProps) {
   }
 
   return (
-    <Paper elevation={1} style={{width: '800px'}} square={true}>
-      <Box p={1}>
-        <Box pt={1} pb={1} pl={0}>
+    <Paper elevation={2} style={{width: '800px'}} square={false}>
+      <Box p={2}>
+        <Box pl={0}>
           <Typography variant="h5">{note.name}</Typography>
         </Box>
         <MarkdownViewer content={note.content}/>
