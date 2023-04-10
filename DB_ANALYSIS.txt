@@ -13,7 +13,7 @@ I need you to return the report with the following properties:
 
 If the type is line_chart I need you to give me the x and y axis column names.
 
-Here's an example of a pie chart:
+Here's an example of a line chart:
 
     ```sql
     SELECT "Model_Year", COUNT(*) as "Number_of_Vehicles"

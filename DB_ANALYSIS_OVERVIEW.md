@@ -21,20 +21,3 @@ The dataset contains the following columns:
 17. 2020_Census_Tract: The census tract number from the 2020 US Census where the vehicle is registered.
 
 The dataset provides insights into the distribution of electric vehicles in Washington State and can be used to analyze trends in electric vehicle adoption, the popularity of specific makes and models, and the impact of clean alternative fuel vehicle eligibility on electric vehicle ownership.
-
-Based on the following press release, I want you to answer the following questions.
-You need to provide quotes from the source material for facts to back up your 
-statements:
-
-Here are the questions:
-
-- What database did Microsoft release today?
-- What type of drives does it used?
-- What company made the drives it uses.
-
-Here is the source material:
-
-Microsoft today released Alabastia, a new database powered by Artacia XT500 Solid State Drives 
-releases from Samsung which provide orders of magnitude more performance than 
-traditional solid state drives.
-
