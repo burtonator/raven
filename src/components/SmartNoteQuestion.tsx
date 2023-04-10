@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { LinearProgress, TextField } from '@mui/material';
 import React, {
   ChangeEvent,
   KeyboardEvent,
@@ -6,10 +6,32 @@ import React, {
   useState
 } from 'react';
 import { useStateRef } from '@/src/useStateRef';
+import { useSmartNoteExecutor } from '@/src/components/useSmartNoteExecutor';
 
 export function SmartNoteQuestion() {
 
   const [input, setInput, inputRef] = useStateRef('')
+  const [executing, setExecuting] = useState(false)
+
+  const smartNoteExecutor = useSmartNoteExecutor()
+
+  const handleExecution = useCallback((question: string) => {
+    console.log("FIXME: ", {question})
+
+    async function doAsync() {
+      try {
+        setExecuting(true)
+        const res = await smartNoteExecutor(question)
+        console.log(res?.content)
+      } finally {
+        setExecuting(false)
+      }
+    }
+
+    doAsync()
+      .catch(err => console.error(err))
+
+  }, [smartNoteExecutor]);
 
   const updateInput = useCallback((newInput: string) => {
     setInput(newInput)
@@ -22,13 +44,13 @@ export function SmartNoteQuestion() {
       if(event.key === 'Enter') {
 
         if (inputRef.current.trim() !== '') {
-          // handleExecution(inputRef.current)
+          handleExecution(inputRef.current)
           updateInput('')
         }
 
       }
     },
-    [inputRef, updateInput]
+    [handleExecution, inputRef, updateInput]
   )
 
 
@@ -40,13 +62,16 @@ export function SmartNoteQuestion() {
   )
 
   return (
-    <TextField placeholder="What would you like to know?... "
-               inputProps={{ autoFocus: true }}
-               value={input}
-               autoFocus={true}
-               autoComplete='off'
-               style={{width: '40em'}}
-               onChange={handleChange}
-               onKeyUp={handleKeyUp}/>
+    <>
+      {executing && <LinearProgress variant='indeterminate'/>}
+      <TextField placeholder="What would you like to know?... "
+                 inputProps={{ autoFocus: true }}
+                 value={input}
+                 autoFocus={true}
+                 autoComplete='off'
+                 style={{width: '40em'}}
+                 onChange={handleChange}
+                 onKeyUp={handleKeyUp}/>
+    </>
   )
 }
