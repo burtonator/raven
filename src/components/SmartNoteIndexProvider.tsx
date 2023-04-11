@@ -25,6 +25,10 @@ const NoteContext = createContext<NoteContextDatastore>({
   writeNote: () => console.log('writeNote: noop...')
 })
 
+export function useSmartNoteContext() {
+  return useContext(NoteContext)
+}
+
 export function useSmartNote(name: string): NoteEntry | undefined {
   const context = useContext(NoteContext)
   const {index} = context
@@ -68,7 +72,7 @@ export const SmartNoteIndexProvider = (props: SmartNodeIndexProviderProps) => {
 
   const writeNote = useCallback((note: NoteEntry) => {
     const key = note.name as string
-    //index[key] = note
+    index[key] = note
   }, [])
 
   return (

@@ -16,7 +16,6 @@ export function SmartNoteQuestion() {
   const smartNoteExecutor = useSmartNoteExecutor()
 
   const handleExecution = useCallback((question: string) => {
-    console.log("FIXME: ", {question})
 
     async function doAsync() {
       try {
