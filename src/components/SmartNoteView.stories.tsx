@@ -13,9 +13,9 @@ export default {
 const Delegate = () => {
   return (
     <div style={{display: 'flex'}}>
-      <SmartNote name="World War II"/>
+      {/*<SmartNote name="World War II"/>*/}
       <Divider orientation='vertical'/>
-      <SmartNote name="United States"/>
+      {/*<SmartNote name="United States"/>*/}
     </div>
   )
 }

@@ -40,7 +40,7 @@ interface SmartNodeIndexProviderProps {
   readonly children: JSX.Element
 }
 
-const index = {
+const index: NoteIndex = {
   "World War II": {
     name: 'World War II',
     content: "World War II or the Second World War, often abbreviated as WWII or WW2, was a global conflict that lasted from 1939 to 1945. The vast majority of the world's countries, including all of the great powers, fought as part of two opposing military alliances: the Allies and the Axis. Many participants threw their economic, industrial, and scientific capabilities behind this total war, blurring the distinction between civilian and military resources. Aircraft played a major role, enabling the strategic bombing of population centres and the delivery of the only two nuclear weapons ever used in war.",
