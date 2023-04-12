@@ -5,8 +5,15 @@ Raven is a work-in-progress with two main goals:
 1. Implement a simulated multi-modal AI using OpenAI Whisper where you can speak to GPT4 directly.
 2. Tree / smart execution of pre-fetching questions 
 3. Build an agent framework that allows for advanced use cases 
+4. Vector Database and Document Indexing
 
 Also, please note.  This repo is NOT up to my normal high quality standards I hold for myself.  I don't have eslint setup properly.  Prettier isn't setup. etc.  
+
+This is still Alpha code.
+
+Everything is based on Next, React, and Typescript. 
+
+I'm probably going to add python-based cloud function to integrate with Pinecode or Zilliz when I add support for vector databases.
 
 # Multi-Modal
 
@@ -94,3 +101,12 @@ Periodically, we rollup and checkpoint the state to avoid large prompt sizes.
 
 We will also have a data layer that the agents can write to directly so that the user
 can see the status of the agent.
+
+# Vector Database and Document Indexing
+
+For students and researchers, GPT4 is a bit limited in that you can't extend its capacity.
+
+My plan here is to use Mathpix to allow the user to upload PDFs and documents, 
+then use context injection by taking the prompt, and injecting shingled and 
+pre-indexed content from the vector database.
+
