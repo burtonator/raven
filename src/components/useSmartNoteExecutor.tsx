@@ -55,7 +55,7 @@ export function useSmartNoteExecutor() {
 
     const req = createCompletionRequest(messages)
     const before = Date.now()
-    const res: AxiosResponse<CreateChatCompletionResponse> = await openai.createChatCompletion(req)
+    const res = await openai.createChatCompletion(req)
     const after = Date.now()
     const duration = after - before
     if (res.data.choices.length > 0) {
