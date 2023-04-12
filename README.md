@@ -72,6 +72,8 @@ This would yield a much more exploratory and immersive experience for the user.
 I think there's a massive opportunity to build agent frameworks using generative 
 AI models.
 
+Agents would be able to be long-lived and perform background tasks on behalf of the user. 
+
 It's designed to take advantage of GPT's generative model to expand the prompt 
 and compute the "tasks" to meet its goals.
 
@@ -82,17 +84,13 @@ Use cases involve:
 
 - Performing market arbitrage using GPTs language translation capabilities to buy and sell goods across multiple markets online. 
 
-- 
+- Purchase goods and services using your browser credentials so that the agent can see the same data that you're personally using (email, slack, etc)
 
-## Controller
+The general idea is that we will use a system prompt to train GPT how to invoke commands.
 
-There will be a high level controller agent which is designed around most of the main . 
+Then we have a prompt that is given a state, and can execute commands to potentially mutate the state to its desired goal.
 
-## Data Layer
+Periodically, we rollup and checkpoint the state to avoid large prompt sizes.
 
-There will be a generic 'data layer' that is designed around columnar representation 
-of data that can be mapped to SQL.
-
-The ideal is that 
-
-## Auth
+We will also have a data layer that the agents can write to directly so that the user
+can see the status of the agent.
