@@ -20,32 +20,33 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
   const smartNoteExecutor = useSmartNoteExecutor()
   const executedRef = useRef(false)
 
+  const note = noteWithinStore ?? noteFromState
+
   const handleExecution = useCallback((question: string) => {
 
     async function doAsync() {
 
-      if (executedRef.current) {
-        // prevent accidental double dispatch
-        return
-      }
-
-      executedRef.current = true
-
       const res = await smartNoteExecutor(question)
       if (res?.content) {
-        const newNote = {name: props.name, content: res.content, items: []}
+        const newNote = {name: props.name, content: res.content, items: res.items}
         smartNoteContext.writeNote(newNote)
         setNoteFromState(newNote)
       }
       console.log(res?.content)
     }
 
+    if (executedRef.current) {
+      // prevent accidental double dispatch
+      return
+    }
+
+    executedRef.current = true
+
     doAsync()
       .catch(err => console.error(err))
 
   }, [props.name, smartNoteContext, smartNoteExecutor]);
 
-  const note = noteWithinStore ?? noteFromState
 
   useEffect(() => {
 

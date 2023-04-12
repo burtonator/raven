@@ -4,21 +4,27 @@ import {
   CreateChatCompletionRequest, CreateChatCompletionResponse
 } from 'openai';
 import { useOpenAPI } from '@/src/components/useOpenAPI';
-import { AxiosResponse } from 'axios';
 
 const SYSTEM_PROMPT = `
-You are a helpful research assistant. Your job is to answer the users questions of if they give you a topic you just expand upon it.
+You are a research assistant. Your job is to answer the users questions. 
 
-After you are complete you should end with "---" then provide a list of follow up questions the user might want to know based on the answer to the question.  You should have one question per line and do not order the questions.  Just present them one after the other.
+After you generate the answer to a question you must then generate a list of 
+additional/followup questions the user is likely to ask next.
 
 For example, a list of questions might look like the following:
 
----
-What is the time complexity of retrieving a value from a Hashtable?
-How does a Hashtable handle collisions?
-What is the difference between Hashtable and HashMap?
-When should you use a Hashtable instead of a HashMap?
-Is Hashtable thread-safe?
+    -----
+    What is the time complexity of retrieving a value from a Hashtable?
+    How does a Hashtable handle collisions?
+    What is the difference between Hashtable and HashMap?
+    When should you use a Hashtable instead of a HashMap?
+    Is Hashtable thread-safe?
+
+The list of questions must begin with "----" then list the questions after.
+    
+You should have one question per line and do not order the questions.  Just 
+present them one after the other.
+    
 `.trim()
 
 export interface SmartNoteCompletion {
@@ -28,7 +34,7 @@ export interface SmartNoteCompletion {
 
 export function parseSmartNoteResult(text: string): SmartNoteCompletion | undefined {
 
-  const s = text.split('---\n')
+  const s = text.split('-----\n')
 
   if (s.length === 2) {
     return {
@@ -50,10 +56,10 @@ export function useSmartNoteExecutor() {
     function createChatRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
       return {
-        // model: 'gpt-4',
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4',
+        //model: 'gpt-3.5-turbo',
         temperature: 0.0,
-        max_tokens: 2045,
+        max_tokens: 4096,
         top_p: 1,
         n: 1,
         messages: [...messages]
@@ -71,7 +77,7 @@ export function useSmartNoteExecutor() {
 
 
     const req = createChatRequest(messages)
-    console.log("Executing chat: ", req)
+    console.log("Executing chat: ", JSON.stringify(req, null, '  '))
 
     const before = Date.now()
     const res = await openai.createChatCompletion(req)
