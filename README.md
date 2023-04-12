@@ -17,6 +17,8 @@ I'm probably going to add python-based cloud function to integrate with Pinecode
 
 # Multi-Modal
 
+<img src="./example-voice.png">
+
 Right now OpenAI and GPT4 isn't a multi-modal model, meaning you can't speak to it as it does not support voice.
 
 When I found out about [Whisper](https://openai.com/research/whisper), and their claim about it's performance, I had to build out a text interface to OpenAI.
@@ -30,7 +32,7 @@ It has a few limitations:
 
 # Tree / Smart Execution of Pre-fetching Questions
 
-<img src="./exmaple-smart.png">
+<img src="example-smart.png">
 
 One of the downsides of GPT4 is the latency.
 
