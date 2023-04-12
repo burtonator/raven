@@ -133,7 +133,7 @@ interface NodeProps {
 }
 
 export function Node(props: NodeProps) {
-  const {autoExecute, root} = props
+  const {root} = props
 
   const [expand, setExpand] = useState(props.defaultExpanded ?? false)
   const [question, setQuestion] = useState(props.question)
@@ -165,78 +165,78 @@ export function Node(props: NodeProps) {
   }, [expandedRef, setExpanded, expand])
 
   const handleExecution = useCallback((question: string) => {
-
-    console.log("Got question: " + question)
-
-    async function doAsync() {
-      try {
-
-        setExecuting(true)
-        const req = createCompletionRequest(question)
-        const before = Date.now()
-        const completion: Promise<AxiosResponse<CreateChatCompletionResponse>> = openai.createChatCompletion(req)
-        const res = await completion
-        const after = Date.now()
-        const duration = after - before
-
-        function createTestFromResponseMessage() {
-
-          if (res.data.choices.length > 0) {
-            const first = res.data.choices[0]
-            if (first.message) {
-              return first.message.content
-            }
-          }
-
-        }
-
-        const text = createTestFromResponseMessage()
-
-        interface ContentAndQuestions {
-          readonly content: string
-          readonly questions: readonly string[]
-        }
-
-        function splitContentAndQuestions(text: string): ContentAndQuestions | undefined {
-
-          const token = "---\n"
-          const idx = text.lastIndexOf(token)
-
-          if (idx !== -1) {
-            const content = text.substring(0, idx)
-            const question_block = text.substring(idx + token.length, text.length - 1)
-            const questions = question_block.split("\n")
-            return {content, questions}
-          }
-
-          return undefined
-        }
-
-        const contentAndQuestions = splitContentAndQuestions(text)
-
-        if (contentAndQuestions) {
-          setContent(contentAndQuestions.content)
-          setItems(contentAndQuestions.questions.map(current => {
-            return {
-              content: current
-            }
-          }))
-          setExpand(true)
-
-        }
-
-
-      } finally {
-        setExecuting(false)
-      }
-    }
-
-    doAsync()
-      // TODO properly handle errors in the UI...
-      .catch(err => {
-        console.error('Unhandled error', err);
-        setError(err)
-      })
+    //
+    // console.log("Got question: " + question)
+    //
+    // async function doAsync() {
+    //   try {
+    //
+    //     setExecuting(true)
+    //     const req = createCompletionRequest(question)
+    //     const before = Date.now()
+    //     const completion: Promise<AxiosResponse<CreateChatCompletionResponse>> = openai.createChatCompletion(req)
+    //     const res = await completion
+    //     const after = Date.now()
+    //     const duration = after - before
+    //
+    //     function createTestFromResponseMessage() {
+    //
+    //       if (res.data.choices.length > 0) {
+    //         const first = res.data.choices[0]
+    //         if (first.message) {
+    //           return first.message.content
+    //         }
+    //       }
+    //
+    //     }
+    //
+    //     const text = createTestFromResponseMessage()
+    //
+    //     interface ContentAndQuestions {
+    //       readonly content: string
+    //       readonly questions: readonly string[]
+    //     }
+    //
+    //     function splitContentAndQuestions(text: string): ContentAndQuestions | undefined {
+    //
+    //       const token = "---\n"
+    //       const idx = text.lastIndexOf(token)
+    //
+    //       if (idx !== -1) {
+    //         const content = text.substring(0, idx)
+    //         const question_block = text.substring(idx + token.length, text.length - 1)
+    //         const questions = question_block.split("\n")
+    //         return {content, questions}
+    //       }
+    //
+    //       return undefined
+    //     }
+    //
+    //     const contentAndQuestions = splitContentAndQuestions(text)
+    //
+    //     if (contentAndQuestions) {
+    //       setContent(contentAndQuestions.content)
+    //       setItems(contentAndQuestions.questions.map(current => {
+    //         return {
+    //           content: current
+    //         }
+    //       }))
+    //       setExpand(true)
+    //
+    //     }
+    //
+    //
+    //   } finally {
+    //     setExecuting(false)
+    //   }
+    // }
+    //
+    // doAsync()
+    //   // TODO properly handle errors in the UI...
+    //   .catch(err => {
+    //     console.error('Unhandled error', err);
+    //     setError(err)
+    //   })
 
   }, [])
 
