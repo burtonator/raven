@@ -47,7 +47,7 @@ export function InputBox(props: InputBoxProps) {
         }
       }
     },
-    [onPrompt]
+    [onPrompt, updateInput]
   )
 
   return (
@@ -152,7 +152,7 @@ export function Node(props: NodeProps) {
       expandedRef.current = true
     }
 
-  }, [expand, root])
+  }, [expand, expandedRef, root])
 
   const handleExpand = useCallback(() => {
 

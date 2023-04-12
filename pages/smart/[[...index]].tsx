@@ -15,9 +15,9 @@ export default function Index() {
   if (path.length === 0) {
     return (
       <Box p={1} style={{display: 'flex', justifyContent: 'center'}}>
-        <div sx={{ml: 'auto', mr: 'auto'}}>
+        <Box sx={{ml: 'auto', mr: 'auto'}}>
           <SmartNoteQuestion/>
-        </div>
+        </Box>
       </Box>
     )
   }
