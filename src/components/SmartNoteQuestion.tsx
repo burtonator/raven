@@ -7,30 +7,18 @@ import React, {
 } from 'react';
 import { useStateRef } from '@/src/useStateRef';
 import { useSmartNoteExecutor } from '@/src/components/useSmartNoteExecutor';
+import { useRouter } from 'next/router';
 
 export function SmartNoteQuestion() {
 
   const [input, setInput, inputRef] = useStateRef('')
-  const [executing, setExecuting] = useState(false)
-
-  const smartNoteExecutor = useSmartNoteExecutor()
+  const router = useRouter()
 
   const handleExecution = useCallback((question: string) => {
+    router.push('/smart/' + encodeURIComponent(question))
+      .catch(console.error)
 
-    async function doAsync() {
-      try {
-        setExecuting(true)
-        const res = await smartNoteExecutor(question)
-        console.log(res?.content)
-      } finally {
-        setExecuting(false)
-      }
-    }
-
-    doAsync()
-      .catch(err => console.error(err))
-
-  }, [smartNoteExecutor]);
+  }, [router]);
 
   const updateInput = useCallback((newInput: string) => {
     setInput(newInput)
@@ -62,7 +50,6 @@ export function SmartNoteQuestion() {
 
   return (
     <>
-      {executing && <LinearProgress variant='indeterminate'/>}
       <TextField placeholder="What would you like to know?... "
                  inputProps={{ autoFocus: true }}
                  value={input}

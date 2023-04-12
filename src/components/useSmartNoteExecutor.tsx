@@ -9,11 +9,11 @@ import { AxiosResponse } from 'axios';
 const SYSTEM_PROMPT = `
 You are a helpful research assistant. Your job is to answer the users questions of if they give you a topic you just expand upon it.
 
-After you are complete you should end with "----" then provide a list of follow up questions the user might want to know based on the answer to the question.  You should have one question per line and do not order the questions.  Just present them one after the other.
+After you are complete you should end with "---" then provide a list of follow up questions the user might want to know based on the answer to the question.  You should have one question per line and do not order the questions.  Just present them one after the other.
 
 For example, a list of questions might look like the following:
 
-----
+---
 What is the time complexity of retrieving a value from a Hashtable?
 How does a Hashtable handle collisions?
 What is the difference between Hashtable and HashMap?
@@ -23,6 +23,22 @@ Is Hashtable thread-safe?
 
 export interface SmartNoteCompletion {
   readonly content: string
+  readonly items: ReadonlyArray<string>
+}
+
+export function parseSmartNoteResult(text: string): SmartNoteCompletion | undefined {
+
+  const s = text.split('---\n')
+
+  if (s.length === 2) {
+    return {
+      content: s[0],
+      items: s[1].split("\n")
+    }
+  }
+
+  return undefined
+
 }
 
 export function useSmartNoteExecutor() {
@@ -31,7 +47,7 @@ export function useSmartNoteExecutor() {
 
   return useCallback(async (question: string): Promise<SmartNoteCompletion | undefined> => {
 
-    function createCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
+    function createChatRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
       return {
         // model: 'gpt-4',
@@ -53,7 +69,10 @@ export function useSmartNoteExecutor() {
       }
     ]
 
-    const req = createCompletionRequest(messages)
+
+    const req = createChatRequest(messages)
+    console.log("Executing chat: ", req)
+
     const before = Date.now()
     const res = await openai.createChatCompletion(req)
     const after = Date.now()
@@ -61,7 +80,7 @@ export function useSmartNoteExecutor() {
     if (res.data.choices.length > 0) {
       const first = res.data.choices[0]
       if (first.message) {
-        return {content: first.message.content}
+        return parseSmartNoteResult(first.message.content)
       }
     }
 
