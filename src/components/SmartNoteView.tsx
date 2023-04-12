@@ -7,6 +7,7 @@ import {
 
 import {Fragment} from 'react'
 import { useRouter } from 'next/router';
+import SmartNoteExecutor from '@/src/components/SmartNoteExecutor';
 
 /**
  * Route paths are going to be something like /Foo,Bar and be a stack on
@@ -50,7 +51,7 @@ export function SmartNoteView(props: SmartNoteViewProps) {
               )}
 
               <Box mr={1}>
-                <SmartNote name={current}/>
+                <SmartNoteExecutor name={current}/>
               </Box>
             </Fragment>
           );

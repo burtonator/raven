@@ -4,7 +4,7 @@ import {
   Typography
 } from '@mui/material';
 import { MarkdownViewer } from './MarkdownViewer';
-import { NoteNameStr, useSmartNote } from './SmartNoteIndexProvider';
+import { NoteEntry, NoteNameStr, useSmartNote } from './SmartNoteIndexProvider';
 import NextLink from 'next/link'
 
 //
@@ -20,13 +20,13 @@ import NextLink from 'next/link'
 //   },
 // }));
 
-interface SmartNoteProps {
-  readonly name: NoteNameStr
+interface SmartNoteProps extends NoteEntry {
 }
 
 export function SmartNote(props: SmartNoteProps) {
 
-  const note = useSmartNote(props.name)
+  const {content, name, items} = props
+
 
   const computeRouteForNote = useCallback((note: NoteNameStr) => {
 
@@ -43,24 +43,20 @@ export function SmartNote(props: SmartNoteProps) {
 
   }, [])
 
-  if (! note) {
-    return <div>Not Found: `{props.name}`</div>
-  }
-
   return (
     <Paper elevation={2} style={{width: '800px'}} square={false}>
       <Box p={2}>
         <Box pl={0}>
-          <Typography variant="h5">{note.name}</Typography>
+          <Typography variant="h5">{name}</Typography>
         </Box>
-        <MarkdownViewer content={note.content}/>
+        <MarkdownViewer content={content}/>
 
-        {note.items.length > 0 && (
+        {items.length > 0 && (
           <>
             <Typography variant="h6">Do You Want to Know More?</Typography>
 
             <ul>
-              {note.items.map(current => (
+              {items.map(current => (
                 <li key={current}>
                   <NextLink href={computeRouteForNote(current)}>
                     <Link variant="body1">{current}</Link>

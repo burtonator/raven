@@ -1,10 +1,11 @@
 import {
+  NoteEntry,
   useSmartNote,
   useSmartNoteContext
 } from '@/src/components/SmartNoteIndexProvider';
 import { SmartNote } from '@/src/components/SmartNote';
 import { LinearProgress } from '@mui/material';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSmartNoteExecutor } from '@/src/components/useSmartNoteExecutor';
 
 interface SmartNoteExecutorProps {
@@ -13,7 +14,8 @@ interface SmartNoteExecutorProps {
 
 export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
 
-  const note = useSmartNote(props.name)
+  const noteWithinStore = useSmartNote(props.name)
+  const [noteFromState, setNoteFromState] = useState<NoteEntry | undefined>(undefined)
   const smartNoteContext = useSmartNoteContext()
   const smartNoteExecutor = useSmartNoteExecutor()
 
@@ -23,7 +25,9 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
       const res = await smartNoteExecutor(question)
       if (res?.content) {
         console.log("FIXME: writing note to store... ")
-        smartNoteContext.writeNote({name: props.name, content: res.content, items: []})
+        const newNote = {name: props.name, content: res.content, items: []}
+        smartNoteContext.writeNote(newNote)
+        setNoteFromState(newNote)
       }
       console.log(res?.content)
     }
@@ -32,6 +36,8 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
       .catch(err => console.error(err))
 
   }, [props.name, smartNoteContext, smartNoteExecutor]);
+
+  const note = noteWithinStore ?? noteFromState
 
   useEffect(() => {
 
@@ -42,8 +48,10 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
 
   }, [handleExecution, note, props.name])
 
+
   if (note) {
-    return <SmartNote name={props.name}/>
+    console.log("FIXME rendering note: ", note)
+    return <SmartNote {...note}/>
   }
 
   return (
