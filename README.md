@@ -30,6 +30,8 @@ It has a few limitations:
 
 # Tree / Smart Execution of Pre-fetching Questions
 
+<img src="./exmaple-smart.png">
+
 One of the downsides of GPT4 is the latency.
 
 I'm very excited about vector databases and using context injection with GPT4 and its support for 8k and 32k prompt sizes.

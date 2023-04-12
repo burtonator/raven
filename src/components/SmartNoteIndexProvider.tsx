@@ -40,7 +40,27 @@ interface SmartNodeIndexProviderProps {
   readonly children: JSX.Element
 }
 
-const index: NoteIndex = {
+// This is a poor man's database for now. Just storing to local storage.
+const LOCALSTORAGE_KEY = 'raven.index'
+
+function writeToLocalStorage(idx: NoteIndex) {
+  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(idx))
+}
+
+function readFromLocalStorage(): NoteIndex | undefined {
+
+  if (typeof localStorage === 'undefined') {
+    return undefined
+  }
+
+  if (! localStorage.getItem(LOCALSTORAGE_KEY)) {
+    return undefined
+  }
+
+  return JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY))
+}
+
+const DEFAULT_INDEX: NoteIndex = {
   "World War II": {
     name: 'World War II',
     content: "World War II or the Second World War, often abbreviated as WWII or WW2, was a global conflict that lasted from 1939 to 1945. The vast majority of the world's countries, including all of the great powers, fought as part of two opposing military alliances: the Allies and the Axis. Many participants threw their economic, industrial, and scientific capabilities behind this total war, blurring the distinction between civilian and military resources. Aircraft played a major role, enabling the strategic bombing of population centres and the delivery of the only two nuclear weapons ever used in war.",
@@ -68,11 +88,14 @@ const index: NoteIndex = {
 
 }
 
+const index: NoteIndex = readFromLocalStorage() ?? DEFAULT_INDEX
+
 export const SmartNoteIndexProvider = (props: SmartNodeIndexProviderProps) => {
 
   const writeNote = useCallback((note: NoteEntry) => {
     const key = note.name as string
     index[key] = note
+    writeToLocalStorage(index)
   }, [])
 
   return (
