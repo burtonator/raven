@@ -2,8 +2,8 @@
 
 Raven is a work-in-progress with two main goals:
 
-1. Implement a simulated multi-modal AI using OpenAI Whisper where you can speak to GPT4 directly.
-2. Tree / smart execution of pre-fetching questions 
+1. Implement a simulated multi-modal AI using OpenAI Whisper where you can speak to GPT4 directly.  It takes the text output from Whisper and pipes it into GPT4.
+2. Tree view and smart execution of pre-fetching questions 
 3. Build an agent framework that allows for advanced use cases 
 4. Vector Database and Document Indexing
 
@@ -30,7 +30,7 @@ It has a few limitations:
 - There are some problems getting streaming working properly with the 'openai' Node client and the latencies can be seriously improved.
 - I need to improve error handling and clean up the code a bit more as it's mostly a PoC.
 
-# Tree / Smart Execution of Pre-fetching Questions
+# Tree View and Smart Execution of Pre-fetching Questions
 
 <img src="example-smart.png">
 
