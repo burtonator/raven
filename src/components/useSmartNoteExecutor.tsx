@@ -3,7 +3,7 @@ import {
   ChatCompletionRequestMessage,
   CreateChatCompletionRequest, CreateChatCompletionResponse
 } from 'openai';
-import { useOpenAPI } from '@/src/components/useOpenAPI';
+import { useOpenAPI } from '@/src/useOpenAPI';
 
 const SYSTEM_PROMPT = `
 You are a research assistant. Your job is to answer the users questions. 
