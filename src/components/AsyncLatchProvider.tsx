@@ -1,6 +1,13 @@
 import { createContext, useCallback, useContext, useMemo } from 'react';
 
-type LatchIndex = Readonly<{[key: string]: Promise<unknown>}>
+type Listener<V> = (value: V) => void
+
+type PromiseWithListeners = {
+  promise: Promise<unknown>
+  listeners: ReadonlyArray<Listener<unknown>>
+}
+
+type LatchIndex = Readonly<{[key: string]: PromiseWithListeners}>
 
 const LatchContext = createContext<LatchIndex>({})
 
@@ -8,21 +15,26 @@ const LatchContext = createContext<LatchIndex>({})
 // - I will have to register and de-register the listener but this could cause GC issues.
 // - I would have to debounce cache updates too...
 
-export function useAsyncLatchProvider<T>(): (key: string, delegate: () => Promise<T>) => Promise<T> {
+type Delegate<V> = (listener: Listener<V>) => Promise<V>
+
+export function useAsyncLatchProvider<V>(): (key: string, delegate: Delegate<V>, listener: Listener<V>) => Promise<V> {
 
   const context = useContext(LatchContext)
 
-  return useCallback((key, delegate) => {
+  // TODO: add the listener to the index, and remove it when we are done.
+
+  // TODO: this won't allow me to remove the listener...
+  return useCallback((key, delegate, listener) => {
 
     const existing = context[key]
 
     if (existing) {
-      return existing
+      return existing.promise
     }
 
     const promise = delegate()
 
-    context[key] = promise
+    context[key] = {promise, listeners: [listener]}
     return promise
 
   }, [context])
