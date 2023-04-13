@@ -4,6 +4,10 @@ type LatchIndex = Readonly<{[key: string]: Promise<unknown>}>
 
 const LatchContext = createContext<LatchIndex>({})
 
+// TODO: I don't think this will work because I need to register a streaming listener ...
+// - I will have to register and de-register the listener but this could cause GC issues.
+// - I would have to debounce cache updates too...
+
 export function useAsyncLatchProvider<T>(): (key: string, delegate: () => Promise<T>) => Promise<T> {
 
   const context = useContext(LatchContext)
