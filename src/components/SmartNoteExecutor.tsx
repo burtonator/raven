@@ -47,7 +47,6 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
 
   }, [props.name, smartNoteContext, smartNoteExecutor]);
 
-
   useEffect(() => {
 
     if (! note) {
