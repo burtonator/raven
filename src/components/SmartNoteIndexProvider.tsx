@@ -17,6 +17,7 @@ export interface NoteEntry {
   readonly content: MarkdownStr
   readonly items: ReadonlyArray<NoteNameStr>
   readonly created: ISODateTimeString | undefined
+  readonly model?: string
 }
 
 export type NoteIndex = {[key: string]: NoteEntry}

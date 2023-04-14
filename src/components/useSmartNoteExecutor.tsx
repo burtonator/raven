@@ -33,6 +33,7 @@ const MODEL = 'gpt-3.5-turbo'
 export interface SmartNoteCompletion {
   readonly content: string
   readonly items: ReadonlyArray<string>
+  readonly model: string
 }
 
 export function parseSmartNoteResult(text: string): SmartNoteCompletion | undefined {
@@ -42,7 +43,8 @@ export function parseSmartNoteResult(text: string): SmartNoteCompletion | undefi
   if (s.length === 2) {
     return {
       content: s[0],
-      items: s[1].split("\n")
+      items: s[1].split("\n"),
+      model: MODEL
     }
   }
 
@@ -59,8 +61,6 @@ export function useSmartNoteExecutor() {
     function createChatRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
       return {
-        // model: 'gpt-4',
-        // model: 'gpt-3.5-turbo',
         model: MODEL,
         temperature: 0.0,
         max_tokens: 2048,

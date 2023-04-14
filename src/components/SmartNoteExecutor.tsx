@@ -29,7 +29,13 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
 
       const res = await smartNoteExecutor(question)
       if (res?.content) {
-        const newNote = {name: props.name, content: res.content, items: res.items, created: ISODateTimeStrings.create()}
+        const newNote = {
+          name: props.name,
+          content: res.content,
+          items: res.items,
+          created: ISODateTimeStrings.create(),
+          model: res.model
+        }
         smartNoteContext.writeNote(newNote)
         setNoteFromState(newNote)
       }

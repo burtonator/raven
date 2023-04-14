@@ -23,7 +23,7 @@ interface SmartNoteProps extends NoteEntry {
 
 export function SmartNote(props: SmartNoteProps) {
 
-  const {content, name, items} = props
+  const {content, name, items, model} = props
   const router = useRouter()
 
   const smartNoteContext = useSmartNoteContext()
@@ -71,6 +71,13 @@ export function SmartNote(props: SmartNoteProps) {
 
       </CardContent>
       <CardActions>
+
+        {model && (
+          <>
+            model: {model}
+          </>
+        )}
+
         <IconButton style={{marginLeft: 'auto'}} onClick={handleDelete}>
           <Delete/>
         </IconButton>
