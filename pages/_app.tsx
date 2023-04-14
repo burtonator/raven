@@ -27,11 +27,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline/>
       <AsyncLatchProvider>
-        <SafeHydrate>
+        <>
           <SmartNoteIndexProvider>
             <Component {...pageProps} />
           </SmartNoteIndexProvider>
-        </SafeHydrate>
+        </>
       </AsyncLatchProvider>
     </ThemeProvider>
   )

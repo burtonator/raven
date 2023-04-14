@@ -73,12 +73,14 @@ export function SmartNote(props: SmartNoteProps) {
       <CardActions>
 
         {model && (
-          <>
-            model: {model}
-          </>
+          <Box color="text.disabled">
+            <Typography variant='body2'>
+              model: {model}
+            </Typography>
+          </Box>
         )}
 
-        <IconButton style={{marginLeft: 'auto'}} onClick={handleDelete}>
+        <IconButton color="text.disabled" style={{marginLeft: 'auto'}} onClick={handleDelete}>
           <Delete/>
         </IconButton>
       </CardActions>

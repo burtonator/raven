@@ -24,6 +24,22 @@ The list of questions must begin with "----" then list the questions after.
     
 You should have one question per line and do not order the questions.  Just 
 present them one after the other.
+
+Here's another example:
+
+user: 
+  What is cognitive dissonance?
+
+system:
+  Cognitive dissonance is a psychological concept that describes the discomfort or tension experienced by an individual when they hold two or more conflicting beliefs, values, or attitudes. This mental discomfort often leads to a motivation to resolve the inconsistency, either by changing one's beliefs, attitudes, or behaviors, or by rationalizing and justifying the inconsistency.
+  
+  -----
+  How can cognitive dissonance be reduced?
+  What are some examples of cognitive dissonance?
+  What is the cognitive dissonance theory?
+  Who developed the concept of cognitive dissonance?
+  What are the effects of cognitive dissonance on decision-making?
+  How does cognitive dissonance impact behavior?      
     
 `.trim()
 
@@ -48,7 +64,12 @@ export function parseSmartNoteResult(text: string): SmartNoteCompletion | undefi
     }
   }
 
-  return undefined
+  // either GPT3/GPT4 failed or it is not able to compute any follow-on questions.
+  return {
+    content: text,
+    items: [],
+    model: MODEL
+  }
 
 }
 
@@ -87,6 +108,7 @@ export function useSmartNoteExecutor() {
     const res = await openai.createChatCompletion(req)
     const after = Date.now()
     const duration = after - before
+    console.log("Got response: ", res)
     if (res.data.choices.length > 0) {
       const first = res.data.choices[0]
       if (first.message) {
