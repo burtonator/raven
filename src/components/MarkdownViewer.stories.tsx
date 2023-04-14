@@ -40,3 +40,11 @@ export const SourceCode = () => {
     </div>
   )
 }
+
+export const Math = () => {
+  return (
+    <div style={{height: '100vh'}}>
+      <MarkdownViewer content="some $f(fx)$ math"/>
+    </div>
+  )
+}

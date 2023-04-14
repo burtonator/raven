@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext } from 'react';
+import { atom, useAtom } from 'jotai';
 
 export type MarkdownStr = string
 
@@ -13,14 +14,14 @@ export interface NoteEntry {
   readonly items: ReadonlyArray<NoteNameStr>
 }
 
-export type NoteIndex = {[key: string]: NoteEntry}
+export type NoteIndex = Readonly<{[key: string]: NoteEntry}>
 
-export interface NoteContextDatastore {
+export interface NoteDatastore {
   readonly index: NoteIndex
   readonly writeNote: (note: NoteEntry) => void
 }
 
-const NoteContext = createContext<NoteContextDatastore>({
+const NoteContext = createContext<NoteDatastore>({
   index: {},
   writeNote: () => console.log('writeNote: noop...')
 })
@@ -88,15 +89,19 @@ const DEFAULT_INDEX: NoteIndex = {
 
 }
 
-const index: NoteIndex = readFromLocalStorage() ?? DEFAULT_INDEX
+const indexAtom = atom<NoteIndex>(() => {
+  return readFromLocalStorage() ?? DEFAULT_INDEX
+})
 
 export const SmartNoteIndexProvider = (props: SmartNodeIndexProviderProps) => {
+
+  const [index, setIndex] = useAtom(indexAtom)
 
   const writeNote = useCallback((note: NoteEntry) => {
     const key = note.name as string
     index[key] = note
     writeToLocalStorage(index)
-  }, [])
+  }, [index])
 
   return (
     <NoteContext.Provider value={{index, writeNote}}>

@@ -17,6 +17,7 @@ const LatchContext = createContext<LatchIndex>({})
 
 type Delegate<V> = (listener: Listener<V>) => Promise<V>
 
+
 export function useAsyncLatchProvider<V>(): (key: string, delegate: Delegate<V>, listener: Listener<V>) => Promise<V> {
 
   const context = useContext(LatchContext)
@@ -25,6 +26,8 @@ export function useAsyncLatchProvider<V>(): (key: string, delegate: Delegate<V>,
 
   // TODO: this won't allow me to remove the listener...
   return useCallback((key, delegate, listener) => {
+
+    //const atom = createAgent
 
     const existing = context[key]
 
