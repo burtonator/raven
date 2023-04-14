@@ -18,7 +18,7 @@ export function useSmartNoteRouter() {
         router.push('/smart/' + encodeURIComponent(name))
           .catch(console.error)
       },
-      computePath: (name) => {
+      computePath: (name: string) => {
         return '/smart/' + encodeURIComponent(name)
       }
     }

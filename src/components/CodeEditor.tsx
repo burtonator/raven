@@ -1,6 +1,7 @@
 import Editor from '@monaco-editor/react';
 import { createStyles, makeStyles } from '@mui/styles';
 import { useTheme } from '@mui/system';
+import { editor } from 'monaco-editor';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -19,7 +20,7 @@ interface CodeEditorProps {
   readonly defaultValue: string
 }
 
-const options = {
+const options: editor.IStandaloneEditorConstructionOptions = {
   readOnly: true,
   minimap: {
     enabled: false
@@ -27,7 +28,7 @@ const options = {
   renderLineHighlight: 'none',
   // https://blutorange.github.io/primefaces-monaco/typedoc/interfaces/monaco.editor.ieditorscrollbaroptions.html
   scrollbar: {
-    vertical:"hidden",
+    vertical: "hidden",
     horizontal: "hidden",
     handleMouseWheel:false,
     horizontalScrollbarSize: 0,

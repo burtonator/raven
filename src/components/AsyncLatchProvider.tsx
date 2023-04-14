@@ -17,32 +17,32 @@ const LatchContext = createContext<LatchIndex>({})
 
 type Delegate<V> = (listener: Listener<V>) => Promise<V>
 
-
-export function useAsyncLatchProvider<V>(): (key: string, delegate: Delegate<V>, listener: Listener<V>) => Promise<V> {
-
-  const context = useContext(LatchContext)
-
-  // TODO: add the listener to the index, and remove it when we are done.
-
-  // TODO: this won't allow me to remove the listener...
-  return useCallback((key, delegate, listener) => {
-
-    //const atom = createAgent
-
-    const existing = context[key]
-
-    if (existing) {
-      return existing.promise
-    }
-
-    const promise = delegate()
-
-    context[key] = {promise, listeners: [listener]}
-    return promise
-
-  }, [context])
-
-}
+//
+// export function useAsyncLatchProvider<V>(): (key: string, delegate: Delegate<V>, listener: Listener<V>) => Promise<V> {
+//
+//   const context = useContext(LatchContext)
+//
+//   // TODO: add the listener to the index, and remove it when we are done.
+//
+//   // TODO: this won't allow me to remove the listener...
+//   return useCallback((key, delegate, listener) => {
+//
+//     //const atom = createAgent
+//
+//     const existing = context[key]
+//
+//     if (existing) {
+//       return existing.promise
+//     }
+//
+//     const promise = delegate(listener)
+//
+//     // context[key] = {promise, listeners: [listener]}
+//     return promise
+//
+//   }, [context])
+//
+// }
 
 interface AsyncLatchProviderProps {
   readonly children: JSX.Element

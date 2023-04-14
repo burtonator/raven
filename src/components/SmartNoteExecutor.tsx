@@ -7,6 +7,7 @@ import { SmartNote } from '@/src/components/SmartNote';
 import { LinearProgress } from '@mui/material';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSmartNoteExecutor } from '@/src/components/useSmartNoteExecutor';
+import { ISODateTimeStrings } from '@/src/ISODateTimeStrings';
 
 interface SmartNoteExecutorProps {
   readonly name: string
@@ -28,7 +29,7 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
 
       const res = await smartNoteExecutor(question)
       if (res?.content) {
-        const newNote = {name: props.name, content: res.content, items: res.items}
+        const newNote = {name: props.name, content: res.content, items: res.items, created: ISODateTimeStrings.create()}
         smartNoteContext.writeNote(newNote)
         setNoteFromState(newNote)
       }
