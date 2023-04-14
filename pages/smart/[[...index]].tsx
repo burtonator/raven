@@ -16,6 +16,7 @@ import {
   Typography
 } from '@mui/material';
 import { Sidebar } from '@/src/components/Sidebar';
+import Link from 'next/link';
 
 const drawerWidth = 400
 
@@ -29,9 +30,12 @@ export default function Index() {
 
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Raven
-          </Typography>
+          <Link href='/smart'>
+            <Typography variant="h6" noWrap component="div">
+              Raven
+            </Typography>
+
+          </Link>
         </Toolbar>
       </AppBar>
 

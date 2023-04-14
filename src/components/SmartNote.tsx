@@ -61,7 +61,7 @@ export function SmartNote(props: SmartNoteProps) {
               <ul>
                 {items.map(current => (
                   <li key={current}>
-                    <NextLink href={computeRouteForNote(current)}>
+                    <NextLink href={computeRouteForNote(current)} passHref={true}>
                       <Link variant="body1">{current}</Link>
                     </NextLink>
                   </li>
