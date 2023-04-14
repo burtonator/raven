@@ -2,12 +2,28 @@ import { LinearProgress, TextField } from '@mui/material';
 import React, {
   ChangeEvent,
   KeyboardEvent,
-  useCallback,
+  useCallback, useMemo,
   useState
 } from 'react';
 import { useStateRef } from '@/src/useStateRef';
 import { useSmartNoteExecutor } from '@/src/components/useSmartNoteExecutor';
 import { useRouter } from 'next/router';
+
+export function useSmartNoteRouter() {
+  const router = useRouter()
+
+  return useMemo(() => {
+    return {
+      push: (name: string) => {
+        router.push('/smart/' + encodeURIComponent(name))
+          .catch(console.error)
+      },
+      computePath: (name) => {
+        return '/smart/' + encodeURIComponent(name)
+      }
+    }
+  }, [router])
+}
 
 export function SmartNoteQuestion() {
 

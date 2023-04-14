@@ -105,6 +105,7 @@ export const SmartNoteIndexProvider = (props: SmartNodeIndexProviderProps) => {
     const key = note.name as string
     index[key] = note
     writeToLocalStorage(index)
+    setIndex(index)
   }, [index])
 
   return (

@@ -3,10 +3,14 @@ import {
   useSmartNoteContext,
   useSmartNoteIndex
 } from '@/src/components/SmartNoteIndexProvider';
+import { useSmartNoteRouter } from '@/src/components/SmartNoteQuestion';
+import Link from 'next/link';
 
 export function Sidebar() {
 
   const [index] = useSmartNoteIndex()
+
+  const router = useSmartNoteRouter()
 
   return (
     <List>
@@ -14,7 +18,7 @@ export function Sidebar() {
         const [key, value] = entry
         return (
           <ListItem key={key} disablePadding>
-            <ListItemButton>
+              <ListItemButton onClick={() => router.push(key)}>
               {/*<ListItemIcon>*/}
               {/*  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}*/}
               {/*</ListItemIcon>*/}
