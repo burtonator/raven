@@ -93,6 +93,10 @@ const indexAtom = atom<NoteIndex>(() => {
   return readFromLocalStorage() ?? DEFAULT_INDEX
 })
 
+export function useSmartNoteIndex() {
+  return useAtom(indexAtom)
+}
+
 export const SmartNoteIndexProvider = (props: SmartNodeIndexProviderProps) => {
 
   const [index, setIndex] = useAtom(indexAtom)

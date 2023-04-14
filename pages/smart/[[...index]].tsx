@@ -15,6 +15,7 @@ import {
   Toolbar,
   Typography
 } from '@mui/material';
+import { Sidebar } from '@/src/components/Sidebar';
 
 const drawerWidth = 400
 
@@ -69,6 +70,8 @@ export default function Index() {
                 </ListItem>
               ))}
             </List>
+
+            <Sidebar/>
           </Box>
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
