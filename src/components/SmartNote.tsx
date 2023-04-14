@@ -1,21 +1,17 @@
 import React, { useCallback } from 'react';
 import {
   Box,
-  Button,
   Card,
   CardActions,
   CardContent,
-  CardHeader,
   IconButton,
   Link,
-  Paper,
   Typography
 } from '@mui/material';
 import { MarkdownViewer } from './MarkdownViewer';
 import {
   NoteEntry,
   NoteNameStr,
-  useSmartNote,
   useSmartNoteContext
 } from './SmartNoteIndexProvider';
 import NextLink from 'next/link'
@@ -41,7 +37,7 @@ export function SmartNote(props: SmartNoteProps) {
     smartNoteContext.deleteNote(name)
 
     router.push('/smart')
-      .catch(console.err)
+      .catch(console.error)
 
   }, [name, router, smartNoteContext])
 
