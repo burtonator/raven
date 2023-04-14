@@ -19,11 +19,14 @@ export type NoteIndex = Readonly<{[key: string]: NoteEntry}>
 export interface NoteDatastore {
   readonly index: NoteIndex
   readonly writeNote: (note: NoteEntry) => void
+  readonly deleteNote: (name: string) => void
+
 }
 
 const NoteContext = createContext<NoteDatastore>({
   index: {},
-  writeNote: () => console.log('writeNote: noop...')
+  writeNote: () => console.log('writeNote: noop...'),
+  deleteNote: () => console.log('writeNote: noop...')
 })
 
 export function useSmartNoteContext() {
@@ -89,9 +92,9 @@ const DEFAULT_INDEX: NoteIndex = {
 
 }
 
-const indexAtom = atom<NoteIndex>(() => {
-  return readFromLocalStorage() ?? DEFAULT_INDEX
-})
+
+
+const indexAtom = atom<NoteIndex>(readFromLocalStorage() ?? DEFAULT_INDEX)
 
 export function useSmartNoteIndex() {
   return useAtom(indexAtom)
@@ -106,10 +109,16 @@ export const SmartNoteIndexProvider = (props: SmartNodeIndexProviderProps) => {
     index[key] = note
     writeToLocalStorage(index)
     setIndex(index)
-  }, [index])
+  }, [index, setIndex])
+
+  const deleteNote = useCallback((name: string) => {
+    delete index[name]
+    writeToLocalStorage(index)
+    setIndex(index)
+  }, [index, setIndex])
 
   return (
-    <NoteContext.Provider value={{index, writeNote}}>
+    <NoteContext.Provider value={{index, writeNote, deleteNote}}>
       {props.children}
     </NoteContext.Provider>
   )

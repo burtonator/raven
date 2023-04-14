@@ -12,9 +12,15 @@ import {
   Typography
 } from '@mui/material';
 import { MarkdownViewer } from './MarkdownViewer';
-import { NoteEntry, NoteNameStr, useSmartNote } from './SmartNoteIndexProvider';
+import {
+  NoteEntry,
+  NoteNameStr,
+  useSmartNote,
+  useSmartNoteContext
+} from './SmartNoteIndexProvider';
 import NextLink from 'next/link'
 import { Delete } from '@mui/icons-material';
+import { useRouter } from 'next/router';
 
 interface SmartNoteProps extends NoteEntry {
 }
@@ -22,11 +28,22 @@ interface SmartNoteProps extends NoteEntry {
 export function SmartNote(props: SmartNoteProps) {
 
   const {content, name, items} = props
+  const router = useRouter()
 
+  const smartNoteContext = useSmartNoteContext()
 
   const computeRouteForNote = useCallback((note: NoteNameStr) => {
     return '/smart/' + encodeURIComponent(note)
   }, [])
+
+  const handleDelete = useCallback(() => {
+
+    smartNoteContext.deleteNote(name)
+
+    router.push('/smart')
+      .catch(console.err)
+
+  }, [name, router, smartNoteContext])
 
   return (
     <Card elevation={2} style={{width: '800px'}} square={false}>
@@ -58,7 +75,7 @@ export function SmartNote(props: SmartNoteProps) {
 
       </CardContent>
       <CardActions>
-        <IconButton style={{marginLeft: 'auto'}}>
+        <IconButton style={{marginLeft: 'auto'}} onClick={handleDelete}>
           <Delete/>
         </IconButton>
       </CardActions>
