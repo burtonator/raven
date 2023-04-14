@@ -27,6 +27,9 @@ present them one after the other.
     
 `.trim()
 
+// const MODEL = 'gpt-4'
+const MODEL = 'gpt-3.5-turbo'
+
 export interface SmartNoteCompletion {
   readonly content: string
   readonly items: ReadonlyArray<string>
@@ -56,10 +59,11 @@ export function useSmartNoteExecutor() {
     function createChatRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
       return {
-        model: 'gpt-4',
-        //model: 'gpt-3.5-turbo',
+        // model: 'gpt-4',
+        // model: 'gpt-3.5-turbo',
+        model: MODEL,
         temperature: 0.0,
-        max_tokens: 4096,
+        max_tokens: 2048,
         top_p: 1,
         n: 1,
         messages: [...messages]

@@ -2,16 +2,11 @@ import {
   SmartNoteView,
   useSmartNoteRouterNotesStack
 } from '@/src/components/SmartNoteView';
-import {
-  SmartNoteIndexProvider
-} from '@/src/components/SmartNoteIndexProvider';
 import { SmartNoteQuestion } from '@/src/components/SmartNoteQuestion';
 import {
   AppBar,
-  Box, Divider,
+  Box,
   Drawer,
-  List,
-  ListItem, ListItemButton, ListItemIcon, ListItemText,
   Toolbar,
   Typography
 } from '@mui/material';
@@ -25,7 +20,7 @@ export default function Index() {
   const path = useSmartNoteRouterNotesStack()
 
   return (
-    <SmartNoteIndexProvider>
+    <>
       <Box sx={{ display: 'flex' }}>
 
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -76,7 +71,7 @@ export default function Index() {
         </Box>
 
       </Box>
-    </SmartNoteIndexProvider>
+    </>
   )
 
 }
