@@ -4,11 +4,34 @@ import { AsyncLatchProvider } from '@/src/components/AsyncLatchProvider';
 import {
   SmartNoteIndexProvider
 } from '@/src/components/SmartNoteIndexProvider';
+import { forwardRef } from 'react';
+import NextLink, { LinkProps } from "next/link";
+import {Link} from '@mui/material'
+
+const LinkBehaviour = forwardRef<HTMLAnchorElement, LinkProps>(
+  function LinkBehaviour(props, ref) {
+    return <NextLink passHref={props.passHref ?? false} href={props.href} />;
+  }
+);
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
   },
+  components: {
+    MuiLink: {
+
+      defaultProps: {
+        // component: Link
+
+      }
+    },
+    // MuiButtonBase: {
+    //   defaultProps: {
+    //     LinkComponent: LinkBehaviour
+    //   }
+    // }
+  }
 });
 
 interface SafeHydrateProps {
