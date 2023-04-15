@@ -1,7 +1,5 @@
 import { ForceGraph3D } from 'react-force-graph';
 import { useSmartNoteIndex } from '@/src/components/SmartNoteIndexProvider';
-import SpriteText from 'three-spritetext';
-import { ListItem, ListItemButton, ListItemText } from '@mui/material';
 
 function useData() {
   const [index] = useSmartNoteIndex()
@@ -55,36 +53,38 @@ export default function Graph() {
   const data = useData()
 
   console.log("FIXME: ", data)
+  const GROUPS = 12;
 
   // https://stackoverflow.com/questions/66096260/why-am-i-getting-referenceerror-self-is-not-defined-when-i-import-a-client-side
   return (
     <>
-      {/*<ForceGraph3D*/}
-      {/*  graphData={data}*/}
-      {/*  nodeAutoColorBy="group"*/}
-      {/*  // nodeThreeObject={node => {*/}
-      {/*  //   const sprite = new SpriteText((node.id ?? 'unknown').toString());*/}
-      {/*  //   sprite.color = 'red';*/}
-      {/*  //   sprite.textHeight = 14;*/}
-      {/*  //   return sprite;*/}
-      {/*  // }}*/}
-      {/*  // nodeThreeObject={node => {*/}
-      {/*  //   // const sprite = new SpriteText(node.id);*/}
-      {/*  //   // sprite.color = node.color;*/}
-      {/*  //   sprite.textHeight = 8;*/}
-      {/*  //   return sprite;*/}
-      {/*  // }}*/}
-      {/*/>*/}
+      <ForceGraph3D
+        graphData={data}
+        height={window.innerHeight}
+        width={window.innerWidth}
+        nodeAutoColorBy={d => (d.id ?? '').toString()}
+        // nodeThreeObject={node => {
+        //   const sprite = new SpriteText((node.id ?? 'unknown').toString());
+        //   sprite.textHeight = 14;
+        //   return sprite;
+        // }}
+        // nodeThreeObject={node => {
+        //   // const sprite = new SpriteText(node.id);
+        //   // sprite.color = node.color;
+        //   sprite.textHeight = 8;
+        //   return sprite;
+        // }}
+      />
 
-      <div>
-        <pre>
-                {Object.entries(index)
-                        .map((entry) => {
-                          return (
-                            <div key={entry[1].name}>{entry[1].name}</div>
-                            )})}
-        </pre>
-      </div>
+      {/*<div>*/}
+      {/*  <pre>*/}
+      {/*          {Object.entries(index)*/}
+      {/*                  .map((entry) => {*/}
+      {/*                    return (*/}
+      {/*                      <div key={entry[1].name}>{entry[1].name}</div>*/}
+      {/*                      )})}*/}
+      {/*  </pre>*/}
+      {/*</div>*/}
     </>
   )
 }

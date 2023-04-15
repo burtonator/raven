@@ -1,5 +1,8 @@
 - what I need nex
-  - fix the bug with the [[...index]] node
+  - get the graph view working... I'm not sure how we will handle loading it
+    async though as it's a bit slow...
+    - regenerate it every time a node is added...
+
   - Disable all the SSR if I can...
   - Make all notes use /n/
   - 
