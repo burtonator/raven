@@ -5,7 +5,7 @@ import {
 import { SmartNoteQuestion } from './SmartNoteQuestion';
 import {
   AppBar,
-  Box,
+  Box, Button,
   Drawer,
   Toolbar,
   Typography
@@ -28,9 +28,13 @@ export default function SmartHome() {
 
             {/*</Link>*/}
 
-            <Typography variant="h6" noWrap component="div">
+            <Button variant='link' href='/smart'>
               Raven
-            </Typography>
+            </Button>
+
+            {/*<Typography variant="h6" noWrap component="div">*/}
+            {/*  Raven*/}
+            {/*</Typography>*/}
 
           </Toolbar>
         </AppBar>

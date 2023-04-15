@@ -29,7 +29,7 @@ export function SmartNote(props: SmartNoteProps) {
   const smartNoteContext = useSmartNoteContext()
 
   const computeRouteForNote = useCallback((note: NoteNameStr) => {
-    return '/smart/' + encodeURIComponent(note)
+    return '/smart/n/' + encodeURIComponent(note)
   }, [])
 
   const handleDelete = useCallback(() => {
