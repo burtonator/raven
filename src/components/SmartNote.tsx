@@ -23,7 +23,7 @@ interface SmartNoteProps extends NoteEntry {
 
 export function SmartNote(props: SmartNoteProps) {
 
-  const {content, name, items, model} = props
+  const {content, name, items, related, model} = props
   const router = useRouter()
 
   const smartNoteContext = useSmartNoteContext()
@@ -56,6 +56,22 @@ export function SmartNote(props: SmartNoteProps) {
 
               <ul>
                 {items.map(current => (
+                  <li key={current}>
+                    <NextLink href={computeRouteForNote(current)} passHref={true}>
+                      <Link variant="body1" component='span'>{current}</Link>
+                    </NextLink>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {(related ?? []).length > 0 && (
+            <>
+              <Typography variant="h6">Related Notes</Typography>
+
+              <ul>
+                {related.map(current => (
                   <li key={current}>
                     <NextLink href={computeRouteForNote(current)} passHref={true}>
                       <Link variant="body1" component='span'>{current}</Link>

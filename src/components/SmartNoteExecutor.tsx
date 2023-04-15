@@ -35,6 +35,7 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
             name: props.name,
             content: res.content,
             items: res.items,
+            related: res.related,
             created: ISODateTimeStrings.create(),
             model: res.model
           }
@@ -80,7 +81,7 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
       <div style={{position: 'absolute', top: 0, left: 0, zIndex: 10000, width: '100%'}}>
         <LinearProgress variant="indeterminate"/>
       </div>
-      
+
       <CircularProgress variant='indeterminate' size="large"/>
 
     </>

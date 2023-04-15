@@ -58,33 +58,33 @@ export default function Graph() {
   // https://stackoverflow.com/questions/66096260/why-am-i-getting-referenceerror-self-is-not-defined-when-i-import-a-client-side
   return (
     <>
-      <ForceGraph3D
-        graphData={data}
-        height={window.innerHeight}
-        width={window.innerWidth}
-        nodeAutoColorBy={d => (d.id ?? '').toString()}
-        // nodeThreeObject={node => {
-        //   const sprite = new SpriteText((node.id ?? 'unknown').toString());
-        //   sprite.textHeight = 14;
-        //   return sprite;
-        // }}
-        // nodeThreeObject={node => {
-        //   // const sprite = new SpriteText(node.id);
-        //   // sprite.color = node.color;
-        //   sprite.textHeight = 8;
-        //   return sprite;
-        // }}
-      />
+      {/*<ForceGraph3D*/}
+      {/*  graphData={data}*/}
+      {/*  height={window.innerHeight}*/}
+      {/*  width={window.innerWidth}*/}
+      {/*  nodeAutoColorBy={d => (d.id ?? '').toString()}*/}
+      {/*  // nodeThreeObject={node => {*/}
+      {/*  //   const sprite = new SpriteText((node.id ?? 'unknown').toString());*/}
+      {/*  //   sprite.textHeight = 14;*/}
+      {/*  //   return sprite;*/}
+      {/*  // }}*/}
+      {/*  // nodeThreeObject={node => {*/}
+      {/*  //   // const sprite = new SpriteText(node.id);*/}
+      {/*  //   // sprite.color = node.color;*/}
+      {/*  //   sprite.textHeight = 8;*/}
+      {/*  //   return sprite;*/}
+      {/*  // }}*/}
+      {/*/>*/}
 
-      {/*<div>*/}
-      {/*  <pre>*/}
-      {/*          {Object.entries(index)*/}
-      {/*                  .map((entry) => {*/}
-      {/*                    return (*/}
-      {/*                      <div key={entry[1].name}>{entry[1].name}</div>*/}
-      {/*                      )})}*/}
-      {/*  </pre>*/}
-      {/*</div>*/}
+      <div>
+        <pre>
+                {Object.entries(index)
+                        .map((entry) => {
+                          return (
+                            <div key={entry[1].name}>- {entry[1].name}</div>
+                            )})}
+        </pre>
+      </div>
     </>
   )
 }
