@@ -43,8 +43,8 @@ system:
     
 `.trim()
 
-// const MODEL = 'gpt-4'
-const MODEL = 'gpt-3.5-turbo'
+const MODEL = 'gpt-4'
+// const MODEL = 'gpt-3.5-turbo'
 
 export interface SmartNoteCompletion {
   readonly content: string
@@ -79,7 +79,7 @@ export function useSmartNoteExecutor() {
 
   return useCallback(async (question: string): Promise<SmartNoteCompletion | undefined> => {
 
-    function createChatRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
+    function createChatCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
       return {
         model: MODEL,
@@ -101,7 +101,7 @@ export function useSmartNoteExecutor() {
     ]
 
 
-    const req = createChatRequest(messages)
+    const req = createChatCompletionRequest(messages)
     console.log("Executing chat: ", JSON.stringify(req, null, '  '))
 
     const before = Date.now()
