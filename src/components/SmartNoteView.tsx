@@ -1,4 +1,3 @@
-import { SmartNote } from './SmartNote';
 import { Box, Divider } from '@mui/material';
 import { CSSProperties, useState } from 'react';
 import {
