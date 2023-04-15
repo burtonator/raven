@@ -11,6 +11,7 @@ import {
   Typography
 } from '@mui/material';
 import { Sidebar } from './Sidebar';
+import Link from 'next/link';
 
 const drawerWidth = 400
 
@@ -28,9 +29,11 @@ export default function SmartHome() {
 
             {/*</Link>*/}
 
-            <Button variant='link' href='/smart'>
-              Raven
-            </Button>
+            <Link href='/smart/'>
+              <Button component='div' href='/smart'>
+                Raven
+              </Button>
+            </Link>
 
             {/*<Typography variant="h6" noWrap component="div">*/}
             {/*  Raven*/}
