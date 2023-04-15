@@ -15,11 +15,11 @@ export function useSmartNoteRouter() {
   return useMemo(() => {
     return {
       push: (name: string) => {
-        router.push('/smart/' + encodeURIComponent(name))
+        router.push('/smart/n/' + encodeURIComponent(name))
           .catch(console.error)
       },
       computePath: (name: string) => {
-        return '/smart/' + encodeURIComponent(name)
+        return '/smart/n/' + encodeURIComponent(name)
       }
     }
   }, [router])
@@ -31,7 +31,7 @@ export function SmartNoteQuestion() {
   const router = useRouter()
 
   const handleExecution = useCallback((question: string) => {
-    router.push('/smart/' + encodeURIComponent(question))
+    router.push('/smart/n/' + encodeURIComponent(question))
       .catch(console.error)
 
   }, [router]);
