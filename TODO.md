@@ -1,4 +1,8 @@
-- what I need next
+- what I need nex
+  - fix the bug with the [[...index]] node
+  - Disable all the SSR if I can...
+  - Make all notes use /n/
+  - 
   - stream results
     -  
     - I need to do this NEXT so that I get the first data packets from the backend to 

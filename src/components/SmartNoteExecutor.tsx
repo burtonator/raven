@@ -4,7 +4,7 @@ import {
   useSmartNoteContext
 } from '@/src/components/SmartNoteIndexProvider';
 import { SmartNote } from '@/src/components/SmartNote';
-import { LinearProgress } from '@mui/material';
+import { CircularProgress, LinearProgress } from '@mui/material';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSmartNoteExecutor } from '@/src/components/useSmartNoteExecutor';
 import { ISODateTimeStrings } from '@/src/ISODateTimeStrings';
@@ -80,6 +80,9 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
       <div style={{position: 'absolute', top: 0, left: 0, zIndex: 10000, width: '100%'}}>
         <LinearProgress variant="indeterminate"/>
       </div>
+      
+      <CircularProgress variant='indeterminate' size="large"/>
+
     </>
   )
 

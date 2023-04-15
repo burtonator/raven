@@ -3,13 +3,25 @@ import {
   useSmartNoteIndex
 } from '@/src/components/SmartNoteIndexProvider';
 import { useSmartNoteRouter } from '@/src/components/SmartNoteQuestion';
+import { useEffect, useState } from 'react';
 
 export function Sidebar() {
+
+  const [render, setRender] = useState(false)
 
   const [index] = useSmartNoteIndex()
   const router = useSmartNoteRouter()
 
   const defaultCreated = ''
+
+  useEffect(() => {
+    // hack to avoid SSR bugs.
+    setRender(true)
+  }, [])
+
+  if (! render) {
+    return null
+  }
 
   return (
     <List>

@@ -16,6 +16,8 @@ specifiers:
   '@mui/material': ^5.12.0
   '@mui/styles': ^5.12.0
   '@mui/system': ^5.12.0
+  '@react-buddy/ide-toolbox-next': ^2.4.0
+  '@react-buddy/palette-mui': ^5.0.1
   '@storybook/addon-essentials': ^7.0.2
   '@storybook/addon-interactions': ^7.0.2
   '@storybook/addon-links': ^7.0.2
@@ -46,14 +48,17 @@ specifiers:
   react-markdown: ^8.0.6
   react-no-ssr: ^1.1.0
   react-syntax-highlighter: ^15.5.0
+  realm-web: ^2.0.0
   rehype-highlight: ^6.0.0
   remark-gfm: ^3.0.1
   storybook: ^7.0.2
+  three: ^0.151.3
   three-spritetext: ^1.8.0
   ts-jest: ^29.1.0
   ts-node: ^10.9.1
   typescript: 5.0.3
   webpack: ^5.79.0
+  yaml: ^2.2.1
 
 dependencies:
   '@burtonator/use-whisper': 0.2.1_react@18.2.0
@@ -70,6 +75,8 @@ dependencies:
   '@mui/material': 5.12.0_3unrtkzlichk74gwhgfmuhukbm
   '@mui/styles': 5.12.0_b7lksjcz5zr4rqebyeqormarua
   '@mui/system': 5.12.0_ckhgufcgsetnyeobv4t2att26i
+  '@react-buddy/ide-toolbox-next': 2.4.0_next@13.2.4+react@18.2.0
+  '@react-buddy/palette-mui': 5.0.1_4hlkhldfy7sdikpmt2uydg75re
   '@types/node': 18.15.11
   '@types/react': 18.0.32
   '@types/react-dom': 18.0.11
@@ -85,14 +92,17 @@ dependencies:
   openai-edge: 0.5.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-force-graph: 1.42.1_react@18.2.0
+  react-force-graph: 1.42.1_react@18.2.0+three@0.151.3
   react-markdown: 8.0.6_b7lksjcz5zr4rqebyeqormarua
   react-no-ssr: 1.1.0_react@18.2.0
   react-syntax-highlighter: 15.5.0_react@18.2.0
+  realm-web: 2.0.0
   rehype-highlight: 6.0.0
   remark-gfm: 3.0.1
-  three-spritetext: 1.8.0
+  three: 0.151.3
+  three-spritetext: 1.8.0_three@0.151.3
   typescript: 5.0.3
+  yaml: 2.2.1
 
 devDependencies:
   '@babel/core': 7.21.4
@@ -114,24 +124,24 @@ devDependencies:
 
 packages:
 
-  /3d-force-graph-ar/1.8.2:
+  /3d-force-graph-ar/1.8.2_three@0.151.3:
     resolution: {integrity: sha512-UNZczOAxJGHWv597nKAJjSZ7y55v0oLd3+uwHZt+Zg34TdnPl4U2Bn9npepzO8OM5dzmEyWSlqeemdpctzp4VA==}
     engines: {node: '>=12'}
     dependencies:
-      aframe-forcegraph-component: 3.0.7
+      aframe-forcegraph-component: 3.0.7_three@0.151.3
       kapsule: 1.14.2
     transitivePeerDependencies:
       - three
     dev: false
 
-  /3d-force-graph-vr/2.2.1:
+  /3d-force-graph-vr/2.2.1_three@0.151.3:
     resolution: {integrity: sha512-0gR/R+AavoUkEmqddJFF814b985xFsy1VUFmgv2ubA8Hgl0eR0RaTAFmtWS9DTSJCS7d4OHfYWZeE9SsmtRkjw==}
     engines: {node: '>=12'}
     dependencies:
       accessor-fn: 1.4.1
       aframe: 1.4.1
       aframe-extras: 6.1.1_aframe@1.4.1
-      aframe-forcegraph-component: 3.0.7
+      aframe-forcegraph-component: 3.0.7_three@0.151.3
       kapsule: 1.14.2
       polished: 4.2.2
     transitivePeerDependencies:
@@ -2854,6 +2864,42 @@ packages:
     resolution: {integrity: sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==}
     dev: false
 
+  /@react-buddy/ide-toolbox-next/2.4.0_next@13.2.4+react@18.2.0:
+    resolution: {integrity: sha512-3EGm40qx3SXM4grLK/qBh/RYOVwn3YWBBKUV/HKrEYiyyBcnhBxFhw/DGbobqUZVec8fS+KDKoutg4WKhFf4Mw==}
+    peerDependencies:
+      next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@react-buddy/ide-toolbox': 2.3.1_react@18.2.0
+      next: 13.2.4_z72xxk7vwlamvgqemvc4ptm4du
+      react: 18.2.0
+    dev: false
+
+  /@react-buddy/ide-toolbox/2.3.1_react@18.2.0:
+    resolution: {integrity: sha512-xH4rVPvG8nADggIFJk3mlAQtZg05HwhPcsdnPhHw9JMuxSQi8qXG+0ImQSS58QjIFY9BGtAv2geAbIPBuh9q0w==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
+  /@react-buddy/palette-mui/5.0.1_4hlkhldfy7sdikpmt2uydg75re:
+    resolution: {integrity: sha512-Oi6rwD4BALFSfyx99iO4qZuRNjb1BNBM2ahUXqfugk6EH42zRL7ThdSq1WoQ6XqgEgYVX/jeXyoV4BOEsmUGow==}
+    peerDependencies:
+      '@mui/icons-material': ^5.0.1
+      '@mui/material': ^5.0.1
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@mui/icons-material': 5.11.16_ifkv5yryckoothqv6xvbhvgr3i
+      '@mui/material': 5.12.0_3unrtkzlichk74gwhgfmuhukbm
+      '@react-buddy/ide-toolbox': 2.3.1_react@18.2.0
+      react: 18.2.0
+    dev: false
+
+  /@realm/common/0.1.4:
+    resolution: {integrity: sha512-bKpIRZIQ4ykribFi0igCwuvf7P4+Ex2XYKqDw1JDe6sCGAaPMwhazooyM6h32fUjtXRTbdAWH2S9JH8Xh/LrqQ==}
+    dev: false
+
   /@rushstack/eslint-patch/1.2.0:
     resolution: {integrity: sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==}
     dev: false
@@ -4703,11 +4749,11 @@ packages:
       three-pathfinding: 0.7.0
     dev: false
 
-  /aframe-forcegraph-component/3.0.7:
+  /aframe-forcegraph-component/3.0.7_three@0.151.3:
     resolution: {integrity: sha512-MqosccaPaW8fGKmHiDAmHj/HKK/p+uUMpUt341uJjoja5LpoSEq5ks/NvTv4NculMMdHkblmA8G5Cj4WX6R5Ew==}
     dependencies:
       accessor-fn: 1.4.1
-      three-forcegraph: 1.41.5
+      three-forcegraph: 1.41.5_three@0.151.3
     transitivePeerDependencies:
       - three
     dev: false
@@ -5340,6 +5386,13 @@ packages:
       node-int64: 0.4.0
     dev: true
 
+  /bson/4.7.2:
+    resolution: {integrity: sha512-Ry9wCtIZ5kGqkJoi6aD8KjxFZEx78guTQDnpXWiNthsxzrxAK/i8E6pCHAIZTbaEFWcOCvbecMukfK7XUvyLpQ==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      buffer: 5.7.1
+    dev: false
+
   /buffer-crc32/0.2.13:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
     dev: true
@@ -5366,7 +5419,6 @@ packages:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
-    dev: true
 
   /buffer/6.0.3:
     resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
@@ -6155,6 +6207,10 @@ packages:
     resolution: {integrity: sha512-2sJGJTaXIIaR1w4iJSNoN0hnMY7Gpc/n8D4qSCJw8QqFWXf7cuAgnEHxBpweaVcPevC2l3KpjYCx3NypQQgaJg==}
     engines: {node: '>= 0.8', npm: 1.2.8000 || >= 1.4.16}
     dev: true
+
+  /detect-browser/5.3.0:
+    resolution: {integrity: sha512-53rsFbGdwMwlF7qvCt0ypLM5V5/Mbl0szB7GPN8y9NCcbknYOeVVXdrXEq+90IwAfrrzt6Hd+u2E2ntakICU8w==}
+    dev: false
 
   /detect-indent/6.1.0:
     resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==}
@@ -8741,6 +8797,10 @@ packages:
       react: 18.2.0
     dev: false
 
+  /js-base64/3.7.5:
+    resolution: {integrity: sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==}
+    dev: false
+
   /js-sdsl/4.4.0:
     resolution: {integrity: sha512-FfVSdx6pJ41Oa+CF7RDaFmTnCaFhua+SNYQX74riGOpl96x+2jQCqEfQ2bnXu/5DPCqlRuiqyvTJM0Qjz26IVg==}
 
@@ -10797,15 +10857,15 @@ packages:
       react-is: 18.1.0
     dev: true
 
-  /react-force-graph/1.42.1_react@18.2.0:
+  /react-force-graph/1.42.1_react@18.2.0+three@0.151.3:
     resolution: {integrity: sha512-NgGajgkbrjkx9gYSBze5j2sAoCAKD0Lx7px5MiUmMs4qKok9i0M1vkxMFTGnQn+RuQCz/WqVSes78Rkxm5GqLg==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '*'
     dependencies:
       3d-force-graph: 1.71.2
-      3d-force-graph-ar: 1.8.2
-      3d-force-graph-vr: 2.2.1
+      3d-force-graph-ar: 1.8.2_three@0.151.3
+      3d-force-graph-vr: 2.2.1_three@0.151.3
       force-graph: 1.43.1
       prop-types: 15.8.1
       react: 18.2.0
@@ -10967,6 +11027,20 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /realm-web/2.0.0:
+    resolution: {integrity: sha512-ANutYEvA2UsTlzPA+P8SAgQ5iK7w+9vyZUEH43ENZD1eLIzTt1T6TLptWeq0eaX9OplmRK7jiS5a+OR4NStPRg==}
+    dependencies:
+      '@realm/common': 0.1.4
+      bson: 4.7.2
+      detect-browser: 5.3.0
+      js-base64: 3.7.5
+    optionalDependencies:
+      abort-controller: 3.0.0
+      node-fetch: 2.6.9
+    transitivePeerDependencies:
+      - encoding
+    dev: false
 
   /recast/0.21.5:
     resolution: {integrity: sha512-hjMmLaUXAm1hIuTqOdeYObMslq/q+Xff6QE3Y2P+uoHAg2nmVlLBps2hzh1UJDdMtDTMXOFewK6ky51JQIeECg==}
@@ -11911,24 +11985,6 @@ packages:
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
 
-  /three-forcegraph/1.41.5:
-    resolution: {integrity: sha512-CJ2Wlbd3QjEsaXbLu+RrpY/c1uKb0zslbEfQHygTVO5/dZw76H9Oy7kWUUXwYt+3x0lVzktYxvczcuWvUZ/hPw==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      three: '>=0.118.3'
-    dependencies:
-      accessor-fn: 1.4.1
-      d3-array: 3.2.3
-      d3-force-3d: 3.0.5
-      d3-scale: 4.0.2
-      d3-scale-chromatic: 3.0.0
-      data-joint: 1.3.1
-      kapsule: 1.14.2
-      ngraph.forcelayout: 3.3.1
-      ngraph.graph: 20.0.1
-      tinycolor2: 1.6.0
-    dev: false
-
   /three-forcegraph/1.41.5_three@0.151.3:
     resolution: {integrity: sha512-CJ2Wlbd3QjEsaXbLu+RrpY/c1uKb0zslbEfQHygTVO5/dZw76H9Oy7kWUUXwYt+3x0lVzktYxvczcuWvUZ/hPw==}
     engines: {node: '>=12'}
@@ -11965,11 +12021,13 @@ packages:
       three: 0.151.3
     dev: false
 
-  /three-spritetext/1.8.0:
+  /three-spritetext/1.8.0_three@0.151.3:
     resolution: {integrity: sha512-ehiATMfR1guCk+knjCxDWp2zikxRbxQaKXJyjXwuZKqjIbKtsCh7BQ00JHaESjzaXXhG5LJV7rXTJ78M/EYWyQ==}
     engines: {node: '>=12'}
     peerDependencies:
       three: '>=0.86.0'
+    dependencies:
+      three: 0.151.3
     dev: false
 
   /three/0.151.3:
@@ -12786,6 +12844,11 @@ packages:
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+
+  /yaml/2.2.1:
+    resolution: {integrity: sha512-e0WHiYql7+9wr4cWMx3TVQrNwejKaEe7/rHNmQmqRjazfOP5W8PB6Jpebb5o6fIapbz9o9+2ipcaTM2ZwDI6lw==}
+    engines: {node: '>= 14'}
+    dev: false
 
   /yargs-parser/20.2.9:
     resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
