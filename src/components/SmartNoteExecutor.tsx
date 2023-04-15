@@ -35,7 +35,6 @@ export default function SmartNoteExecutor(props: SmartNoteExecutorProps) {
             name: props.name,
             content: res.content,
             items: res.items,
-            related: res.related,
             created: ISODateTimeStrings.create(),
             model: res.model
           }

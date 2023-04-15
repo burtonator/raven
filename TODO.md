@@ -1,4 +1,7 @@
 - what I need nex
+  - include a one sentence summary 
+  - compute the graph async ... while we're computing the main node.
+  - 
   - get the graph view working... I'm not sure how we will handle loading it
     async though as it's a bit slow...
     - regenerate it every time a node is added...

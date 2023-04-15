@@ -15,13 +15,6 @@ additional questions the user is likely to ask next.
 
 You should have one additional question per line.
 
-Additionally, we will give you a list of existing notes, and you will 
-find which ones are related to the current question and answer. If they do not
-seem related do not include them in the output.
-
-Make sure the list of related notes is exhaustive.  Do not miss any related notes
-that are in the list of existing notes.
-
 Your output will be in YAML and must be prefixed by "---"
 
 # Examples:
@@ -31,19 +24,6 @@ Your output will be in YAML and must be prefixed by "---"
   User message: 
   
     What is WWII?
-  
-    Existing notes:
-      - What is Artificial Intelligence
-      - What is AGI?
-      - What was the Holocaust?  
-      - What is artificial intelligence (AI) and how does it work?
-      - How is AI currently being used in industries like healthcare or finance?
-      - What are some potential risks and benefits of advancing AI technology?
-      - How can AI be used to improve our daily lives?
-      - What were the causes of World War II?
-      - How did the war impact civilians and soldiers on both sides?
-      - What were some of the major battles and turning points of World War II?
-      - What was the impact of technology on the war effort?
   
   Assistant response:
     
@@ -64,34 +44,12 @@ Your output will be in YAML and must be prefixed by "---"
         - What were some of the most significant battles of World War II?
         - What were some of the most notable technological advancements made during the war?
         - How did the Holocaust come about and what was its impact?
-    related_notes: 
-      - What were the causes of World War II?
-      - How did the war impact civilians and soldiers on both sides?
-      - What were some of the major battles and turning points of World War II?
-      - What was the impact of technology on the war effort?
     
 ## Here's another example:
 
     User message:
       
       What is photosynthesis?
-      
-      Existing notes:
-      - What is cellular respiration?
-      - What is the role of chlorophyll in photosynthesis?
-      - What are the two main stages of photosynthesis?
-      - What is the Calvin cycle?
-      - What are the inputs and outputs of photosynthesis?
-      - What is Python programming language?
-      - What are the basic data types in Python?
-      - How do loops work in Python?
-      - What are functions in Python?
-      - How can I create and use classes in Python?
-      - What is the history of ballet?
-      - What are the basic positions in ballet?
-      - What are some famous ballets?
-      - What is the difference between classical and contemporary ballet?
-      - How has ballet evolved over time?
       
     Assistant response:
       
@@ -104,13 +62,6 @@ Your output will be in YAML and must be prefixed by "---"
         - What factors can affect the rate of photosynthesis?
         - How are photosynthesis and cellular respiration related?
         - What are some adaptations plants have developed for efficient photosynthesis?
-      
-      related_notes:
-        - What is cellular respiration?
-        - What is the role of chlorophyll in photosynthesis?
-        - What are the two main stages of photosynthesis?
-        - What is the Calvin cycle?
-        - What are the inputs and outputs of photosynthesis?    
           
 `.trim()
 
@@ -120,7 +71,6 @@ const MODEL = 'gpt-4'
 export interface SmartNoteCompletion {
   readonly content: string
   readonly items: ReadonlyArray<string>
-  readonly related: ReadonlyArray<string>
   readonly model: string
 }
 
@@ -137,7 +87,6 @@ export function parseSmartNoteResult(text: string): SmartNoteCompletion | undefi
     return {
       content: s[0],
       items: data.additional_questions,
-      related: data.related_notes,
       model: MODEL
     }
   }
@@ -146,7 +95,6 @@ export function parseSmartNoteResult(text: string): SmartNoteCompletion | undefi
   return {
     content: text,
     items: [],
-    related: [],
     model: MODEL
   }
 
