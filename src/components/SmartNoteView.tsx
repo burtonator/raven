@@ -17,7 +17,7 @@ import SmartNoteExecutor from '@/src/components/SmartNoteExecutor';
 export function useSmartNoteRouterNotesStack() {
 
   const router = useRouter()
-  const prefix = "smart/"
+  const prefix = "smart/n/"
   const idx = router.asPath.indexOf(prefix)
 
   if (idx === -1) {
