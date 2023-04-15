@@ -40,12 +40,16 @@
     "openai-edge": "^0.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-force-graph": "^1.42.1",
     "react-markdown": "^8.0.6",
     "react-no-ssr": "^1.1.0",
     "react-syntax-highlighter": "^15.5.0",
     "rehype-highlight": "^6.0.0",
     "remark-gfm": "^3.0.1",
-    "typescript": "5.0.3"
+    "three-spritetext": "^1.8.0",
+    "typescript": "5.0.3",
+    "@react-buddy/ide-toolbox-next": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
