@@ -3,7 +3,7 @@ import { atom, useAtom } from 'jotai';
 import {
   ISODateTimeString,
   ISODateTimeStrings
-} from '@/src/ISODateTimeStrings';
+} from '../ISODateTimeStrings';
 
 export type MarkdownStr = string
 

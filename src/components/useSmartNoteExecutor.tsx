@@ -3,8 +3,8 @@ import {
   ChatCompletionRequestMessage,
   CreateChatCompletionRequest, CreateChatCompletionResponse
 } from 'openai';
-import { useOpenAPI } from '@/src/useOpenAPI';
-import { useSmartNoteIndex } from '@/src/components/SmartNoteIndexProvider';
+import { useOpenAPI } from '../useOpenAPI';
+import { useSmartNoteIndex } from './SmartNoteIndexProvider';
 import YAML from 'yaml'
 
 const SYSTEM_PROMPT = `

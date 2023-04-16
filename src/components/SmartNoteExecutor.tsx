@@ -2,12 +2,12 @@ import {
   NoteEntry,
   useSmartNote,
   useSmartNoteContext
-} from '@/src/components/SmartNoteIndexProvider';
-import { SmartNote } from '@/src/components/SmartNote';
+} from './SmartNoteIndexProvider';
+import { SmartNote } from './SmartNote';
 import { CircularProgress, LinearProgress } from '@mui/material';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useSmartNoteExecutor } from '@/src/components/useSmartNoteExecutor';
-import { ISODateTimeStrings } from '@/src/ISODateTimeStrings';
+import { useSmartNoteExecutor } from './useSmartNoteExecutor';
+import { ISODateTimeStrings } from '../ISODateTimeStrings';
 
 interface SmartNoteExecutorProps {
   readonly name: string

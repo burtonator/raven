@@ -6,7 +6,7 @@ import {
 
 import {Fragment} from 'react'
 import { useRouter } from 'next/router';
-import SmartNoteExecutor from '@/src/components/SmartNoteExecutor';
+import SmartNoteExecutor from './SmartNoteExecutor';
 
 /**
  * Route paths are going to be something like /Foo,Bar and be a stack on
