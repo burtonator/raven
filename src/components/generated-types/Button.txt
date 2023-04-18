@@ -4,33 +4,13 @@ export type ButtonRef = Readonly<{
 }>
 
 export type ButtonRefProperties = Readonly<{
-  // The color of the button.
   color: 'default' | 'inherit' | 'primary' | 'secondary'
-
-  // If true, the button will be disabled.
-  disabled: boolean
-
-  // If true, the keyboard focus ripple will be disabled.
+  disableElevation: boolean
   disableFocusRipple: boolean
-
-  // If true, the button will take up the full width of its container.
+  disabled: boolean
   fullWidth: boolean
-
-  // The content of the button.
-  label: string
-
-  // The URL to link to when the button is clicked.
   href: string
-
-  // The size of the button.
   size: 'small' | 'medium' | 'large'
-
-  // The target of the link.
   target: string
-
-  // The rel attribute for the link.
-  rel: string
-
-  // The variant to use.
   variant: 'text' | 'outlined' | 'contained'
 }>

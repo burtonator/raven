@@ -4,51 +4,43 @@ export type GridRef = Readonly<{
 }>
 
 export type GridRefProperties = Readonly<{
-  // The system grid alignItems.
-  alignItems: 'flex-start' | 'center' | 'flex-end' | 'stretch'
+  // The number of columns.
+  cols: number
 
-  // The content of the component.
-  children: React.ReactNode
+  // Defines the space between the type 'item' component.
+  spacing: number
 
-  // The system grid container.
+  // The system grid to use.
+  grid: 'default' | 'dense' | 'loose'
+
+  // The number of columns for a specific breakpoint.
+  xs: number
+  sm: number
+  md: number
+  lg: number
+  xl: number
+
+  // The width of the container.
+  containerWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
+  // If true, the component will have the flex 'container' behavior.
   container: boolean
 
-  // The system grid direction.
-  direction: 'row' | 'row-reverse' | 'column' | 'column-reverse'
-
-  // If true, the component will have the flex "grow" property set to 1.
-  flexGrow: boolean
-
-  // If true, the component will have the flex "shrink" property set to 1.
-  flexShrink: boolean
-
-  // The system grid item.
+  // If true, the component will have the flex 'item' behavior.
   item: boolean
 
-  // Defines the space between the type "item" component.
-  spacing: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+  // If true, the component will have the flex 'wrap' behavior.
+  wrap: boolean
 
-  // The system grid justifyContent.
+  // The direction of the grid items.
+  direction: 'row' | 'row-reverse' | 'column' | 'column-reverse'
+
+  // The alignment of the grid items.
+  alignItems: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline'
+
+  // The content alignment of the grid items.
+  alignContent: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'stretch'
+
+  // The justification of the grid items.
   justifyContent: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
-
-  // The system grid wrap.
-  wrap: 'nowrap' | 'wrap' | 'wrap-reverse'
-
-  // The system grid xs breakpoint.
-  xs: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-
-  // The system grid sm breakpoint.
-  sm: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-
-  // The system grid md breakpoint.
-  md: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-
-  // The system grid lg breakpoint.
-  lg: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-
-  // The system grid xl breakpoint.
-  xl: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
-
-  // The system grid zeroMinWidth.
-  zeroMinWidth: boolean
 }>

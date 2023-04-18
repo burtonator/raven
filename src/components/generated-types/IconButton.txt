@@ -13,9 +13,6 @@ export type IconButtonRefProperties = Readonly<{
   // If true, the button will take up the full width of its container.
   fullWidth: boolean
 
-  // The content of the button.
-  label: string
-
   // The URL to link to when the button is clicked.
   href: string
 
@@ -24,13 +21,4 @@ export type IconButtonRefProperties = Readonly<{
 
   // The rel attribute for the link.
   rel: string
-
-  // The size of the button.
-  size: 'small' | 'medium' | 'large'
-
-  // The color of the button.
-  color: 'default' | 'inherit' | 'primary' | 'secondary'
-
-  // The variant to use.
-  variant: 'text' | 'outlined' | 'contained'
 }>

@@ -14,10 +14,10 @@ export type MenuItemRefProperties = Readonly<{
   component: React.ElementType
 
   // The container component.
-  containerComponent: React.ElementType
+  ContainerComponent: React.ElementType
 
   // The props used for the container component.
-  containerProps: object
+  ContainerProps: object
 
   // If true, the menu item will be disabled.
   disabled: boolean
@@ -25,7 +25,7 @@ export type MenuItemRefProperties = Readonly<{
   // If true, the menu item will have keyboard focus.
   focusVisibleClassName: string
 
-  // The URL to link to when the menu item is clicked.
+  // The URL to link to when the button is clicked.
   href: string
 
   // The component used for the ListItem node.
@@ -36,7 +36,4 @@ export type MenuItemRefProperties = Readonly<{
 
   // The selected state of the menu item.
   selected: boolean
-
-  // The system to be used.
-  tabIndex: number
 }>

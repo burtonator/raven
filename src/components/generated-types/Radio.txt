@@ -13,24 +13,6 @@ export type RadioRefProperties = Readonly<{
   // If true, the ripple effect will be disabled.
   disableRipple: boolean
 
-  // The icon to display when the component is checked.
-  checkedIcon: JSX.Element
-
-  // The icon to display when the component is unchecked.
-  icon: JSX.Element
-
   // The value of the component.
   value: any
-
-  // The input component property 'type'.
-  inputProps: InputProps
-
-  // The name used to reference the value of the control.
-  name: string
-
-  // If true, the component appears selected.
-  checked: boolean
-
-  // The id of the input element.
-  id: string
 }>

@@ -4,14 +4,9 @@ export type AppBarRef = Readonly<{
 }>
 
 export type AppBarRefProperties = Readonly<{
-  // The color of the component. It supports those theme colors that make sense for this component.
+  // The color of the component.
   color: 'default' | 'inherit' | 'primary' | 'secondary' | 'transparent'
 
-  // The positioning type. The behavior of the different options is described in the MDN web docs:
-  // https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning
+  // The positioning type.
   position: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative'
-
-  // The elevation of the app bar.
-  elevation: number
 }>
-```

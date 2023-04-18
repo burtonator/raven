@@ -19,12 +19,12 @@ export type DrawerRefProperties = Readonly<{
   // The duration for the transition, in milliseconds.
   transitionDuration: number | { enter?: number, exit?: number }
 
-  // The ModalProps to be passed to the modal element.
-  ModalProps: Partial<ModalProps>
+  // The distance in pixels the drawer will slide in.
+  SlideProps: object
 
-  // The PaperProps to be passed to the Paper element.
-  PaperProps: Partial<PaperProps>
+  // The component used for the transition.
+  TransitionComponent: React.ComponentType
 
-  // The SlideProps to be passed to the Slide element.
-  SlideProps: Partial<SlideProps>
+  // Props applied to the transition element.
+  TransitionProps: object
 }>

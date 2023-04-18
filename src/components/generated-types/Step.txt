@@ -1,0 +1,16 @@
+
+export type StepRef = Readonly<{
+  Step: StepRefProperties
+}>
+
+export type StepRefProperties = Readonly<{
+  active: boolean
+  alternativeLabel: boolean
+  completed: boolean
+  connector: React.ReactElement | React.ComponentType
+  disabled: boolean
+  expanded: boolean
+  index: number
+  last: boolean
+  orientation: 'horizontal' | 'vertical'
+}>

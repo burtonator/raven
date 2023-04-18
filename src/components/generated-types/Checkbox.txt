@@ -21,7 +21,4 @@ export type CheckboxRefProperties = Readonly<{
 
   // The edge at which to display the indicator.
   edge: 'start' | 'end'
-
-  // The size of the checkbox.
-  size: 'small' | 'medium'
 }>

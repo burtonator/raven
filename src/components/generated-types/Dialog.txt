@@ -4,21 +4,16 @@ export type DialogRef = Readonly<{
 }>
 
 export type DialogRefProperties = Readonly<{
-  // The id(s) of the element(s) that describe the dialog.
-  'aria-describedby': string
-
-  // The id(s) of the element(s) that label the dialog.
-  'aria-labelledby': string
-
-  // If true, the dialog is open.
+  disableBackdropClick: boolean
+  disableEscapeKeyDown: boolean
+  fullScreen: boolean
+  fullWidth: boolean
+  maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
   open: boolean
-
-  // The component used to render the body of the dialog.
   PaperComponent: React.ComponentType
-
-  // The props used to create the transition component.
-  TransitionProps: object
-
-  // The component used for the transition.
+  PaperProps: object
+  scroll: 'body' | 'paper'
   TransitionComponent: React.ComponentType
+  TransitionDuration: number | { enter?: number; exit?: number }
+  TransitionProps: object
 }>

@@ -4,9 +4,7 @@ export type ToolbarRef = Readonly<{
 }>
 
 export type ToolbarRefProperties = Readonly<{
-  // The variant to use.
-  variant: 'regular' | 'dense'
-
-  // If true, the toolbar will have gutters.
   disableGutters: boolean
+  edge: 'start' | 'end' | false
+  variant: 'regular' | 'dense'
 }>
