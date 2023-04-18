@@ -4,21 +4,11 @@ export type IconButtonRef = Readonly<{
 }>
 
 export type IconButtonRefProperties = Readonly<{
-  // If true, the button will be disabled.
+  color: 'default' | 'inherit' | 'primary' | 'secondary'
   disabled: boolean
-
-  // If true, the keyboard focus ripple will be disabled.
   disableFocusRipple: boolean
-
-  // If true, the button will take up the full width of its container.
-  fullWidth: boolean
-
-  // The URL to link to when the button is clicked.
-  href: string
-
-  // The target of the link.
-  target: string
-
-  // The rel attribute for the link.
-  rel: string
+  disableRipple: boolean
+  edge: 'start' | 'end' | false
+  size: 'small' | 'medium'
+  // onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
 }>

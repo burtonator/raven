@@ -1,0 +1,94 @@
+
+export type StepperRef = Readonly<{
+  Stepper: StepperRefProperties
+}>
+
+export type StepperRefProperties = Readonly<{
+  activeStep: number
+  alternativeLabel: boolean
+  connector: React.ReactElement
+  nonLinear: boolean
+  orientation: 'horizontal' | 'vertical'
+}>
+
+export type StepRef = Readonly<{
+  Step: StepRefProperties
+}>
+
+export type StepRefProperties = Readonly<{
+  active: boolean
+  alternativeLabel: boolean
+  completed: boolean
+  disabled: boolean
+  index: number
+  last: boolean
+}>
+
+export type StepButtonRef = Readonly<{
+  StepButton: StepButtonRefProperties
+}>
+
+export type StepButtonRefProperties = Readonly<{
+  active: boolean
+  alternativeLabel: boolean
+  completed: boolean
+  disabled: boolean
+  icon: React.ReactElement
+  last: boolean
+  optional: React.ReactElement
+}>
+
+export type StepConnectorRef = Readonly<{
+  StepConnector: StepConnectorRefProperties
+}>
+
+export type StepConnectorRefProperties = Readonly<{
+  active: boolean
+  alternativeLabel: boolean
+  completed: boolean
+  disabled: boolean
+  index: number
+  orientation: 'horizontal' | 'vertical'
+}>
+
+export type StepContentRef = Readonly<{
+  StepContent: StepContentRefProperties
+}>
+
+export type StepContentRefProperties = Readonly<{
+  active: boolean
+  alternativeLabel: boolean
+  completed: boolean
+  last: boolean
+  optional: React.ReactElement
+  orientation: 'horizontal' | 'vertical'
+  transition: 'auto' | 'none'
+  transitionDuration: number | 'auto'
+}>
+
+export type StepIconRef = Readonly<{
+  StepIcon: StepIconRefProperties
+}>
+
+export type StepIconRefProperties = Readonly<{
+  active: boolean
+  completed: boolean
+  error: boolean
+  icon: React.ReactElement
+}>
+
+export type StepLabelRef = Readonly<{
+  StepLabel: StepLabelRefProperties
+}>
+
+export type StepLabelRefProperties = Readonly<{
+  active: boolean
+  alternativeLabel: boolean
+  completed: boolean
+  disabled: boolean
+  error: boolean
+  icon: React.ReactElement
+  last: boolean
+  optional: React.ReactElement
+  orientation: 'horizontal' | 'vertical'
+}>

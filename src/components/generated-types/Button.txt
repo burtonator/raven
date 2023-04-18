@@ -5,12 +5,15 @@ export type ButtonRef = Readonly<{
 
 export type ButtonRefProperties = Readonly<{
   color: 'default' | 'inherit' | 'primary' | 'secondary'
+  disabled: boolean
   disableElevation: boolean
   disableFocusRipple: boolean
-  disabled: boolean
+  disableRipple: boolean
+  endIcon: React.ReactElement
   fullWidth: boolean
   href: string
+  // onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   size: 'small' | 'medium' | 'large'
-  target: string
+  // startIcon: React.ReactElement
   variant: 'text' | 'outlined' | 'contained'
 }>

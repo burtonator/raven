@@ -4,54 +4,21 @@ export type SelectRef = Readonly<{
 }>
 
 export type SelectRefProperties = Readonly<{
-  // The value of the component.
+  autoWidth: boolean
+  displayEmpty: boolean
+  IconComponent: React.ElementType
+  input: React.ReactElement
+  inputProps: object
+  labelId: string
+  labelWidth: number
+  MenuProps: object
+  multiple: boolean
+  native: boolean
+  onClose: (event: React.SyntheticEvent) => void
+  onOpen: (event: React.SyntheticEvent) => void
+  open: boolean
+  renderValue: (value: any) => React.ReactNode
+  SelectDisplayProps: object
   value: any
-
-  // The default value. Use when the component is not controlled.
-  defaultValue: any
-
-  // If true, the component will be disabled.
-  disabled: boolean
-
-  // If true, the component will take up the full width of its container.
-  fullWidth: boolean
-
-  // The label of the input.
-  label: string
-
-  // The ID of the input element.
-  inputId: string
-
-  // The variant of the input.
   variant: 'standard' | 'outlined' | 'filled'
-
-  // The display name of the component.
-  name: string
-
-  // The short hint displayed in the input before the user enters a value.
-  placeholder: string
-
-  // If true, the input will be required.
-  required: boolean
-
-  // The input component property `type`.
-  type: string
-
-  // The value of the `input` element, required for a controlled component.
-  inputValue: string
-
-  // The default input value, useful when not controlling the component.
-  defaultInputValue: string
-
-  // If true, the input will be readOnly.
-  readOnly: boolean
-
-  // If true, the input will be autoFocus.
-  autoFocus: boolean
-
-  // The helper text content.
-  helperText: string
-
-  // The error state of the component.
-  error: boolean
 }>

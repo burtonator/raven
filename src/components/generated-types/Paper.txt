@@ -1,5 +1,5 @@
 
-export type ElementRef = Readonly<{
+export type PaperRef = Readonly<{
   Paper: PaperRefProperties
 }>
 

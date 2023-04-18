@@ -1,0 +1,17 @@
+
+export type ChipRef = Readonly<{
+  Chip: ChipRefProperties
+}>
+
+export type ChipRefProperties = Readonly<{
+  avatar: React.ReactElement
+  clickable: boolean
+  color: 'default' | 'primary' | 'secondary'
+  deleteIcon: React.ReactElement
+  disabled: boolean
+  icon: React.ReactElement
+  label: React.ReactNode
+  onDelete: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  size: 'small' | 'medium'
+  variant: 'default' | 'outlined'
+}>

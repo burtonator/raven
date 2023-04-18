@@ -4,30 +4,12 @@ export type TypographyRef = Readonly<{
 }>
 
 export type TypographyRefProperties = Readonly<{
-  // The text-align CSS property.
   align: 'inherit' | 'left' | 'center' | 'right' | 'justify'
-
-  // The color of the text.
   color: 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error'
-
-  // The component used for the root node.
-  component: React.ElementType
-
-  // Controls the display type.
   display: 'initial' | 'block' | 'inline'
-
-  // If true, the text will have a bottom margin.
   gutterBottom: boolean
-
-  // If true, the text will not wrap, but instead will truncate with an ellipsis.
   noWrap: boolean
-
-  // The paragraph CSS property.
   paragraph: boolean
-
-  // Applies the theme typography styles.
   variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline' | 'srOnly' | 'inherit'
-
-  // The variantMapping property.
-  variantMapping: Partial<Record<Variant, string>>
+  variantMapping: Record<string, string>
 }>

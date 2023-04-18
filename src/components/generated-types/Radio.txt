@@ -4,15 +4,13 @@ export type RadioRef = Readonly<{
 }>
 
 export type RadioRefProperties = Readonly<{
-  // The color of the component.
+  checked: boolean
   color: 'default' | 'primary' | 'secondary'
-
-  // If true, the radio will be disabled.
   disabled: boolean
-
-  // If true, the ripple effect will be disabled.
   disableRipple: boolean
-
-  // The value of the component.
+  // inputProps: InputBaseComponentProps
+  // inputRef: React.Ref<any>
+  name: string
+  required: boolean
   value: any
 }>

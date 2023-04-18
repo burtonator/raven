@@ -7,7 +7,7 @@ export type StepRefProperties = Readonly<{
   active: boolean
   alternativeLabel: boolean
   completed: boolean
-  connector: React.ReactElement | React.ComponentType
+  connector: React.ReactElement
   disabled: boolean
   expanded: boolean
   index: number

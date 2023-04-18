@@ -1,8 +1,4 @@
 
-export type ElementRef = Readonly<{
-  [key: string]: any
-}>
-
 export type FabRef = Readonly<{
   Fab: FabRefProperties
 }>
@@ -12,10 +8,7 @@ export type FabRefProperties = Readonly<{
   disabled: boolean
   disableFocusRipple: boolean
   disableRipple: boolean
-  edge: 'start' | 'end' | false
-  fullWidth: boolean
-  href: string
+  // href: string
   size: 'small' | 'medium' | 'large'
-  target: string
   variant: 'round' | 'extended'
 }>

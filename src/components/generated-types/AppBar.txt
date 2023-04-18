@@ -4,9 +4,8 @@ export type AppBarRef = Readonly<{
 }>
 
 export type AppBarRefProperties = Readonly<{
-  // The color of the component.
   color: 'default' | 'inherit' | 'primary' | 'secondary' | 'transparent'
-
-  // The positioning type.
+  elevation: number
   position: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative'
+  square: boolean
 }>

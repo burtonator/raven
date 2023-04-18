@@ -4,27 +4,13 @@ export type DrawerRef = Readonly<{
 }>
 
 export type DrawerRefProperties = Readonly<{
-  // The anchor of the drawer.
   anchor: 'left' | 'top' | 'right' | 'bottom'
-
-  // The elevation of the drawer.
   elevation: number
-
-  // If true, the drawer is open.
+  ModalProps: Partial<ModalProps>
   open: boolean
-
-  // The variant to use.
-  variant: 'permanent' | 'persistent' | 'temporary'
-
-  // The duration for the transition, in milliseconds.
+  PaperProps: Partial<PaperProps>
+  SlideProps: Partial<SlideProps>
+  // TransitionComponent: React.ElementType
   transitionDuration: number | { enter?: number, exit?: number }
-
-  // The distance in pixels the drawer will slide in.
-  SlideProps: object
-
-  // The component used for the transition.
-  TransitionComponent: React.ComponentType
-
-  // Props applied to the transition element.
-  TransitionProps: object
+  variant: 'permanent' | 'persistent' | 'temporary'
 }>

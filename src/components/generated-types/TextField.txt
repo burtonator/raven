@@ -4,102 +4,29 @@ export type TextFieldRef = Readonly<{
 }>
 
 export type TextFieldRefProperties = Readonly<{
-  // The adornment for the input.
-  InputProps: object
-
-  // The label for the input.
-  label: string
-
-  // The helper text content.
-  helperText: string
-
-  // The error state of the input.
-  error: boolean
-
-  // The variant of the input.
-  variant: 'standard' | 'outlined' | 'filled'
-
-  // The size of the input.
-  size: 'small' | 'medium'
-
-  // The color of the input.
-  color: 'primary' | 'secondary'
-
-  // The type of the input.
-  type: string
-
-  // The value of the input.
-  value: any
-
-  // The default value of the input.
-  defaultValue: any
-
-  // The name of the input.
-  name: string
-
-  // The id of the input.
-  id: string
-
-  // The placeholder for the input.
-  placeholder: string
-
-  // If true, the input will be disabled.
-  disabled: boolean
-
-  // If true, the input will be read-only.
-  readOnly: boolean
-
-  // If true, the input will be required.
-  required: boolean
-
-  // The number of rows for the input.
-  rows: number
-
-  // The maximum number of rows for the input.
-  rowsMax: number
-
-  // The minimum number of rows for the input.
-  rowsMin: number
-
-  // The step value for the input.
-  step: number | string
-
-  // The minimum value for the input.
-  min: number | string
-
-  // The maximum value for the input.
-  max: number | string
-
-  // The input mode for the input.
-  inputMode: string
-
-  // The pattern for the input.
-  pattern: string
-
-  // The length of the input.
-  maxLength: number
-
-  // The minimum length of the input.
-  minLength: number
-
-  // The list attribute for the input.
-  list: string
-
-  // The auto-complete attribute for the input.
   autoComplete: string
-
-  // The auto-focus attribute for the input.
   autoFocus: boolean
-
-  // The auto-select attribute for the input.
-  selectOnFocus: boolean
-
-  // The start adornment for the input.
-  startAdornment: React.ReactNode
-
-  // The end adornment for the input.
-  endAdornment: React.ReactNode
-
-  // The margin for the input.
-  margin: 'dense' | 'none' | 'normal'
+  defaultValue: string | number
+  disabled: boolean
+  error: boolean
+  FormHelperTextProps: Partial<FormHelperTextRefProperties>
+  fullWidth: boolean
+  helperText: string
+  id: string
+  InputLabelProps: Partial<InputLabelRefProperties>
+  InputProps: Partial<InputRefProperties>
+  inputProps: Record<string, any>
+  label: string
+  margin: 'none' | 'dense' | 'normal'
+  multiline: boolean
+  name: string
+  placeholder: string
+  required: boolean
+  rows: number
+  rowsMax: number
+  select: boolean
+  SelectProps: Partial<SelectRefProperties>
+  type: string
+  value: string | number
+  variant: 'standard' | 'outlined' | 'filled'
 }>

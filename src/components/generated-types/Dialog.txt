@@ -10,10 +10,10 @@ export type DialogRefProperties = Readonly<{
   fullWidth: boolean
   maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
   open: boolean
+  // onClose: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void
   PaperComponent: React.ComponentType
-  PaperProps: object
   scroll: 'body' | 'paper'
   TransitionComponent: React.ComponentType
-  TransitionDuration: number | { enter?: number; exit?: number }
+  transitionDuration: number | { enter?: number, exit?: number }
   TransitionProps: object
 }>

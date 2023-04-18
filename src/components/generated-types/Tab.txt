@@ -1,0 +1,18 @@
+
+export type TabRef = Readonly<{
+  Tab: TabRefProperties
+}>
+
+export type TabRefProperties = Readonly<{
+  disabled: boolean
+  disableFocusRipple: boolean
+  disableRipple: boolean
+  fullWidth: boolean
+  icon: React.ReactElement
+  id: string
+  indicator: React.ReactElement
+  label: React.ReactNode
+  textColor: 'inherit' | 'primary' | 'secondary'
+  value: any
+  wrapped: boolean
+}>

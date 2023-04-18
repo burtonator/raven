@@ -4,36 +4,16 @@ export type SnackbarRef = Readonly<{
 }>
 
 export type SnackbarRefProperties = Readonly<{
-  // The anchor of the Snackbar.
+  action: React.ReactElement
   anchorOrigin: {
     horizontal: 'left' | 'center' | 'right'
     vertical: 'top' | 'bottom'
   }
-
-  // The number of milliseconds to wait before automatically calling the onClose function.
   autoHideDuration: number
-
-  // Replace the SnackbarContent component.
-  ContentProps: object
-
-  // If true, the Snackbar is closed.
+  // onClose: (event: React.SyntheticEvent<any>, reason: string) => void
   open: boolean
-
-  // The message to display.
-  message: string
-
-  // The ARIA role attribute of the element.
-  role: string
-
-  // The severity of the Snackbar.
-  severity: 'success' | 'error' | 'warning' | 'info'
-
-  // The action to display.
-  action: React.ReactNode
-
-  // The component used for the transition.
+  resumeHideDuration: number
   TransitionComponent: React.ComponentType
-
-  // The props used for the transition.
+  transitionDuration: number | { enter?: number, exit?: number }
   TransitionProps: object
 }>

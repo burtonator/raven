@@ -4,6 +4,7 @@ export type CardRef = Readonly<{
 }>
 
 export type CardRefProperties = Readonly<{
-  // If true, the card will use raised styling.
+  elevation: number
   raised: boolean
+  square: boolean
 }>

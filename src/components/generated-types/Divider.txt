@@ -1,0 +1,15 @@
+
+export type DividerRef = Readonly<{
+  Divider: DividerRefProperties
+}>
+
+export type DividerRefProperties = Readonly<{
+  absolute: boolean
+  component: string
+  flexItem: boolean
+  light: boolean
+  orientation: 'horizontal' | 'vertical'
+  role: string
+  textAlign: 'left' | 'right' | 'center'
+  variant: 'fullWidth' | 'inset' | 'middle'
+}>

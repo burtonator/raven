@@ -4,36 +4,13 @@ export type MenuItemRef = Readonly<{
 }>
 
 export type MenuItemRefProperties = Readonly<{
-  // The content of the component.
-  children: React.ReactNode
-
-  // Override or extend the styles applied to the component.
-  classes: object
-
-  // The component used for the root node.
-  component: React.ElementType
-
-  // The container component.
-  ContainerComponent: React.ElementType
-
-  // The props used for the container component.
-  ContainerProps: object
-
-  // If true, the menu item will be disabled.
+  autoFocus: boolean
+  dense: boolean
   disabled: boolean
-
-  // If true, the menu item will have keyboard focus.
+  disableGutters: boolean
+  divider: boolean
   focusVisibleClassName: string
-
-  // The URL to link to when the button is clicked.
-  href: string
-
-  // The component used for the ListItem node.
-  ListItemClasses: object
-
-  // The main container element.
+  // onClick: (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
   role: string
-
-  // The selected state of the menu item.
   selected: boolean
 }>
