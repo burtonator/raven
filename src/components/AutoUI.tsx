@@ -45,7 +45,12 @@ Grid
                 - button
                     children: world
 
-You support the following Material UI components:
+
+The following custom nesting rules apply.
+
+- When a tooltip is required, it must be a parent of the element which needs the tooltip and must have a title.
+
+You will support the following Material UI components:
 
 Button
 Typography

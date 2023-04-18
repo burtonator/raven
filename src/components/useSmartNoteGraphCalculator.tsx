@@ -77,50 +77,50 @@ export interface SmartNoteCompletion {
 
 
 export function useSmartNoteGraphCalculator() {
-
-  const openai = useOpenAPI()
-
-  return useCallback(async (notes: ReadonlyArray<string>): Promise<SmartNoteCompletion | undefined> => {
-
-    function createChatCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
-
-      return {
-        model: MODEL,
-        temperature: 0.0,
-        max_tokens: 2048,
-        top_p: 1,
-        n: 1,
-        messages: [...messages]
-      }
-
-    }
-
-    const messages: ReadonlyArray<ChatCompletionRequestMessage> = [
-      {"role": "system", "content": SYSTEM_PROMPT.trim()},
-      {
-        role: 'user',
-        content: notes.join("\n")
-      }
-    ]
-
-
-    const req = createChatCompletionRequest(messages)
-    console.log("Executing chat: ", JSON.stringify(req, null, '  '))
-
-    const before = Date.now()
-    const res = await openai.createChatCompletion(req)
-    const after = Date.now()
-    const duration = after - before
-    console.log("Got response: ", res)
-    if (res.data.choices.length > 0) {
-      const first = res.data.choices[0]
-      if (first.message) {
-        return first.message.content
-      }
-    }
-
-    return undefined
-
-  }, [openai])
+  //
+  // const openai = useOpenAPI()
+  //
+  // return useCallback(async (notes: ReadonlyArray<string>): Promise<SmartNoteCompletion | undefined> => {
+  //
+  //   function createChatCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
+  //
+  //     return {
+  //       model: MODEL,
+  //       temperature: 0.0,
+  //       max_tokens: 2048,
+  //       top_p: 1,
+  //       n: 1,
+  //       messages: [...messages]
+  //     }
+  //
+  //   }
+  //
+  //   const messages: ReadonlyArray<ChatCompletionRequestMessage> = [
+  //     {"role": "system", "content": SYSTEM_PROMPT.trim()},
+  //     {
+  //       role: 'user',
+  //       content: notes.join("\n")
+  //     }
+  //   ]
+  //
+  //
+  //   const req = createChatCompletionRequest(messages)
+  //   console.log("Executing chat: ", JSON.stringify(req, null, '  '))
+  //
+  //   const before = Date.now()
+  //   const res = await openai.createChatCompletion(req)
+  //   const after = Date.now()
+  //   const duration = after - before
+  //   console.log("Got response: ", res)
+  //   if (res.data.choices.length > 0) {
+  //     const first = res.data.choices[0]
+  //     if (first.message) {
+  //       return first.message.content
+  //     }
+  //   }
+  //
+  //   return undefined
+  //
+  // }, [openai])
 
 }
