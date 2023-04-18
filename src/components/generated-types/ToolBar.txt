@@ -1,31 +1,22 @@
 
 /**
- * The Toolbar component is a container for grouping and organizing actions and other UI elements related to them.
+ * The Toolbar component is a container for grouping and organizing UI elements.
+ * It can be used as a standalone component or as part of other components like AppBar.
  */
-export type ElementRef = ToolBarRef
+export type ElementRef = ToolbarRef
 
-export type ToolBarRef = Readonly<{
-  ToolBar: ToolBarRefProperties
+export type ToolbarRef = Readonly<{
+  Toolbar: ToolbarRefProperties
 }>
 
-export type ToolBarRefProperties = Readonly<{
+export type ToolbarRefProperties = Readonly<{
   /**
-   * The variant to use.
+   * The variant to use. It can be 'regular', 'dense', or 'prominent'.
    */
-  variant: 'regular' | 'dense'
+  variant: 'regular' | 'dense' | 'prominent'
 
   /**
-   * If true, the component will be disabled.
+   * If true, the toolbar will have gutters.
    */
-  disabled: boolean
-
-  /**
-   * If true, the component will have a keyboard focus ripple.
-   */
-  focusRipple: boolean
-
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   */
-  color: 'default' | 'inherit' | 'primary' | 'secondary'
+  disableGutters: boolean
 }>

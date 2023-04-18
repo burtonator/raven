@@ -33,6 +33,12 @@ export type GridRefProperties = Readonly<{
   container: boolean
 
   /**
+   * Defines the `flex-direction` style property.
+   * It is applied for all screen sizes.
+   */
+  direction: 'row' | 'row-reverse' | 'column' | 'column-reverse'
+
+  /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
    */
@@ -40,7 +46,7 @@ export type GridRefProperties = Readonly<{
 
   /**
    * Defines the `justify-content` style property.
-   * It's applied for all screen sizes.
+   * It is applied for all screen sizes.
    */
   justifyContent: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
 
@@ -48,25 +54,25 @@ export type GridRefProperties = Readonly<{
    * Defines the number of grids the component is going to use.
    * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lg: boolean | number | 'auto'
+  lg: boolean | number | string
 
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `md` breakpoint and wider screens if not overridden.
    */
-  md: boolean | number | 'auto'
+  md: boolean | number | string
 
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    */
-  sm: boolean | number | 'auto'
+  sm: boolean | number | string
 
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
    */
-  spacing: number
+  spacing: number | string
 
   /**
    * Defines the `flex-wrap` style property.
@@ -78,11 +84,17 @@ export type GridRefProperties = Readonly<{
    * Defines the number of grids the component is going to use.
    * It's applied for the `xl` breakpoint and wider screens.
    */
-  xl: boolean | number | 'auto'
+  xl: boolean | number | string
 
   /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `xs` breakpoint and wider screens.
    */
-  xs: boolean | number | 'auto'
+  xs: boolean | number | string
+
+  /**
+   * Defines the `align-items` style property.
+   * It's applied for the `zeroMinWidth` breakpoint.
+   */
+  zeroMinWidth: boolean
 }>

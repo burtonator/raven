@@ -1,0 +1,109 @@
+
+/**
+ * Checkboxes allow the user to select one or more items from a set.
+ * Checkboxes can be used to turn an option on or off.
+ */
+export type ElementRef = CheckboxRef
+
+export type CheckboxRef = Readonly<{
+  Checkbox: CheckboxRefProperties
+}>
+
+export type CheckboxRefProperties = Readonly<{
+  /**
+   * If `true`, the component is checked.
+   */
+  checked: boolean
+
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: 'default' | 'primary' | 'secondary'
+
+  /**
+   * If `true`, the checkbox will be disabled.
+   */
+  disabled: boolean
+
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple: boolean
+
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   */
+  value: any
+
+  /**
+   * The input component prop `type`.
+   */
+  inputProps: InputProps
+
+  /**
+   * Attributes applied to the `input` element.
+   */
+  inputRef: any
+
+  /**
+   * Pass a ref to the `input` element.
+   */
+  checkedIcon: React.ReactNode
+
+  /**
+   * The icon to display when the component is checked.
+   */
+  icon: React.ReactNode
+
+  /**
+   * The icon to display when the component is unchecked.
+   */
+  indeterminate: boolean
+
+  /**
+   * If `true`, the component appears indeterminate.
+   */
+  indeterminateIcon: React.ReactNode
+
+  /**
+   * The icon to display when the component is indeterminate.
+   */
+  name: string
+
+  /**
+   * Name attribute of the `input` element.
+   */
+  required: boolean
+
+  /**
+   * If `true`, the `input` element will be required.
+   */
+  size: 'small' | 'medium'
+
+  /**
+   * The size of the checkbox. `small` is equivalent to the dense checkbox styling.
+   */
+  tabIndex: number
+
+  /**
+   * The value of the `tabIndex` attribute of the `input` element.
+   */
+  valueLabel: string
+
+  /**
+   * The value of the `aria-valuetext` attribute of the `input` element.
+   */
+}>
+
+export type InputProps = Readonly<{
+  autoComplete: string
+  autoFocus: boolean
+  defaultValue: any
+  disabled: boolean
+  id: string
+  name: string
+  readOnly: boolean
+  required: boolean
+  type: string
+  value: any
+}>

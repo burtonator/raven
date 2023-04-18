@@ -25,17 +25,12 @@ export type ButtonRefProperties = Readonly<{
   color?: 'default' | 'inherit' | 'primary' | 'secondary'
 
   /**
-   * The component used for the root node. Either a string to use a HTML element or a component.
-   */
-  component?: React.ElementType
-
-  /**
    * If `true`, the button will be disabled.
    */
   disabled?: boolean
 
   /**
-   * If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true.
+   * If `true`, the  keyboard focus ripple will be disabled.
    */
   disableFocusRipple?: boolean
 
@@ -45,12 +40,14 @@ export type ButtonRefProperties = Readonly<{
   disableRipple?: boolean
 
   /**
-   * If `true`, the button will take up the full width of its container.
+   * The URL to link to when the button is clicked.
+   * If defined, an `a` element will be used as the root node.
    */
-  fullWidth?: boolean
+  href?: string
 
   /**
-   * The size of the button. `small` is equivalent to the dense button styling.
+   * The size of the button.
+   * `small` is equivalent to the dense button styling.
    */
   size?: 'small' | 'medium' | 'large'
 

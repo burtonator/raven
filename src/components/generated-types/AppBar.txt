@@ -1,6 +1,6 @@
 
 /**
- * The AppBar component is a top-level navigation and content bar that provides branding, screen titles, navigation, and actions.
+ * The AppBar component is a container for positioning navigation, branding, and actions at the top of the screen.
  */
 export type ElementRef = AppBarRef
 
@@ -10,17 +10,19 @@ export type AppBarRef = Readonly<{
 
 export type AppBarRefProperties = Readonly<{
   /**
-   * The color of the AppBar. It supports primary, secondary, default, inherit, and transparent.
+   * The color of the AppBar. It supports those theme colors that make sense for this component.
    */
   color: 'default' | 'inherit' | 'primary' | 'secondary' | 'transparent'
 
   /**
-   * The positioning of the AppBar. It supports fixed, absolute, sticky, static, and relative.
+   * The positioning type. The behavior of the different options is described in the MDN web docs.
+   * https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning
+   * Note: `sticky` is not universally supported and will fall back to `static` when unavailable.
    */
   position: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative'
 
   /**
-   * The elevation of the AppBar. It accepts a number between 0 and 24.
+   * The variant to use.
    */
-  elevation: number
+  variant: 'regular' | 'dense'
 }>

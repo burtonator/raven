@@ -1,0 +1,31 @@
+
+/**
+ * The Drawer component is a dismissible or permanently visible panel used for navigation in responsive web applications.
+ */
+export type ElementRef = DrawerRef
+
+export type DrawerRef = Readonly<{
+  Drawer: DrawerRefProperties
+}>
+
+export type DrawerRefProperties = Readonly<{
+  /**
+   * Side from which the drawer will appear.
+   */
+  anchor: 'left' | 'top' | 'right' | 'bottom'
+
+  /**
+   * The contents of the drawer.
+   */
+  children: React.ReactNode
+
+  /**
+   * If true, the drawer is open.
+   */
+  open: boolean
+
+  /**
+   * The variant to use.
+   */
+  variant: 'permanent' | 'persistent' | 'temporary'
+}>

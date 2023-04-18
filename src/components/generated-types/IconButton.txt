@@ -11,7 +11,7 @@ export type IconButtonRef = Readonly<{
 
 export type IconButtonRefProperties = Readonly<{
   /**
-   * The color of the button. It supports two values: 'default', 'inherit', 'primary', and 'secondary'.
+   * The color of the button. It supports those theme colors that make sense for this component.
    */
   color: 'default' | 'inherit' | 'primary' | 'secondary'
 
@@ -21,12 +21,12 @@ export type IconButtonRefProperties = Readonly<{
   disabled: boolean
 
   /**
-   * The edge of the button. It supports two values: 'start', 'end', and 'false'.
+   * The edge of the button that the icon is aligned with.
    */
   edge: 'start' | 'end' | false
 
   /**
-   * The size of the button. It supports two values: 'small', 'medium', and 'large'.
+   * The size of the button. `small` is equivalent to the dense button styling.
    */
   size: 'small' | 'medium' | 'large'
 }>

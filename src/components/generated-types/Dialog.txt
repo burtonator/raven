@@ -1,0 +1,88 @@
+
+/**
+ * Dialogs inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
+ */
+export type ElementRef = DialogRef
+
+export type DialogRef = Readonly<{
+  Dialog: DialogRefProperties
+}>
+
+export type DialogRefProperties = Readonly<{
+  /**
+   * If `true`, the component is shown.
+   */
+  open: boolean
+  /**
+   * The system layer that the dialog will be added to.
+   */
+  container?: HTMLElement | (() => HTMLElement) | null
+  /**
+   * The duration for the transition, in milliseconds.
+   */
+  transitionDuration?: number | { enter?: number; exit?: number }
+  /**
+   * The variant to use.
+   */
+  variant?: 'standard' | 'outlined' | 'filled'
+  /**
+   * If `true`, the dialog will be full-screen.
+   */
+  fullScreen?: boolean
+  /**
+   * If `true`, clicking the backdrop will not fire the `onClose` callback.
+   */
+  disableBackdropClick?: boolean
+  /**
+   * If `true`, hitting escape will not fire the `onClose` callback.
+   */
+  disableEscapeKeyDown?: boolean
+  /**
+   * If `true`, the backdrop is not rendered.
+   */
+  hideBackdrop?: boolean
+  /**
+   * If `true`, the dialog is maxWidth `xs`.
+   */
+  fullWidth?: boolean
+  /**
+   * Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`.
+   */
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
+  /**
+   * Callback fired when the component requests to be closed.
+   */
+  onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void
+  /**
+   * Callback fired before the dialog enters.
+   */
+  onEnter?: () => void
+  /**
+   * Callback fired when the dialog has entered.
+   */
+  onEntered?: () => void
+  /**
+   * Callback fired when the dialog is entering.
+   */
+  onEntering?: () => void
+  /**
+   * Callback fired before the dialog exits.
+   */
+  onExit?: () => void
+  /**
+   * Callback fired when the dialog has exited.
+   */
+  onExited?: () => void
+  /**
+   * Callback fired when the dialog is exiting.
+   */
+  onExiting?: () => void
+  /**
+   * The component used for the transition.
+   */
+  TransitionComponent?: React.ComponentType<TransitionProps>
+  /**
+   * Props applied to the `Transition` element.
+   */
+  TransitionProps?: TransitionProps
+}>

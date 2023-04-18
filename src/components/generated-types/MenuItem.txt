@@ -1,0 +1,62 @@
+
+/**
+ * The MenuItem component is part of the Material-UI library. MenuItem is used to display an item in a menu, usually as a part of a dropdown menu or a navigation menu. It can be used in combination with other components like Menu, Select, and Popover.
+ */
+
+export type ElementRef = MenuItemRef
+
+export type MenuItemRef = Readonly<{
+  MenuItem: MenuItemRefProperties
+}>
+
+export type MenuItemRefProperties = Readonly<{
+  /**
+   * If `true`, the list item will be focused during the first mount.
+   */
+  autoFocus: boolean
+
+  /**
+   * The content of the component.
+   */
+  children: React.ReactNode
+
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  className: string
+
+  /**
+   * The component used for the root node.
+   */
+  component: React.ElementType
+
+  /**
+   * The container component used when a `ListItemSecondaryAction` is rendered.
+   */
+  ContainerComponent: React.ElementType
+
+  /**
+   * Props applied to the container component if used.
+   */
+  ContainerProps: object
+
+  /**
+   * If `true`, the left and right padding of the `ListItem` will be removed.
+   */
+  dense: boolean
+
+  /**
+   * If `true`, the component will be disabled.
+   */
+  disabled: boolean
+
+  /**
+   * If `true`, the `ListItem` will be a button (using `ButtonBase`).
+   */
+  button: boolean
+
+  /**
+   * If `true`, the `ListItem` will have the selected class.
+   */
+  selected: boolean
+}>

@@ -1,0 +1,136 @@
+
+/**
+ * The Select component is used for collecting user provided information from a list of options.
+ */
+export type ElementRef = SelectRef
+
+export type SelectRef = Readonly<{
+  Select: SelectRefProperties
+}>
+
+export type SelectRefProperties = Readonly<{
+  /**
+   * The value of the component. The DOM API casts this to a string.
+   */
+  value: any
+
+  /**
+   * If `true`, the component is displayed in a disabled state.
+   */
+  disabled: boolean
+
+  /**
+   * If `true`, the input element is required.
+   */
+  required: boolean
+
+  /**
+   * If `true`, the input element will be focused during the first mount.
+   */
+  autoFocus: boolean
+
+  /**
+   * The variant to use.
+   */
+  variant: 'standard' | 'outlined' | 'filled'
+
+  /**
+   * The width of the input.
+   */
+  inputWidth: number
+
+  /**
+   * The label of the input.
+   */
+  label: string
+
+  /**
+   * The placeholder of the input.
+   */
+  placeholder: string
+
+  /**
+   * The `input` element name attribute.
+   */
+  name: string
+
+  /**
+   * The `input` element ID.
+   */
+  id: string
+
+  /**
+   * The `input` element `type` attribute.
+   */
+  type: string
+
+  /**
+   * The `input` element `aria-describedby` attribute.
+   */
+  'aria-describedby': string
+
+  /**
+   * The `input` element `aria-label` attribute.
+   */
+  'aria-label': string
+
+  /**
+   * The `input` element `aria-labelledby` attribute.
+   */
+  'aria-labelledby': string
+
+  /**
+   * The `input` element `aria-required` attribute.
+   */
+  'aria-required': boolean
+
+  /**
+   * The `input` element `aria-invalid` attribute.
+   */
+  'aria-invalid': boolean
+
+  /**
+   * The `input` element `aria-errormessage` attribute.
+   */
+  'aria-errormessage': string
+
+  /**
+   * The `input` element `aria-controls` attribute.
+   */
+  'aria-controls': string
+
+  /**
+   * The `input` element `aria-owns` attribute.
+   */
+  'aria-owns': string
+
+  /**
+   * The `input` element `aria-haspopup` attribute.
+   */
+  'aria-haspopup': boolean
+
+  /**
+   * The `input` element `aria-expanded` attribute.
+   */
+  'aria-expanded': boolean
+
+  /**
+   * The `input` element `aria-activedescendant` attribute.
+   */
+  'aria-activedescendant': string
+
+  /**
+   * The `input` element `aria-autocomplete` attribute.
+   */
+  'aria-autocomplete': string
+
+  /**
+   * The `input` element `aria-readonly` attribute.
+   */
+  'aria-readonly': boolean
+
+  /**
+   * The `input` element `aria-describedby` attribute.
+   */
+  'aria-describedby': string
+}>

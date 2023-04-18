@@ -1,0 +1,96 @@
+
+/**
+ * TextField is a Material-UI component that provides a user input field with a label and optional helper text.
+ * It supports various input types, such as text, password, number, email, etc.
+ * It can also display validation error messages and adornments like icons.
+ */
+export type ElementRef = TextFieldRef
+
+export type TextFieldRef = Readonly<{
+  TextField: TextFieldRefProperties
+}>
+
+export type TextFieldRefProperties = Readonly<{
+  /**
+   * The label content.
+   */
+  label: string
+
+  /**
+   * The type of input to display, such as 'text', 'password', 'number', 'email', etc.
+   * @default 'text'
+   */
+  type: string
+
+  /**
+   * The value of the input element.
+   */
+  value: string | number
+
+  /**
+   * If `true`, the input element will be disabled.
+   * @default false
+   */
+  disabled: boolean
+
+  /**
+   * If `true`, the label will be displayed in an error state.
+   * @default false
+   */
+  error: boolean
+
+  /**
+   * The helper text content.
+   */
+  helperText: string
+
+  /**
+   * If `true`, the label is hidden when the input is empty and not focused.
+   * @default false
+   */
+  shrink: boolean
+
+  /**
+   * If `true`, the input will take up the full width of its container.
+   * @default false
+   */
+  fullWidth: boolean
+
+  /**
+   * The variant to use.
+   * @default 'outlined'
+   */
+  variant: 'standard' | 'outlined' | 'filled'
+
+  /**
+   * If `true`, the input will be required.
+   * @default false
+   */
+  required: boolean
+
+  /**
+   * If `true`, the input will be multiline.
+   * @default false
+   */
+  multiline: boolean
+
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows: number
+
+  /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  rowsMax: number
+
+  /**
+   * The adornment to display before the input.
+   */
+  InputProps_startAdornment: React.ReactNode
+
+  /**
+   * The adornment to display after the input.
+   */
+  InputProps_endAdornment: React.ReactNode
+}>
