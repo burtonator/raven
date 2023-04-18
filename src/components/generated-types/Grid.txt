@@ -21,4 +21,4 @@ export type GridRefProperties = Readonly<{
   alignContent?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'space-between' | 'space-around'
   spacing?: number
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
-}> & React.HTMLAttributes<HTMLDivElement>
+}> & ElementRef

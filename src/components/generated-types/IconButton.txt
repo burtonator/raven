@@ -1,6 +1,6 @@
 
 /**
- * Icon buttons are buttons that contain icons. Icon buttons are commonly used in the AppBar component to provide contextual actions to the user.
+ * Icon buttons are buttons that contain an icon instead of text. They can be used to represent a specific action.
  */
 export type IconButtonRef = Readonly<{
   IconButton: IconButtonRefProperties

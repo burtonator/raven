@@ -11,8 +11,8 @@ export type ToolbarRefProperties = Readonly<{
   disableGutters?: boolean
   classes?: {
     root?: string
+    gutters?: string
     regular?: string
     dense?: string
-    gutters?: string
   }
 }>
