@@ -1,7 +1,4 @@
 
-/**
- * Radio buttons allow the user to select one option from a set while seeing all available options.
- */
 export type ElementRef = RadioRef
 
 export type RadioRef = Readonly<{
@@ -10,7 +7,7 @@ export type RadioRef = Readonly<{
 
 export type RadioRefProperties = Readonly<{
   /**
-   * If `true`, the component is checked.
+   * If `true`, the radio will be checked.
    */
   checked: boolean
 
@@ -38,9 +35,4 @@ export type RadioRefProperties = Readonly<{
    * The size of the radio. `small` is equivalent to the dense radio styling.
    */
   size: 'small' | 'medium'
-
-  /**
-   * The value of the component. The DOM API casts this to a string.
-   */
-  value: any
 }>

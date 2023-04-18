@@ -1,8 +1,4 @@
 
-/**
- * The MenuItem component is part of the Material-UI library. MenuItem is used to display an item in a menu, usually as a part of a dropdown menu or a navigation menu. It can be used in combination with other components like Menu, Select, and Popover.
- */
-
 export type ElementRef = MenuItemRef
 
 export type MenuItemRef = Readonly<{
@@ -16,14 +12,24 @@ export type MenuItemRefProperties = Readonly<{
   autoFocus: boolean
 
   /**
-   * The content of the component.
+   * If `true`, the list item will be a button (using ButtonBase).
    */
-  children: React.ReactNode
+  button: boolean
 
   /**
-   * Override or extend the styles applied to the component.
+   * If `true`, the list item will be disabled.
    */
-  className: string
+  disabled: boolean
+
+  /**
+   * If `true`, the list item will have a divider.
+   */
+  divider: boolean
+
+  /**
+   * If `true`, the list item will have a focus ripple.
+   */
+  focusRipple: boolean
 
   /**
    * The component used for the root node.
@@ -31,32 +37,32 @@ export type MenuItemRefProperties = Readonly<{
   component: React.ElementType
 
   /**
-   * The container component used when a `ListItemSecondaryAction` is rendered.
+   * The container component used when a ListItem is rendered as a button.
    */
   ContainerComponent: React.ElementType
 
   /**
-   * Props applied to the container component if used.
+   * Properties applied to the container element when the component is used as a button.
    */
   ContainerProps: object
 
   /**
-   * If `true`, the left and right padding of the `ListItem` will be removed.
+   * The content of the component.
    */
-  dense: boolean
+  children: React.ReactNode
 
   /**
-   * If `true`, the component will be disabled.
+   * Override or extend the styles applied to the component.
    */
-  disabled: boolean
+  classes: object
 
   /**
-   * If `true`, the `ListItem` will be a button (using `ButtonBase`).
+   * The main container element className property.
    */
-  button: boolean
+  className: string
 
   /**
-   * If `true`, the `ListItem` will have the selected class.
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  selected: boolean
+  sx: object
 }>

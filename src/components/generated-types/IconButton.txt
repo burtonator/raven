@@ -1,7 +1,6 @@
 
 /**
- * The IconButton component is used to display a button with an icon.
- * It can be used to trigger an action or to navigate between views.
+ * The IconButton component is a button that contains an icon. It can be used as a standalone button or within other components.
  */
 export type ElementRef = IconButtonRef
 

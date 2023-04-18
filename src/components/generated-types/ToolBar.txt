@@ -1,8 +1,4 @@
 
-/**
- * The Toolbar component is a container for grouping and organizing UI elements.
- * It can be used as a standalone component or as part of other components like AppBar.
- */
 export type ElementRef = ToolbarRef
 
 export type ToolbarRef = Readonly<{
@@ -11,12 +7,17 @@ export type ToolbarRef = Readonly<{
 
 export type ToolbarRefProperties = Readonly<{
   /**
-   * The variant to use. It can be 'regular', 'dense', or 'prominent'.
+   * The variant to use.
    */
-  variant: 'regular' | 'dense' | 'prominent'
+  variant: 'regular' | 'dense'
 
   /**
-   * If true, the toolbar will have gutters.
+   * If true, the toolbar will be disabled.
+   */
+  disabled: boolean
+
+  /**
+   * If true, the toolbar will appear in a minimized state.
    */
   disableGutters: boolean
 }>

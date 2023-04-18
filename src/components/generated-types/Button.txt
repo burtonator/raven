@@ -12,47 +12,30 @@ export type ButtonRefProperties = Readonly<{
   /**
    * The content of the button.
    */
-  children?: React.ReactNode
+  children: string
 
   /**
-   * Override or extend the styles applied to the component.
+   * The color of the button. It supports those theme colors that make sense for this component.
    */
-  className?: string
-
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   */
-  color?: 'default' | 'inherit' | 'primary' | 'secondary'
+  color: 'default' | 'inherit' | 'primary' | 'secondary'
 
   /**
    * If `true`, the button will be disabled.
    */
-  disabled?: boolean
+  disabled: boolean
 
   /**
-   * If `true`, the  keyboard focus ripple will be disabled.
+   * If `true`, the button will take up the full width of its container.
    */
-  disableFocusRipple?: boolean
+  fullWidth: boolean
 
   /**
-   * If `true`, the ripple effect will be disabled.
+   * The size of the button. `small` is equivalent to the dense button styling.
    */
-  disableRipple?: boolean
-
-  /**
-   * The URL to link to when the button is clicked.
-   * If defined, an `a` element will be used as the root node.
-   */
-  href?: string
-
-  /**
-   * The size of the button.
-   * `small` is equivalent to the dense button styling.
-   */
-  size?: 'small' | 'medium' | 'large'
+  size: 'small' | 'medium' | 'large'
 
   /**
    * The variant to use.
    */
-  variant?: 'text' | 'outlined' | 'contained'
+  variant: 'text' | 'outlined' | 'contained'
 }>

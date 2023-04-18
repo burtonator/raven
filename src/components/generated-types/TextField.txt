@@ -1,11 +1,10 @@
 
-/**
- * TextField is a Material-UI component that provides a user input field with a label and optional helper text.
- * It supports various input types, such as text, password, number, email, etc.
- * It can also display validation error messages and adornments like icons.
- */
 export type ElementRef = TextFieldRef
 
+/**
+ * TextField is a Material-UI component that provides a user input field with a label and optional helper text.
+ * It supports standard text input, as well as select input and multiline input.
+ */
 export type TextFieldRef = Readonly<{
   TextField: TextFieldRefProperties
 }>
@@ -17,27 +16,44 @@ export type TextFieldRefProperties = Readonly<{
   label: string
 
   /**
-   * The type of input to display, such as 'text', 'password', 'number', 'email', etc.
-   * @default 'text'
+   * The short hint displayed in the input before the user enters a value.
+   */
+  placeholder: string
+
+  /**
+   * The type of input to display such as "password", "email", "number", etc.
    */
   type: string
 
   /**
-   * The value of the input element.
-   */
-  value: string | number
-
-  /**
-   * If `true`, the input element will be disabled.
-   * @default false
+   * If `true`, the input will be disabled.
    */
   disabled: boolean
 
   /**
    * If `true`, the label will be displayed in an error state.
-   * @default false
    */
   error: boolean
+
+  /**
+   * If `true`, the input will take up the full width of its container.
+   */
+  fullWidth: boolean
+
+  /**
+   * If `true`, the label is hidden when the input is focused and filled.
+   */
+  shrink: boolean
+
+  /**
+   * If `true`, the input will be required.
+   */
+  required: boolean
+
+  /**
+   * The variant to use. Use "outlined" for the default Material Design style.
+   */
+  variant: 'standard' | 'outlined' | 'filled'
 
   /**
    * The helper text content.
@@ -45,32 +61,17 @@ export type TextFieldRefProperties = Readonly<{
   helperText: string
 
   /**
-   * If `true`, the label is hidden when the input is empty and not focused.
-   * @default false
+   * If `true`, the helper text is displayed in an error state.
    */
-  shrink: boolean
+  helperTextError: boolean
 
   /**
-   * If `true`, the input will take up the full width of its container.
-   * @default false
+   * If `true`, the helper text is displayed below the input.
    */
-  fullWidth: boolean
-
-  /**
-   * The variant to use.
-   * @default 'outlined'
-   */
-  variant: 'standard' | 'outlined' | 'filled'
-
-  /**
-   * If `true`, the input will be required.
-   * @default false
-   */
-  required: boolean
+  helperTextBelow: boolean
 
   /**
    * If `true`, the input will be multiline.
-   * @default false
    */
   multiline: boolean
 
@@ -85,12 +86,32 @@ export type TextFieldRefProperties = Readonly<{
   rowsMax: number
 
   /**
-   * The adornment to display before the input.
+   * If `true`, a textarea element will be rendered instead of an input.
    */
-  InputProps_startAdornment: React.ReactNode
+  textarea: boolean
 
   /**
-   * The adornment to display after the input.
+   * If `true`, the input will have an autoComplete attribute.
    */
-  InputProps_endAdornment: React.ReactNode
+  autoComplete: boolean
+
+  /**
+   * The value of the input element, required for a controlled component.
+   */
+  value: string | number
+
+  /**
+   * The default value of the input element.
+   */
+  defaultValue: string | number
+
+  /**
+   * The name attribute of the input element.
+   */
+  name: string
+
+  /**
+   * The id of the input element.
+   */
+  id: string
 }>

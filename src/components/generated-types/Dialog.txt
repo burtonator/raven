@@ -13,76 +13,60 @@ export type DialogRefProperties = Readonly<{
    * If `true`, the component is shown.
    */
   open: boolean
+
   /**
-   * The system layer that the dialog will be added to.
+   * The system layer the dialog is a part of. The backdrop has zIndex `theme.zIndex[value]`.
    */
-  container?: HTMLElement | (() => HTMLElement) | null
+  zIndex: number
+
   /**
    * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
    */
-  transitionDuration?: number | { enter?: number; exit?: number }
+  transitionDuration: number | { enter?: number; exit?: number }
+
   /**
    * The variant to use.
    */
-  variant?: 'standard' | 'outlined' | 'filled'
+  variant: 'standard' | 'outlined' | 'filled'
+
   /**
-   * If `true`, the dialog will be full-screen.
+   * The width of the dialog.
    */
-  fullScreen?: boolean
+  maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
+
   /**
    * If `true`, clicking the backdrop will not fire the `onClose` callback.
    */
-  disableBackdropClick?: boolean
+  disableBackdropClick: boolean
+
   /**
    * If `true`, hitting escape will not fire the `onClose` callback.
    */
-  disableEscapeKeyDown?: boolean
+  disableEscapeKeyDown: boolean
+
   /**
-   * If `true`, the backdrop is not rendered.
+   * If `true`, the dialog is full-screen.
    */
-  hideBackdrop?: boolean
+  fullScreen: boolean
+
   /**
-   * If `true`, the dialog is maxWidth `xs`.
+   * If `true`, the dialog stretches to `maxWidth`.
    */
-  fullWidth?: boolean
+  fullWidth: boolean
+
   /**
-   * Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`.
+   * Determine the container for scrolling the dialog.
    */
-  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
-  /**
-   * Callback fired when the component requests to be closed.
-   */
-  onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void
-  /**
-   * Callback fired before the dialog enters.
-   */
-  onEnter?: () => void
-  /**
-   * Callback fired when the dialog has entered.
-   */
-  onEntered?: () => void
-  /**
-   * Callback fired when the dialog is entering.
-   */
-  onEntering?: () => void
-  /**
-   * Callback fired before the dialog exits.
-   */
-  onExit?: () => void
-  /**
-   * Callback fired when the dialog has exited.
-   */
-  onExited?: () => void
-  /**
-   * Callback fired when the dialog is exiting.
-   */
-  onExiting?: () => void
+  scroll: 'body' | 'paper'
+
   /**
    * The component used for the transition.
    */
-  TransitionComponent?: React.ComponentType<TransitionProps>
+  TransitionComponent: React.ComponentType<TransitionProps>
+
   /**
    * Props applied to the `Transition` element.
    */
-  TransitionProps?: TransitionProps
+  TransitionProps: TransitionProps
 }>

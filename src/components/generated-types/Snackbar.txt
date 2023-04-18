@@ -10,75 +10,40 @@ export type SnackbarRef = Readonly<{
 
 export type SnackbarRefProperties = Readonly<{
   /**
-   * The action to display. It renders after the message, at the end of the snackbar.
-   */
-  action: React.ReactNode
-
-  /**
-   * The anchor of the `Snackbar`.
-   */
-  anchorOrigin: {
-    horizontal: 'left' | 'center' | 'right'
-    vertical: 'top' | 'bottom'
-  }
-
-  /**
-   * The number of milliseconds to wait before automatically calling the `onClose` function.
+   * The number of milliseconds to wait before automatically calling the onClose function.
    */
   autoHideDuration: number
 
   /**
-   * Replace the `SnackbarContent` component.
-   */
-  ContentProps: Partial<SnackbarContentProps>
-
-  /**
-   * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
+   * If true, the component will cause the screen to dim and the Snackbar to be positioned in the center of the screen.
    */
   disableWindowBlurListener: boolean
 
   /**
-   * The message to display.
+   * If true, the Snackbar is positioned at the bottom of the screen.
    */
-  message: React.ReactNode
+  anchorOrigin: {
+    vertical: 'top' | 'bottom'
+    horizontal: 'left' | 'center' | 'right'
+  }
 
   /**
-   * Callback fired when the component requests to be closed.
-   */
-  onClose: (event: React.SyntheticEvent<any>, reason: string) => void
-
-  /**
-   * If `true`, `Snackbar` is open.
+   * If true, the Snackbar will be displayed.
    */
   open: boolean
 
   /**
-   * The ARIA role attribute of the element.
+   * The message to display.
    */
-  role: string
-
-  /**
-   * The severity of the `Snackbar`. Used in combination with `variant="filled"`.
-   */
-  severity: 'success' | 'error' | 'warning' | 'info'
-
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: SxProps<Theme>
+  message: string
 
   /**
    * The component used for the transition.
    */
-  TransitionComponent: React.ComponentType<TransitionProps>
+  TransitionComponent: React.ComponentType
 
   /**
-   * The duration for the transition, in milliseconds.
+   * Properties applied to the transition element.
    */
-  transitionDuration: number | { enter?: number; exit?: number }
-
-  /**
-   * The props used for the `Transition` component.
-   */
-  TransitionProps: TransitionProps
+  TransitionProps: object
 }>

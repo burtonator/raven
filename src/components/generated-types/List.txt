@@ -1,11 +1,9 @@
 
-/**
- * Lists are a continuous group of text or images. They are composed of items
- * containing primary and supplemental actions, which are represented by icons
- * and text.
- */
 export type ElementRef = ListRef
 
+/**
+ * The List component is a simple wrapper for the <ul> element that provides Material UI styling.
+ */
 export type ListRef = Readonly<{
   List: ListRefProperties
 }>
@@ -19,25 +17,25 @@ export type ListRefProperties = Readonly<{
   /**
    * Override or extend the styles applied to the component.
    */
-  className?: string
+  classes?: object
 
   /**
-   * If `true`, compact vertical padding is applied to all ListItem children.
+   * The color of the component. It supports those theme colors that make sense for this component.
    */
-  dense?: boolean
+  color?: 'default' | 'primary' | 'secondary'
 
   /**
-   * If `true`, vertical padding is removed from the list.
-   */
-  disablePadding?: boolean
-
-  /**
-   * The component used for the root node. Either a string to use a HTML element or a component.
+   * The component used for the root node. Either a string to use a DOM element or a component.
    */
   component?: React.ElementType
 
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
+   * The position of the content.
    */
-  sx?: SxProps<Theme>
+  dense?: boolean
+
+  /**
+   * If true, vertical padding is removed from the list.
+   */
+  disablePadding?: boolean
 }>

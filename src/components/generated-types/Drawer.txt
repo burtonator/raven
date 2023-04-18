@@ -9,23 +9,12 @@ export type DrawerRef = Readonly<{
 }>
 
 export type DrawerRefProperties = Readonly<{
-  /**
-   * Side from which the drawer will appear.
-   */
   anchor: 'left' | 'top' | 'right' | 'bottom'
-
-  /**
-   * The contents of the drawer.
-   */
-  children: React.ReactNode
-
-  /**
-   * If true, the drawer is open.
-   */
+  elevation: number
+  ModalProps: Partial<ModalRefProperties>
   open: boolean
-
-  /**
-   * The variant to use.
-   */
+  PaperProps: Partial<PaperRefProperties>
+  SlideProps: Partial<SlideRefProperties>
+  transitionDuration: number | { enter?: number; exit?: number }
   variant: 'permanent' | 'persistent' | 'temporary'
 }>

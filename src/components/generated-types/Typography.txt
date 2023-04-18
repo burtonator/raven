@@ -1,7 +1,7 @@
 
 /**
  * Typography component is used to present text in a consistent and readable manner.
- * It provides a set of predefined styles for different text elements, such as headings, paragraphs, and more.
+ * It provides a set of predefined styles and variants that can be applied to text elements.
  */
 export type ElementRef = TypographyRef
 
@@ -11,7 +11,7 @@ export type TypographyRef = Readonly<{
 
 export type TypographyRefProperties = Readonly<{
   /**
-   * The text alignment of the component.
+   * The text alignment of the content.
    */
   align: 'inherit' | 'left' | 'center' | 'right' | 'justify'
 
@@ -28,7 +28,27 @@ export type TypographyRefProperties = Readonly<{
     | 'error'
 
   /**
-   * The variant of the component.
+   * Controls the display type.
+   */
+  display: 'initial' | 'block' | 'inline'
+
+  /**
+   * If true, the text will have a bottom margin.
+   */
+  gutterBottom: boolean
+
+  /**
+   * If true, the text will not wrap, but instead will truncate with an ellipsis.
+   */
+  noWrap: boolean
+
+  /**
+   * If true, the text will have a bottom margin.
+   */
+  paragraph: boolean
+
+  /**
+   * Applies the theme typography styles.
    */
   variant:
     | 'h1'
@@ -48,17 +68,14 @@ export type TypographyRefProperties = Readonly<{
     | 'inherit'
 
   /**
-   * If true, the text will have a bottom margin.
+   * The component maps the variant prop to a range of different HTML element types.
+   * For instance, subtitle1 to h6. If you wish to change that mapping, you can provide your own.
+   * Alternatively, you can use the component property.
    */
-  gutterBottom: boolean
-
-  /**
-   * If true, the text will not wrap, but instead will truncate with an ellipsis.
-   */
-  noWrap: boolean
-
-  /**
-   * The paragraph attribute of the component.
-   */
-  paragraph: boolean
+  variantMapping: Partial<
+    Record<
+      'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline',
+      string
+    >
+  >
 }>

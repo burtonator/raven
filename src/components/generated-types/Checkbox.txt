@@ -31,79 +31,32 @@ export type CheckboxRefProperties = Readonly<{
   disableRipple: boolean
 
   /**
+   * The icon to display when the component is unchecked.
+   */
+  icon: JSX.Element
+
+  /**
+   * The icon to display when the component is checked.
+   */
+  checkedIcon: JSX.Element
+
+  /**
+   * If `true`, the component appears indeterminate.
+   */
+  indeterminate: boolean
+
+  /**
+   * The icon to display when the component is indeterminate.
+   */
+  indeterminateIcon: JSX.Element
+
+  /**
    * The value of the component. The DOM API casts this to a string.
    */
   value: any
 
   /**
-   * The input component prop `type`.
-   */
-  inputProps: InputProps
-
-  /**
-   * Attributes applied to the `input` element.
-   */
-  inputRef: any
-
-  /**
-   * Pass a ref to the `input` element.
-   */
-  checkedIcon: React.ReactNode
-
-  /**
-   * The icon to display when the component is checked.
-   */
-  icon: React.ReactNode
-
-  /**
-   * The icon to display when the component is unchecked.
-   */
-  indeterminate: boolean
-
-  /**
-   * If `true`, the component appears indeterminate.
-   */
-  indeterminateIcon: React.ReactNode
-
-  /**
-   * The icon to display when the component is indeterminate.
-   */
-  name: string
-
-  /**
-   * Name attribute of the `input` element.
-   */
-  required: boolean
-
-  /**
-   * If `true`, the `input` element will be required.
-   */
-  size: 'small' | 'medium'
-
-  /**
    * The size of the checkbox. `small` is equivalent to the dense checkbox styling.
    */
-  tabIndex: number
-
-  /**
-   * The value of the `tabIndex` attribute of the `input` element.
-   */
-  valueLabel: string
-
-  /**
-   * The value of the `aria-valuetext` attribute of the `input` element.
-   */
-}>
-
-export type InputProps = Readonly<{
-  autoComplete: string
-  autoFocus: boolean
-  defaultValue: any
-  disabled: boolean
-  id: string
-  name: string
-  readOnly: boolean
-  required: boolean
-  type: string
-  value: any
+  size: 'medium' | 'small'
 }>
