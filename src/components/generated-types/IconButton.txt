@@ -1,0 +1,16 @@
+
+/**
+ * Icon buttons are buttons that contain icons. Icon buttons are commonly used in the AppBar component to provide contextual actions to the user.
+ */
+export type IconButtonRef = Readonly<{
+  IconButton: IconButtonRefProperties
+}>
+
+export type IconButtonRefProperties = Readonly<{
+  color?: 'inherit' | 'primary' | 'secondary' | 'default'
+  disabled?: boolean
+  disableFocusRipple?: boolean
+  disableRipple?: boolean
+  edge?: 'start' | 'end' | false
+  size?: 'small' | 'medium'
+}>

@@ -1,0 +1,24 @@
+
+/**
+ * The Grid component is used to layout and align items in a grid.
+ */
+export type GridRef = Readonly<{
+  Grid: GridRefProperties
+}>
+
+export type GridRefProperties = Readonly<{
+  container?: boolean
+  item?: boolean
+  xs?: boolean | number
+  sm?: boolean | number
+  md?: boolean | number
+  lg?: boolean | number
+  xl?: boolean | number
+  zeroMinWidth?: boolean
+  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
+  justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
+  alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline'
+  alignContent?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'space-between' | 'space-around'
+  spacing?: number
+  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
+}> & React.HTMLAttributes<HTMLDivElement>

@@ -17,4 +17,4 @@ export type ButtonRefProperties = Readonly<{
   startIcon?: React.ReactNode
   endIcon?: React.ReactNode
   variant?: 'text' | 'outlined' | 'contained'
-}> & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color' | 'size' | 'startIcon' | 'endIcon' | 'variant'>
+}> & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'color' | 'size' | 'variant'>

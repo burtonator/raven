@@ -1,0 +1,12 @@
+
+/**
+ * A Card is a piece of paper with unique related data that serves as an entry point to more detailed information.
+ */
+export type CardRef = Readonly<{
+  Card: CardRefProperties
+}>
+
+export type CardRefProperties = Readonly<{
+  raised?: boolean
+  variant?: 'elevation' | 'outlined'
+}>
