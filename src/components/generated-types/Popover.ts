@@ -18,16 +18,13 @@ export type PopoverRefProperties = Readonly<{
   getContentAnchorEl: null
   marginThreshold: number
   modal: boolean
-  onClose: (event: React.SyntheticEvent, reason: 'backdropClick' | 'escapeKeyDown') => void
   open: boolean
-  PaperComponent: React.ComponentType
   // PaperProps: Partial<PaperRefProperties>
-  role: string
   transformOrigin: {
     vertical: 'top' | 'center' | 'bottom'
     horizontal: 'left' | 'center' | 'right'
   }
-  TransitionComponent: React.ComponentType
   transitionDuration: number | { enter?: number, exit?: number }
-  TransitionProps: Partial<TransitionRefProperties>
+  // TransitionComponent: React.ComponentType
+  // TransitionProps: Partial<TransitionRefProperties>
 }>

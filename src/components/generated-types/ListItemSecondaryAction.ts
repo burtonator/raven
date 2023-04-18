@@ -4,5 +4,4 @@ export type ListItemSecondaryActionRef = Readonly<{
 }>
 
 export type ListItemSecondaryActionRefProperties = Readonly<{
-  edge: 'end' | 'start'
 }>

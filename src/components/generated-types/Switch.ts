@@ -9,9 +9,7 @@ export type SwitchRefProperties = Readonly<{
   disabled: boolean
   disableRipple: boolean
   edge: 'start' | 'end' | false
-  // icon: React.ReactElement
-  // checkedIcon: React.ReactElement
-  inputProps: any
+  inputProps: Readonly<{ [key: string]: any }>
   name: string
   required: boolean
   tabIndex: number

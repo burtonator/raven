@@ -25,24 +25,25 @@ export type AutocompleteRefProperties = Readonly<{
   getOptionLabel: (option: any) => string
   getOptionSelected: (option: any, value: any) => boolean
   groupBy: (option: any) => string
+  handleHomeEndKeys: boolean
   id: string
   includeInputInList: boolean
   inputValue: string
   limitTags: number
   loading: boolean
-  loadingText: string | false
+  loadingText: string
   multiple: boolean
-  noOptionsText: string | false
+  noOptionsText: string
   open: boolean
   openOnFocus: boolean
   openText: string
   options: any[]
   pageSize: number
   popupIcon: boolean | 'auto'
-  renderGroup: (params: any) => React.ReactNode
-  renderInput: (params: any) => React.ReactElement
-  renderOption: (option: any, state: any) => React.ReactNode
-  renderTags: (value: any[], getTagProps: any) => React.ReactNode
+  renderGroup: (params: any) => JSX.Element
+  renderInput: (params: any) => JSX.Element
+  renderOption: (option: any, state: any) => JSX.Element
+  renderTags: (value: any[], getTagProps: any) => JSX.Element[]
   selectOnFocus: boolean
   size: 'small' | 'medium'
   value: any

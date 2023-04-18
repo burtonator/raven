@@ -12,7 +12,8 @@ export type RatingRefProperties = Readonly<{
   icon: boolean
   max: number
   name: string
-  precision: number | 'auto'
+  onChangeActive: (event: any, value: number) => void
+  precision: number
   readOnly: boolean
   size: 'small' | 'medium' | 'large'
   value: number | null

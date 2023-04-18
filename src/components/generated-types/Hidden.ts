@@ -10,7 +10,7 @@ export type HiddenRefProperties = Readonly<{
   lgUp: boolean
   mdDown: boolean
   mdUp: boolean
-  only: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | ('xs' | 'sm' | 'md' | 'lg' | 'xl')[]
+  only: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | Array<'xs' | 'sm' | 'md' | 'lg' | 'xl'>
   smDown: boolean
   smUp: boolean
   xlDown: boolean

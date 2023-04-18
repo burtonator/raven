@@ -4,7 +4,7 @@ export type RefreshIndicatorRef = Readonly<{
 }>
 
 export type RefreshIndicatorRefProperties = Readonly<{
-  color: 'primary' | 'secondary'
+  color: 'primary' | 'secondary' | 'inherit'
   left: number
   size: number | string
   status: 'ready' | 'loading' | 'hide'

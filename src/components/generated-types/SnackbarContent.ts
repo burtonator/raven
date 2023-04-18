@@ -6,5 +6,5 @@ export type SnackbarContentRef = Readonly<{
 export type SnackbarContentRefProperties = Readonly<{
   action: any
   message: any
-  role: string
+  variant: 'default' | 'error' | 'info' | 'success' | 'warning'
 }>

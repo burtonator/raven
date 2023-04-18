@@ -15,7 +15,7 @@ export type OutlinedInputRefProperties = Readonly<{
   inputProps: any
   label: string
   labelWidth: number
-  margin: 'dense' | 'none' | 'normal'
+  margin: 'dense' | 'none'
   multiline: boolean
   name: string
   notched: boolean

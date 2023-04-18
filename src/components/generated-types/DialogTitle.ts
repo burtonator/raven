@@ -5,5 +5,4 @@ export type DialogTitleRef = Readonly<{
 
 export type DialogTitleRefProperties = Readonly<{
   disableTypography: boolean
-  id: string
 }>

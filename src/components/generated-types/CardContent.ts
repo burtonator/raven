@@ -4,5 +4,4 @@ export type CardContentRef = Readonly<{
 }>
 
 export type CardContentRefProperties = Readonly<{
-  disableTypography: boolean
 }>

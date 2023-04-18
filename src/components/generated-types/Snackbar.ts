@@ -10,13 +10,12 @@ export type SnackbarRefProperties = Readonly<{
     vertical: 'top' | 'bottom'
   }
   autoHideDuration: number
-  // ContentProps: Partial<SnackbarContentRefProperties>
+  // ClickAwayListenerProps: Partial<ClickAwayListenerRefProperties>
+  ContentProps: any
   disableWindowBlurListener: boolean
   key: any
   message: any
   onClose: any
-  onMouseEnter: any
-  onMouseLeave: any
   open: boolean
   resumeHideDuration: number
   TransitionComponent: any

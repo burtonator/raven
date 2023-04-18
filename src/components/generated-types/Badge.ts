@@ -8,7 +8,7 @@ export type BadgeRefProperties = Readonly<{
     horizontal: 'left' | 'right'
     vertical: 'top' | 'bottom'
   }
-  badgeContent: any
+  badgeContent: number | string
   color: 'default' | 'primary' | 'secondary' | 'error'
   invisible: boolean
   max: number

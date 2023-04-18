@@ -4,4 +4,5 @@ export type TableBodyRef = Readonly<{
 }>
 
 export type TableBodyRefProperties = Readonly<{
+  component: keyof JSX.IntrinsicElements | React.ComponentType<any>
 }>

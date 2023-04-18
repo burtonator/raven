@@ -11,6 +11,6 @@ export type StepButtonRefProperties = Readonly<{
   expanded: boolean
   icon: any
   last: boolean
-  optional: any
+  optional: boolean
   orientation: 'horizontal' | 'vertical'
 }>

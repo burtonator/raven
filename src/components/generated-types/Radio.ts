@@ -8,7 +8,7 @@ export type RadioRefProperties = Readonly<{
   color: 'default' | 'primary' | 'secondary'
   disabled: boolean
   disableRipple: boolean
-  // inputProps: InputHTMLAttributes<HTMLInputElement>
+  inputProps: any
   name: string
   required: boolean
   value: any

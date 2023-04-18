@@ -4,5 +4,5 @@ export type PortalRef = Readonly<{
 }>
 
 export type PortalRefProperties = Readonly<{
-  container: HTMLElement | null
+  container: HTMLElement | (() => HTMLElement) | null
 }>

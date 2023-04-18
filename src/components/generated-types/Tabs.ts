@@ -4,7 +4,6 @@ export type TabsRef = Readonly<{
 }>
 
 export type TabsRefProperties = Readonly<{
-  action: (actions: TabsActions) => void
   centered: boolean
   indicatorColor: 'secondary' | 'primary'
   onChange: (event: React.ChangeEvent<{}>, value: any) => void
@@ -15,8 +14,3 @@ export type TabsRefProperties = Readonly<{
   value: any
   variant: 'standard' | 'scrollable' | 'fullWidth'
 }>
-
-export interface TabsActions {
-  updateIndicator(): void
-  updateScrollButtons(): void
-}

@@ -16,10 +16,11 @@ export type TooltipRefProperties = Readonly<{
   interactive: boolean
   leaveDelay: number
   leaveTouchDelay: number
+  onClose: (event: React.SyntheticEvent) => void
+  onOpen: (event: React.SyntheticEvent) => void
   open: boolean
   placement: 'bottom-end' | 'bottom-start' | 'bottom' | 'left-end' | 'left-start' | 'left' | 'right-end' | 'right-start' | 'right' | 'top-end' | 'top-start' | 'top'
   title: string
-  TransitionComponent: any
-  transitionDuration: number | { enter?: number, exit?: number }
-  TransitionProps: any
+  TransitionComponent: React.ComponentType
+  transitionDuration: number | { appear?: number, enter?: number, exit?: number }
 }>

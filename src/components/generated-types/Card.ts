@@ -5,5 +5,4 @@ export type CardRef = Readonly<{
 
 export type CardRefProperties = Readonly<{
   raised: boolean
-  square: boolean
 }>

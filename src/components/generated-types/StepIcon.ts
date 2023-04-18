@@ -7,4 +7,5 @@ export type StepIconRefProperties = Readonly<{
   active: boolean
   completed: boolean
   error: boolean
+  icon: number | string
 }>

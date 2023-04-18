@@ -4,7 +4,6 @@ export type FormControlRef = Readonly<{
 }>
 
 export type FormControlRefProperties = Readonly<{
-  color: 'primary' | 'secondary'
   disabled: boolean
   error: boolean
   fullWidth: boolean

@@ -4,4 +4,6 @@ export type DialogContentTextRef = Readonly<{
 }>
 
 export type DialogContentTextRefProperties = Readonly<{
+  id: string
+  tabIndex: number
 }>

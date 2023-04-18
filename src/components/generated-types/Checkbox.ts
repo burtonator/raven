@@ -11,7 +11,7 @@ export type CheckboxRefProperties = Readonly<{
   edge: 'start' | 'end' | false
   indeterminate: boolean
   inputProps: any
-  name: string
-  required: boolean
+  // onChange: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void
+  size: 'small' | 'medium'
   value: any
 }>

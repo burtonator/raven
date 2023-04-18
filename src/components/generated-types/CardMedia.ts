@@ -4,8 +4,7 @@ export type CardMediaRef = Readonly<{
 }>
 
 export type CardMediaRefProperties = Readonly<{
-  component: string
-  height: string | number
+  aspectRatio: 'auto' | '1:1' | '4:3' | '16:9'
   image: string
   src: string
 }>

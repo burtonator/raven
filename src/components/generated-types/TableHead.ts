@@ -4,4 +4,5 @@ export type TableHeadRef = Readonly<{
 }>
 
 export type TableHeadRefProperties = Readonly<{
+  component: string
 }>

@@ -10,6 +10,6 @@ export type DialogRefProperties = Readonly<{
   fullWidth: boolean
   maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
   open: boolean
-  scroll: 'paper' | 'body'
-  transitionDuration: number | { enter?: number; exit?: number }
+  scroll: 'body' | 'paper'
+  transitionDuration: number | { enter?: number, exit?: number }
 }>

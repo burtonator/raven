@@ -19,8 +19,8 @@ export type TextFieldRefProperties = Readonly<{
   name: string
   placeholder: string
   required: boolean
-  rows: number
-  rowsMax: number
+  rows: number | string
+  rowsMax: number | string
   select: boolean
   size: 'small' | 'medium'
   type: string

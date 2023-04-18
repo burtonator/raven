@@ -8,10 +8,22 @@ export type PopperRefProperties = Readonly<{
   container: HTMLElement | (() => HTMLElement) | null
   disablePortal: boolean
   keepMounted: boolean
-  modifiers: Array<Partial<PopperJS.Modifier<any>>>
   open: boolean
-  placement: PopperJS.Placement
-  popperOptions: Partial<PopperJS.Options>
-  popperRef: React.Ref<PopperJS>
+  placement: PopperPlacement
   transition: boolean
 }>
+
+export enum PopperPlacement {
+  BottomEnd = 'bottom-end',
+  BottomStart = 'bottom-start',
+  Bottom = 'bottom',
+  LeftEnd = 'left-end',
+  LeftStart = 'left-start',
+  Left = 'left',
+  RightEnd = 'right-end',
+  RightStart = 'right-start',
+  Right = 'right',
+  TopEnd = 'top-end',
+  TopStart = 'top-start',
+  Top = 'top'
+}

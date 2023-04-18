@@ -6,6 +6,5 @@ export type CardActionAreaRef = Readonly<{
 export type CardActionAreaRefProperties = Readonly<{
   disableRipple: boolean
   disableTouchRipple: boolean
-  focusHighlight: 'auto' | 'always' | 'never'
   focusVisibleClassName: string
 }>

@@ -4,11 +4,12 @@ export type MenuItemRef = Readonly<{
 }>
 
 export type MenuItemRefProperties = Readonly<{
-  button: boolean
+  autoFocus: boolean
   dense: boolean
   disabled: boolean
   disableGutters: boolean
   divider: boolean
   focusVisibleClassName: string
+  role: string
   selected: boolean
 }>

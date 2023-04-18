@@ -13,14 +13,14 @@ export type InputRefProperties = Readonly<{
   id: string
   inputComponent: any
   inputProps: any
-  margin: 'dense' | 'none'
+  margin: 'dense' | 'none' | 'normal'
   multiline: boolean
   name: string
   placeholder: string
   readOnly: boolean
   required: boolean
-  rows: number
-  rowsMax: number
+  rows: number | string
+  rowsMax: number | string
   type: string
   value: any
 }>

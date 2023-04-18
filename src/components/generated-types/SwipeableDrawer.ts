@@ -13,7 +13,6 @@ export type SwipeableDrawerRefProperties = Readonly<{
   onClose: (event: React.KeyboardEvent | React.MouseEvent) => void
   onOpen: (event: React.KeyboardEvent | React.MouseEvent) => void
   open: boolean
-  // SwipeAreaProps: Partial<SwipeAreaRefProperties>
   swipeAreaWidth: number
-  transitionDuration: number | { enter?: number; exit?: number }
+  transitionDuration: number | { enter?: number, exit?: number }
 }>
