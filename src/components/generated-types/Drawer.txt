@@ -1,7 +1,5 @@
 
-/**
- * The Drawer component is a dismissible or permanently visible panel used for navigation in responsive web applications.
- */
+// Drawer component is a responsive drawer that can be permanently visible, or opened and closed by tapping a navigation menu icon or when the user swipes.
 export type ElementRef = DrawerRef
 
 export type DrawerRef = Readonly<{
@@ -11,10 +9,9 @@ export type DrawerRef = Readonly<{
 export type DrawerRefProperties = Readonly<{
   anchor: 'left' | 'top' | 'right' | 'bottom'
   elevation: number
-  ModalProps: Partial<ModalRefProperties>
+  ModalProps: object
   open: boolean
-  PaperProps: Partial<PaperRefProperties>
-  SlideProps: Partial<SlideRefProperties>
-  transitionDuration: number | { enter?: number; exit?: number }
+  PaperProps: object
+  SlideProps: object
   variant: 'permanent' | 'persistent' | 'temporary'
 }>

@@ -1,117 +1,102 @@
 
+// TextField component allows users to input text and provides a label and helper text for additional information.
 export type ElementRef = TextFieldRef
 
-/**
- * TextField is a Material-UI component that provides a user input field with a label and optional helper text.
- * It supports standard text input, as well as select input and multiline input.
- */
 export type TextFieldRef = Readonly<{
   TextField: TextFieldRefProperties
 }>
 
 export type TextFieldRefProperties = Readonly<{
-  /**
-   * The label content.
-   */
-  label: string
-
-  /**
-   * The short hint displayed in the input before the user enters a value.
-   */
-  placeholder: string
-
-  /**
-   * The type of input to display such as "password", "email", "number", etc.
-   */
+  // The type of input to display such as "text", "email", "password", etc.
   type: string
 
-  /**
-   * If `true`, the input will be disabled.
-   */
-  disabled: boolean
+  // The label text displayed above the input field.
+  label: string
 
-  /**
-   * If `true`, the label will be displayed in an error state.
-   */
-  error: boolean
-
-  /**
-   * If `true`, the input will take up the full width of its container.
-   */
-  fullWidth: boolean
-
-  /**
-   * If `true`, the label is hidden when the input is focused and filled.
-   */
-  shrink: boolean
-
-  /**
-   * If `true`, the input will be required.
-   */
-  required: boolean
-
-  /**
-   * The variant to use. Use "outlined" for the default Material Design style.
-   */
-  variant: 'standard' | 'outlined' | 'filled'
-
-  /**
-   * The helper text content.
-   */
+  // The helper text displayed below the input field.
   helperText: string
 
-  /**
-   * If `true`, the helper text is displayed in an error state.
-   */
-  helperTextError: boolean
+  // If true, the input field will be disabled.
+  disabled: boolean
 
-  /**
-   * If `true`, the helper text is displayed below the input.
-   */
-  helperTextBelow: boolean
+  // If true, the input field will be required.
+  required: boolean
 
-  /**
-   * If `true`, the input will be multiline.
-   */
-  multiline: boolean
+  // If true, the input field will be read-only.
+  readOnly: boolean
 
-  /**
-   * Number of rows to display when multiline option is set to true.
-   */
-  rows: number
+  // If true, the input field will have an error state.
+  error: boolean
 
-  /**
-   * Maximum number of rows to display when multiline option is set to true.
-   */
-  rowsMax: number
-
-  /**
-   * If `true`, a textarea element will be rendered instead of an input.
-   */
-  textarea: boolean
-
-  /**
-   * If `true`, the input will have an autoComplete attribute.
-   */
-  autoComplete: boolean
-
-  /**
-   * The value of the input element, required for a controlled component.
-   */
+  // The value of the input field.
   value: string | number
 
-  /**
-   * The default value of the input element.
-   */
+  // The default value of the input field.
   defaultValue: string | number
 
-  /**
-   * The name attribute of the input element.
-   */
+  // The variant to use for the input field. Can be "standard", "outlined", or "filled".
+  variant: 'standard' | 'outlined' | 'filled'
+
+  // The size of the input field. Can be "small" or "medium".
+  size: 'small' | 'medium'
+
+  // The width of the input field.
+  fullWidth: boolean
+
+  // The margin applied to the input field. Can be "none", "dense", or "normal".
+  margin: 'none' | 'dense' | 'normal'
+
+  // The id of the input element.
+  id: string
+
+  // The name attribute of the input element.
   name: string
 
-  /**
-   * The id of the input element.
-   */
-  id: string
+  // The autoComplete attribute of the input element.
+  autoComplete: string
+
+  // The autoFocus attribute of the input element.
+  autoFocus: boolean
+
+  // The inputMode attribute of the input element.
+  inputMode: string
+
+  // The min attribute of the input element.
+  min: string
+
+  // The max attribute of the input element.
+  max: string
+
+  // The minLength attribute of the input element.
+  minLength: number
+
+  // The maxLength attribute of the input element.
+  maxLength: number
+
+  // The step attribute of the input element.
+  step: string | number
+
+  // The pattern attribute of the input element.
+  pattern: string
+
+  // The placeholder attribute of the input element.
+  placeholder: string
+
+  // The rows attribute of the input element.
+  rows: number
+
+  // The rowsMax attribute of the input element.
+  rowsMax: number
+
+  // The rowsMin attribute of the input element.
+  rowsMin: number
+
+  // The select attribute of the input element.
+  select: boolean
+
+  // The tabIndex attribute of the input element.
+  tabIndex: number
+
+  // The inputProps attribute of the input element.
+  inputProps: object
 }>

@@ -1,8 +1,4 @@
 
-/**
- * Typography component is used to present text in a consistent and readable manner.
- * It provides a set of predefined styles and variants that can be applied to text elements.
- */
 export type ElementRef = TypographyRef
 
 export type TypographyRef = Readonly<{
@@ -10,72 +6,30 @@ export type TypographyRef = Readonly<{
 }>
 
 export type TypographyRefProperties = Readonly<{
-  /**
-   * The text alignment of the content.
-   */
-  align: 'inherit' | 'left' | 'center' | 'right' | 'justify'
+  // The component used for the root node. Either a string to use a HTML element or a component.
+  component: string | React.ComponentType
 
-  /**
-   * The color of the component.
-   */
-  color:
-    | 'initial'
-    | 'inherit'
-    | 'primary'
-    | 'secondary'
-    | 'textPrimary'
-    | 'textSecondary'
-    | 'error'
+  // Applies the theme typography styles.
+  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline' | 'srOnly' | 'inherit'
 
-  /**
-   * Controls the display type.
-   */
-  display: 'initial' | 'block' | 'inline'
-
-  /**
-   * If true, the text will have a bottom margin.
-   */
+  // If true, the text will have a bottom margin.
   gutterBottom: boolean
 
-  /**
-   * If true, the text will not wrap, but instead will truncate with an ellipsis.
-   */
+  // If true, the text will not wrap, but instead will truncate with an ellipsis.
   noWrap: boolean
 
-  /**
-   * If true, the text will have a bottom margin.
-   */
+  // If true, the text will have a line through.
+  strikethrough: boolean
+
+  // If true, the text will be underlined.
+  underline: boolean
+
+  // Set the text-align on the component.
+  align: 'inherit' | 'left' | 'center' | 'right' | 'justify'
+
+  // The color of the component. It supports those theme colors that make sense for this component.
+  color: 'initial' | 'inherit' | 'primary' | 'secondary' | 'textPrimary' | 'textSecondary' | 'error'
+
+  // The paragraph attribute of the Typography node.
   paragraph: boolean
-
-  /**
-   * Applies the theme typography styles.
-   */
-  variant:
-    | 'h1'
-    | 'h2'
-    | 'h3'
-    | 'h4'
-    | 'h5'
-    | 'h6'
-    | 'subtitle1'
-    | 'subtitle2'
-    | 'body1'
-    | 'body2'
-    | 'caption'
-    | 'button'
-    | 'overline'
-    | 'srOnly'
-    | 'inherit'
-
-  /**
-   * The component maps the variant prop to a range of different HTML element types.
-   * For instance, subtitle1 to h6. If you wish to change that mapping, you can provide your own.
-   * Alternatively, you can use the component property.
-   */
-  variantMapping: Partial<
-    Record<
-      'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2' | 'caption' | 'button' | 'overline',
-      string
-    >
-  >
 }>

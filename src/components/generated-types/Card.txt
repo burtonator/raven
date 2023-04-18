@@ -1,19 +1,14 @@
 
+// Card: A flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
 export type ElementRef = CardRef
 
-/**
- * Cards are surfaces that display content and actions on a single topic.
- * They should be easy to scan for relevant and actionable information.
- * Elements, like text and images, should be placed on them in a way that
- * clearly indicates hierarchy.
- */
 export type CardRef = Readonly<{
   Card: CardRefProperties
 }>
 
 export type CardRefProperties = Readonly<{
-  /**
-   * If `true`, the card will use raised styling.
-   */
   raised: boolean
+  square: boolean
+  elevation: number
+  variant: 'elevation' | 'outlined'
 }>

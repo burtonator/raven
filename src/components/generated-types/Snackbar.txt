@@ -1,7 +1,5 @@
 
-/**
- * The Snackbar component provides brief messages about app processes at the bottom of the screen.
- */
+// Snackbar provides brief messages about app processes at the bottom of the screen.
 export type ElementRef = SnackbarRef
 
 export type SnackbarRef = Readonly<{
@@ -9,41 +7,25 @@ export type SnackbarRef = Readonly<{
 }>
 
 export type SnackbarRefProperties = Readonly<{
-  /**
-   * The number of milliseconds to wait before automatically calling the onClose function.
-   */
-  autoHideDuration: number
-
-  /**
-   * If true, the component will cause the screen to dim and the Snackbar to be positioned in the center of the screen.
-   */
-  disableWindowBlurListener: boolean
-
-  /**
-   * If true, the Snackbar is positioned at the bottom of the screen.
-   */
+  action: React.ReactElement<any, any> | React.ReactElement<any, any>[]
   anchorOrigin: {
-    vertical: 'top' | 'bottom'
     horizontal: 'left' | 'center' | 'right'
+    vertical: 'top' | 'bottom'
   }
-
-  /**
-   * If true, the Snackbar will be displayed.
-   */
+  autoHideDuration: number
+  ContentProps: Partial<SnackbarContentRefProperties>
+  disableWindowBlurListener: boolean
+  key: any
+  message: string | React.ReactElement<any, any>
+  onClose: (event: React.SyntheticEvent<any>, reason: string) => void
   open: boolean
+  resumeHideDuration: number
+  TransitionComponent: React.ComponentType<any>
+  transitionDuration: number | { enter?: number; exit?: number }
+  TransitionProps: any
+}>
 
-  /**
-   * The message to display.
-   */
-  message: string
-
-  /**
-   * The component used for the transition.
-   */
-  TransitionComponent: React.ComponentType
-
-  /**
-   * Properties applied to the transition element.
-   */
-  TransitionProps: object
+export type SnackbarContentRefProperties = Readonly<{
+  action: React.ReactElement<any, any> | React.ReactElement<any, any>[]
+  message: string | React.ReactElement<any, any>
 }>

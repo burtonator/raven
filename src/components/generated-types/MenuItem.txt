@@ -1,4 +1,6 @@
 
+// MenuItem is a simple menu item component that can be used inside a Menu component. It supports text, icons, and other content as children.
+
 export type ElementRef = MenuItemRef
 
 export type MenuItemRef = Readonly<{
@@ -6,63 +8,19 @@ export type MenuItemRef = Readonly<{
 }>
 
 export type MenuItemRefProperties = Readonly<{
-  /**
-   * If `true`, the list item will be focused during the first mount.
-   */
   autoFocus: boolean
-
-  /**
-   * If `true`, the list item will be a button (using ButtonBase).
-   */
+  // The content of the component.
+  value: any
+  // The system prop that allows defining system overrides as well as additional CSS styles.
+  sx: SxProps<Theme>
+  // If true, the list item will be focused during the first mount.
+  focusVisibleClassName: string
+  // If true, the list item will be a button (using ButtonBase). Props intended for ButtonBase can then be applied to MenuItem.
   button: boolean
-
-  /**
-   * If `true`, the list item will be disabled.
-   */
-  disabled: boolean
-
-  /**
-   * If `true`, the list item will have a divider.
-   */
+  // If true, the list item will show a divider.
   divider: boolean
-
-  /**
-   * If `true`, the list item will have a focus ripple.
-   */
-  focusRipple: boolean
-
-  /**
-   * The component used for the root node.
-   */
-  component: React.ElementType
-
-  /**
-   * The container component used when a ListItem is rendered as a button.
-   */
-  ContainerComponent: React.ElementType
-
-  /**
-   * Properties applied to the container element when the component is used as a button.
-   */
-  ContainerProps: object
-
-  /**
-   * The content of the component.
-   */
-  children: React.ReactNode
-
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: object
-
-  /**
-   * The main container element className property.
-   */
-  className: string
-
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: object
+  // If true, the menu item will be disabled.
+  disabled: boolean
+  // If true, the menu item will have keyboard focus.
+  selected: boolean
 }>

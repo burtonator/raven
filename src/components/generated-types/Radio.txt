@@ -1,4 +1,5 @@
 
+// Radio component allows the user to select one option from a set.
 export type ElementRef = RadioRef
 
 export type RadioRef = Readonly<{
@@ -6,33 +7,27 @@ export type RadioRef = Readonly<{
 }>
 
 export type RadioRefProperties = Readonly<{
-  /**
-   * If `true`, the radio will be checked.
-   */
-  checked: boolean
-
-  /**
-   * The default checked state. Use when the component is not controlled.
-   */
-  defaultChecked: boolean
-
-  /**
-   * If `true`, the radio will be disabled.
-   */
-  disabled: boolean
-
-  /**
-   * If `true`, the ripple effect will be disabled.
-   */
-  disableRipple: boolean
-
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   */
+  // The color of the component. It supports those theme colors that make sense for this component.
   color: 'default' | 'primary' | 'secondary'
 
-  /**
-   * The size of the radio. `small` is equivalent to the dense radio styling.
-   */
+  // If true, the component is checked.
+  checked: boolean
+
+  // The default checked state. Use when the component is not controlled.
+  defaultChecked: boolean
+
+  // If true, the component is disabled.
+  disabled: boolean
+
+  // If true, the ripple effect is disabled.
+  disableRipple: boolean
+
+  // The icon to display when the component is unchecked.
+  icon: string
+
+  // The value of the component.
+  value: any
+
+  // The size of the component.
   size: 'small' | 'medium'
 }>

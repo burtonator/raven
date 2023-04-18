@@ -1,41 +1,13 @@
 
+// List is a container component that renders a list of items.
 export type ElementRef = ListRef
 
-/**
- * The List component is a simple wrapper for the <ul> element that provides Material UI styling.
- */
 export type ListRef = Readonly<{
   List: ListRefProperties
 }>
 
 export type ListRefProperties = Readonly<{
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode
-
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: object
-
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   */
-  color?: 'default' | 'primary' | 'secondary'
-
-  /**
-   * The component used for the root node. Either a string to use a DOM element or a component.
-   */
-  component?: React.ElementType
-
-  /**
-   * The position of the content.
-   */
-  dense?: boolean
-
-  /**
-   * If true, vertical padding is removed from the list.
-   */
-  disablePadding?: boolean
+  dense: boolean
+  disablePadding: boolean
+  subheader: string
 }>

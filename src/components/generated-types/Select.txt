@@ -1,7 +1,5 @@
 
-/**
- * The Select component is used for collecting user provided information from a list of options.
- */
+// The Select component is used for collecting user provided information from a list of options.
 export type ElementRef = SelectRef
 
 export type SelectRef = Readonly<{
@@ -9,73 +7,42 @@ export type SelectRef = Readonly<{
 }>
 
 export type SelectRefProperties = Readonly<{
-  /**
-   * The value of the `input` element, required for a controlled component.
-   */
+  // The value of the component.
   value: any
-
-  /**
-   * If `true`, the component is disabled.
-   */
-  disabled?: boolean
-
-  /**
-   * If `true`, the input element will be required.
-   */
-  required?: boolean
-
-  /**
-   * The variant to use.
-   */
-  variant?: 'standard' | 'outlined' | 'filled'
-
-  /**
-   * The width of the input.
-   */
-  inputWidth?: number
-
-  /**
-   * The label of the input.
-   */
-  label?: string
-
-  /**
-   * The placeholder of the input.
-   */
-  placeholder?: string
-
-  /**
-   * The `Menu` content.
-   */
-  MenuProps?: object
-
-  /**
-   * The `input` content.
-   */
-  InputProps?: object
-
-  /**
-   * The `InputLabel` content.
-   */
-  InputLabelProps?: object
-
-  /**
-   * The `FormControl` content.
-   */
-  FormControlProps?: object
-
-  /**
-   * The `FormHelperText` content.
-   */
-  FormHelperTextProps?: object
-
-  /**
-   * The `Select` content.
-   */
-  SelectProps?: object
-
-  /**
-   * The `MenuItem` content.
-   */
-  MenuItemProps?: object
+  // The default element value. Use when the component is not controlled.
+  defaultValue: any
+  // If true, the component will be disabled.
+  disabled: boolean
+  // If true, the component will be displayed in an error state.
+  error: boolean
+  // If true, the input element will be focused during the first mount.
+  autoFocus: boolean
+  // The variant to use.
+  variant: 'standard' | 'outlined' | 'filled'
+  // The width of the component.
+  fullWidth: boolean
+  // The label of the component.
+  label: string
+  // The id of the input element.
+  id: string
+  // The name attribute of the input element.
+  name: string
+  // The short hint displayed in the input before the user enters a value.
+  placeholder: string
+  // If true, the component will be required.
+  required: boolean
+  // The size of the component.
+  size: 'small' | 'medium'
+  // The input component property.
+  inputComponent: any
+  // The displayEmpty property.
+  displayEmpty: boolean
+  // The renderValue property.
+  renderValue: (value: any) => React.ReactNode
+  // The MenuProps property.
+  MenuProps: Partial<MenuProps>
+  // The IconComponent property.
+  IconComponent: React.ElementType
+  // The inputProps property.
+  inputProps: Partial<InputProps>
 }>

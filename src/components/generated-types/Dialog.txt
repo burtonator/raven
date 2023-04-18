@@ -1,7 +1,5 @@
 
-/**
- * Dialogs inform users about a specific task and may contain critical information, require decisions, or involve multiple tasks.
- */
+// Dialog component is a modal that can be used to display additional content or prompt the user for input.
 export type ElementRef = DialogRef
 
 export type DialogRef = Readonly<{
@@ -9,64 +7,27 @@ export type DialogRef = Readonly<{
 }>
 
 export type DialogRefProperties = Readonly<{
-  /**
-   * If `true`, the component is shown.
-   */
   open: boolean
-
-  /**
-   * The system layer the dialog is a part of. The backdrop has zIndex `theme.zIndex[value]`.
-   */
-  zIndex: number
-
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   */
-  transitionDuration: number | { enter?: number; exit?: number }
-
-  /**
-   * The variant to use.
-   */
-  variant: 'standard' | 'outlined' | 'filled'
-
-  /**
-   * The width of the dialog.
-   */
+  // Determines the max width of the dialog.
   maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
-
-  /**
-   * If `true`, clicking the backdrop will not fire the `onClose` callback.
-   */
-  disableBackdropClick: boolean
-
-  /**
-   * If `true`, hitting escape will not fire the `onClose` callback.
-   */
-  disableEscapeKeyDown: boolean
-
-  /**
-   * If `true`, the dialog is full-screen.
-   */
+  // If true, the dialog will be full-screen.
   fullScreen: boolean
-
-  /**
-   * If `true`, the dialog stretches to `maxWidth`.
-   */
+  // If true, the dialog stretches to maxWidth.
   fullWidth: boolean
-
-  /**
-   * Determine the container for scrolling the dialog.
-   */
-  scroll: 'body' | 'paper'
-
-  /**
-   * The component used for the transition.
-   */
-  TransitionComponent: React.ComponentType<TransitionProps>
-
-  /**
-   * Props applied to the `Transition` element.
-   */
-  TransitionProps: TransitionProps
+  // If true, clicking the backdrop will not fire the onClose callback.
+  disableBackdropClick: boolean
+  // If true, hitting escape will not fire the onClose callback.
+  disableEscapeKeyDown: boolean
+  // If true, the backdrop is not rendered.
+  hideBackdrop: boolean
+  // If true, the dialog is closed by pressing the Esc key.
+  closeAfterTransition: boolean
+  // The elevation of the dialog.
+  elevation: number
+  // The transition duration.
+  transitionDuration: number | { enter?: number, exit?: number }
+  // The id(s) of the element(s) that describe the dialog.
+  'aria-describedby': string
+  // The id(s) of the element(s) that label the dialog.
+  'aria-labelledby': string
 }>

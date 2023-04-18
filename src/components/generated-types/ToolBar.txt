@@ -6,18 +6,6 @@ export type ToolbarRef = Readonly<{
 }>
 
 export type ToolbarRefProperties = Readonly<{
-  /**
-   * The variant to use.
-   */
-  variant: 'regular' | 'dense'
-
-  /**
-   * If true, the toolbar will be disabled.
-   */
-  disabled: boolean
-
-  /**
-   * If true, the toolbar will appear in a minimized state.
-   */
   disableGutters: boolean
+  variant: 'regular' | 'dense'
 }>
