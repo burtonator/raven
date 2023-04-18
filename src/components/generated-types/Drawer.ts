@@ -12,6 +12,7 @@ export type DrawerRefProperties = Readonly<{
   disableScrollLock: boolean
   hideBackdrop: boolean
   keepMounted: boolean
+  // onClose: (event: React.SyntheticEvent) => void
   open: boolean
   transitionDuration: number | { enter?: number, exit?: number }
   variant: 'permanent' | 'persistent' | 'temporary'

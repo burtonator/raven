@@ -156,6 +156,16 @@ Please make the following changes to specific types
   - PaperProps
   - PopoverClasses 
 
+## Popper
+
+- comment out the following properties:
+  - popperRef
+  - popperOptions
+  - modifiers
+
+- Materialize the 'placement' property into an enum 
+
+
 `.trim()
 
   interface Generated {

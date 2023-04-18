@@ -11,7 +11,7 @@ export type SwitchRefProperties = Readonly<{
   edge: 'start' | 'end' | false
   // icon: React.ReactElement
   // checkedIcon: React.ReactElement
-  inputProps: Record<string, any>
+  inputProps: any
   name: string
   required: boolean
   tabIndex: number

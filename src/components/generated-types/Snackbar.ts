@@ -15,6 +15,8 @@ export type SnackbarRefProperties = Readonly<{
   key: any
   message: any
   onClose: any
+  onMouseEnter: any
+  onMouseLeave: any
   open: boolean
   resumeHideDuration: number
   TransitionComponent: any

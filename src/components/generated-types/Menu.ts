@@ -14,12 +14,16 @@ export type MenuRefProperties = Readonly<{
     left: number
   }
   autoFocus: boolean
+  disableAutoFocusItem: boolean
+  elevation: number
   getContentAnchorEl: null
-  // onClose: (event: React.SyntheticEvent, reason: 'backdropClick' | 'escapeKeyDown') => void
+  keepMounted: boolean
+  marginThreshold: number
+  onClose: (event: React.SyntheticEvent, reason: 'backdropClick' | 'escapeKeyDown') => void
   open: boolean
   transformOrigin: {
     vertical: 'top' | 'center' | 'bottom'
     horizontal: 'left' | 'center' | 'right'
   }
-  transitionDuration: number | { enter?: number, exit?: number } | 'auto'
+  transitionDuration: number | { enter?: number, exit?: number }
 }>

@@ -10,7 +10,8 @@ export type CheckboxRefProperties = Readonly<{
   disableRipple: boolean
   edge: 'start' | 'end' | false
   indeterminate: boolean
-  inputProps: Readonly<{ [key: string]: any }>
+  inputProps: any
+  name: string
   required: boolean
   value: any
 }>

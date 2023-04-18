@@ -5,6 +5,7 @@ export type AppBarRef = Readonly<{
 
 export type AppBarRefProperties = Readonly<{
   color: 'default' | 'inherit' | 'primary' | 'secondary' | 'transparent'
+  elevation: number
   position: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative'
-  variant: 'regular' | 'dense'
+  square: boolean
 }>

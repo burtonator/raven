@@ -4,10 +4,10 @@ export type PopoverRef = Readonly<{
 }>
 
 export type PopoverRefProperties = Readonly<{
-  anchorEl: HTMLElement | ((element: HTMLElement) => HTMLElement) | null
+  anchorEl: HTMLElement | null
   anchorOrigin: {
-    vertical: 'top' | 'center' | 'bottom' | number
-    horizontal: 'left' | 'center' | 'right' | number
+    vertical: 'top' | 'center' | 'bottom'
+    horizontal: 'left' | 'center' | 'right'
   }
   anchorPosition: {
     top: number
@@ -20,9 +20,14 @@ export type PopoverRefProperties = Readonly<{
   modal: boolean
   onClose: (event: React.SyntheticEvent, reason: 'backdropClick' | 'escapeKeyDown') => void
   open: boolean
+  PaperComponent: React.ComponentType
+  // PaperProps: Partial<PaperRefProperties>
+  role: string
   transformOrigin: {
-    vertical: 'top' | 'center' | 'bottom' | number
-    horizontal: 'left' | 'center' | 'right' | number
+    vertical: 'top' | 'center' | 'bottom'
+    horizontal: 'left' | 'center' | 'right'
   }
-  transitionDuration: number | { enter?: number, exit?: number } | 'auto'
+  TransitionComponent: React.ComponentType
+  transitionDuration: number | { enter?: number, exit?: number }
+  TransitionProps: Partial<TransitionRefProperties>
 }>

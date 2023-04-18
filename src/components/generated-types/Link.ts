@@ -13,6 +13,18 @@ export type LinkRefProperties = Readonly<{
   focusRipple: boolean
   focusVisibleClassName: string
   href: string
+  onBlur: any
+  onFocus: any
+  onFocusVisible: any
+  onKeyDown: any
+  onKeyUp: any
+  onMouseDown: any
+  onMouseLeave: any
+  onMouseUp: any
+  onTouchEnd: any
+  onTouchMove: any
+  onTouchStart: any
+  tabIndex: number
   TouchRippleProps: any
   underline: 'none' | 'hover' | 'always'
 }>

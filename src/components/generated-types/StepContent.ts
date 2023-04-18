@@ -12,6 +12,6 @@ export type StepContentRefProperties = Readonly<{
   orientation: 'horizontal' | 'vertical'
   transition: boolean
   transitionDuration: number | 'auto'
-  TransitionComponent: any // Commented out: React.ComponentType
-  TransitionProps: any // Commented out: Partial<TransitionProps>
+  TransitionComponent: any
+  TransitionProps: any
 }>

@@ -17,6 +17,6 @@ export type TabsRefProperties = Readonly<{
 }>
 
 export interface TabsActions {
-  updateIndicator: () => void
-  updateScrollButtons: () => void
+  updateIndicator(): void
+  updateScrollButtons(): void
 }

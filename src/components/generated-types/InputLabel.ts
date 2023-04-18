@@ -8,7 +8,7 @@ export type InputLabelRefProperties = Readonly<{
   disabled: boolean
   error: boolean
   focused: boolean
-  margin: 'dense'
+  margin: 'dense' | 'none'
   required: boolean
   shrink: boolean
   variant: 'standard' | 'outlined' | 'filled'

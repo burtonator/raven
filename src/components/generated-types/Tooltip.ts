@@ -11,6 +11,8 @@ export type TooltipRefProperties = Readonly<{
   enterDelay: number
   enterNextDelay: number
   enterTouchDelay: number
+  followCursor: boolean
+  id: string
   interactive: boolean
   leaveDelay: number
   leaveTouchDelay: number

@@ -5,5 +5,6 @@ export type ToolbarRef = Readonly<{
 
 export type ToolbarRefProperties = Readonly<{
   disableGutters: boolean
+  edge: 'start' | 'end' | false
   variant: 'regular' | 'dense'
 }>

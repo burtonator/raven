@@ -10,4 +10,5 @@ export type StepRefProperties = Readonly<{
   disabled: boolean
   index: number
   last: boolean
+  orientation: 'horizontal' | 'vertical'
 }>

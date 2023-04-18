@@ -10,8 +10,8 @@ export type SwipeableDrawerRefProperties = Readonly<{
   disableSwipeToOpen: boolean
   hysteresis: number
   minFlingVelocity: number
-  onClose: (event: React.SyntheticEvent) => void
-  onOpen: (event: React.SyntheticEvent) => void
+  onClose: (event: React.KeyboardEvent | React.MouseEvent) => void
+  onOpen: (event: React.KeyboardEvent | React.MouseEvent) => void
   open: boolean
   // SwipeAreaProps: Partial<SwipeAreaRefProperties>
   swipeAreaWidth: number

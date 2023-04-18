@@ -4,7 +4,6 @@ export type CardRef = Readonly<{
 }>
 
 export type CardRefProperties = Readonly<{
-  elevation: number
   raised: boolean
   square: boolean
 }>
