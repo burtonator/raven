@@ -1,104 +1,35 @@
-const SYSTEM_PROMPT = `
-You will act as a Software Engineer.
+import {ElementRef} from './generated-types/ElementRef'
+import { Button } from '@mui/material';
+import { Component } from 'react';
 
-The user will ask you for a user interface, and you will generate the UI representation in YAML.
+export type ElementToComponentMap = {
+  readonly [key in keyof ElementRef]: JSX.Element
+}
 
-The entire user interface will be generated from Material UI and you can use
-types from the following libraries:
+const elementToComponentMap: ElementToComponentMap = {
+  Button: Button
+}
 
-    - @mui/material
-    - @mui/system
+const NotImplemented = () => {
+  return (
+    <div>Not implemented</div>
+  )
+}
 
-Rules for output generation:
+export function AutoUI(props: ElementRef) {
 
-- NEVER use {{}} or anything like that in the YAML. There is no template replacement. You must include literal values like "Kevin' or "123 Fake Street"
+  // get the element and map it to a component...
 
-# The React components will be mapped to YAML as follows.
+  const elementName = Object.keys(props)[0]
 
-## Example 1. Button
+  const Component = elementToComponentMap[elementName] ?? <div>Not implemented: {elementName} </div>
 
-\`\`\`yaml
----
-Button
-    color: primary
-    children:
-        Click Me
-\`\`\`
+  console.log("FIXME: elementName: ", elementName)
 
-# Here are some examples of full output
+  const componentProps = props[elementName]
 
-## Example 1
+  return (
+    <Component {...componentProps}/>
+  )
 
-Create two buttons in a grid.  The first one will say 'hello' and the second one will say 'world'
-
----
-Grid
-    children
-        - Grid
-            item: true
-            children:
-                - button
-                    children: hello
-        - Grid
-            item: true
-            children:
-                - button
-                    children: world
-
-
-The following custom nesting rules apply.
-
-- When a tooltip is required, it must be a parent of the element which needs the tooltip and must have a title.
-
-You will support the following Material UI components:
-
-Button
-Typography
-TextField
-AppBar
-Toolbar
-IconButton
-Grid
-Card
-List
-Drawer
-Checkbox
-Radio
-Select
-MenuItem
-Dialog
-Snackbar
-Tooltip
-CircularProgress
-Table
-FormControl
-FormGroup
-InputLabel
-Input
-FormControlLabel
-ListItem
-ListItemText
-ListItemIcon
-ListItemSecondaryAction
-Paper
-Tabs
-Tab
-Switch
-Slider
-Badge
-Breadcrumbs
-Chip
-Divider
-Fab
-IconButton
-Link
-Menu
-Popover
-Stepper
-Step
-StepLabel
-StepContent
-SwipeableDrawer
-TextField
-
-`.trim()
+}

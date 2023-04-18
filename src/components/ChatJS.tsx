@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react';
 import { Box, Button, LinearProgress, TextField } from '@mui/material';
-import { useChatJSExecutor } from '@/src/components/useChatJSExecutor';
+import { useChatJSExecutor } from './useChatJSExecutor';
 
 export function ChatJS() {
 
