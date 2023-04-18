@@ -13,11 +13,17 @@ Output a list of all React components from Material UI with their names, and
 their property names, and types. The output format should be written as a set
 of Typescript interfaces.
 
-There should be a base type named ElementRef.
+There should be a base type named ElementRef which has the name of the Element with a single property.
+
+For example.  If you're working with Button you should have a type called ButtonRef with a single Button property.
 
 It should hold all the elements and can only contain one key (which points to the element).
 
-For example:
+All output must begin with '\`\`\`typescript' and be within a markdown code block.   
+
+# Examples
+
+## Button 
 
 \`\`\`typescript
 
@@ -26,71 +32,138 @@ export type ButtonRef = Readonly<{
 }>
 
 export type ButtonRefProperties = Readonly<{
-  // The variant to use.
-  variant: 'text' | 'outlined' | 'contained'
-
-  // The size of the button.
-  size: 'small' | 'medium' | 'large'
-
-  // The color of the button.
   color: 'default' | 'inherit' | 'primary' | 'secondary'
-
-  // If true, the button will be disabled.
   disabled: boolean
-
-  // If true, the  keyboard focus ripple will be disabled.
+  disableElevation: boolean
   disableFocusRipple: boolean
-
-  // If true, the button will take up the full width of its container.
+  disableRipple: boolean
+  // endIcon: React.ReactElement
   fullWidth: boolean
-
-  // The content of the button.
-  label: string
-
-  // The URL to link to when the button is clicked.
   href: string
-
-  // The component used for the root node.
-  component: React.ElementType
-
-  // The target of the link.
-  target: string
-
-  // The rel attribute for the link.
-  rel: string
+  // onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  size: 'small' | 'medium' | 'large'
+  // startIcon: React.ReactElement
+  variant: 'text' | 'outlined' | 'contained'
 }>
+\`\`\`
+
+## FormControlLabel
+
+\`\`\`typescript
+export type FormControlLabelRef = Readonly<{
+  FormControlLabel: FormControlLabelRefProperties
+}>
+
+export type FormControlLabelRefProperties = Readonly<{
+  // control: React.ReactElement
+  disabled: boolean
+  // label: React.ReactNode
+  labelPlacement: 'end' | 'start' | 'top' | 'bottom'
+  value: any
+}>
+\`\`\`
+
+## Select
+
+\`\`\`typescript
+
+export type SelectRef = Readonly<{
+  Select: SelectRefProperties
+}>
+
+export type SelectRefProperties = Readonly<{
+  autoWidth: boolean
+  displayEmpty: boolean
+  // IconComponent: React.ElementType
+  // input: React.ReactElement
+  label: string
+  labelId: string
+  labelWidth: number
+  // MenuProps: Partial<MenuRefProperties>
+  multiple: boolean
+  native: boolean
+  // onClose: (event: React.SyntheticEvent) => void
+  // onOpen: (event: React.SyntheticEvent) => void
+  open: boolean
+  // renderValue: (value: any) => React.ReactNode
+  value: any
+  variant: 'standard' | 'outlined' | 'filled'
+}>
+
 \`\`\`
 
 Please use the following rules for Typescript generation:
 
 - NO semicolon at the end of the line
 - NO comments
-- Include jsdoc of the component, and all properties
 - Do not complain about being an AI model.
-- Provide documentation for the Material UI component as it would appear in
-  jsdoc that a Software Engineer would read.  The documentation should just be 
-  the top level jsdoc and what the button does and the behavior it provides.  
-  For example.  For Appbar, the documentation should go on the AppBarRef and be 
-  something like: "The top App bar provides content and actions related to the
-  current screen. It's used for branding, screen titles, navigation, and
-  actions. It can transform into a contextual action bar or be used as a navbar."
 - Do not include the 'ref' property
-- Do not include any event handlers like onClick, onMouseOver, onKeyPress, etc.  These are usually properties prefixed with 'on'
+- Comment out any event handlers (functions) like onClick, onMouseOver, onKeyPress, etc.  These are usually properties prefixed with 'on' and are functions/lambdas.
 - Do not include the 'style' property
 - Do not include the 'classes' property
-- Include jsdoc for each property from the documentation.
 - Do not include the 'children' property
 - Do not include the className property
-- Do not include any property with the type React.ElementType or React.ReactNode
+- Comment out any property with the following types:
+  - React.ElementType 
+  - React.ReactNode
+  - React.ReactElement
+  - JSX.Element
+  - React.ComponentType
 - Do not include any property that begins with 'aria-
 - Do not include a URL in any of the documentation output
-- All jsdoc comments should begin with // and should not use /** */
 - The property names should be sorted alphabetically. 
-- ONLY emit typescript directly. DO NOT provide any commentary on the output. 
+- ONLY emit typescript directly. DO NOT provide any commentary on the output.
+
+- Do not include documentation for properties if the documentation doesn't add 
+  any additional description of the content.  For example. If the property name 
+  is 'length' and the only documentation you can generate is 'set the length' 
+  then please don't include that. 
+
+# Exclusions
+
+Please make the following changes to specific types
+
+
+## TextField
+
+- comment out the following properties:
+  - SelectProps
+  - InputProps
+  - InputLabelProps
+
+## Popover
+
+- comment out the following properties:
+  - PaperProps
+
+## Menu
+- comment out the following properties:
+  - PaperProps
+
+## Drawer
+- comment out the following properties:
+  - PaperProps
+  - SlideProps
+  - ModalProps
+
+## Select
+- comment out the following properties:
+  - MenuProps
+
+## Menu
+
+- comment out the following properties:
+  - PaperProps
+  - PopoverClasses 
 
 `.trim()
 
-  export async function generate(component: string): Promise<string | undefined> {
+  interface Generated {
+    readonly raw: string
+    readonly code: string | undefined
+  }
+
+  export async function generate(component: string): Promise<Generated | undefined> {
 
     // TODO:
     //
@@ -105,7 +178,7 @@ Please use the following rules for Typescript generation:
     //
     // -
 
-    const client = new OpenAIApi(new Configuration({apiKey: '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'}))
+    const client = new OpenAIApi(new Configuration({apiKey: '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'}))
 
     // generate the types for the given component....
     const res = await client.createChatCompletion({
@@ -133,7 +206,7 @@ Please use the following rules for Typescript generation:
         return s[1].substring(0, s[1].length - '```'.length - 1)
       }
 
-      console.warn("Unable to parse ")
+      console.warn("Unable to parse output for component: " + component)
 
       return undefined
 
@@ -143,7 +216,8 @@ Please use the following rules for Typescript generation:
     if (res.data.choices.length > 0) {
       const first = res.data.choices[0]
       if (first.message) {
-        return parseResult(first.message.content)
+        const code = parseResult(first.message.content)
+        return {code, raw: first.message.content}
       }
     }
 

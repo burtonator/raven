@@ -20,6 +20,38 @@ Select
 MenuItem
 Dialog
 Snackbar
+Tooltip
+CircularProgress
+Table
+FormControl
+FormGroup
+InputLabel
+Input
+FormControlLabel
+ListItem
+ListItemText
+ListItemIcon
+ListItemSecondaryAction
+Paper
+Tabs
+Tab
+Switch
+Slider
+Badge
+Breadcrumbs
+Chip
+Divider
+Fab
+IconButton
+Link
+Menu
+Popover
+Stepper
+Step
+StepLabel
+StepContent
+SwipeableDrawer
+TextField
 `.trim().split('\n')
 
 describe('MaterialTypesGenerator', function() {
@@ -28,6 +60,7 @@ describe('MaterialTypesGenerator', function() {
 
     interface GeneratedComponentOutput {
       readonly component: string
+      readonly raw: string
       readonly content: string | undefined
     }
 
@@ -35,27 +68,22 @@ describe('MaterialTypesGenerator', function() {
 
       console.log('component: ' + component)
 
-      const content = await MaterialTypesGenerator.generate(component)
-      return {component, content}
-
-      // const path = `/Users/burton/projects/raven/src/components/generated-types/${component}.txt`
-      //
-      // const data = await MaterialTypesGenerator.generate(component)
-      //
-      // if (data) {
-      //   fs.writeFileSync(path, Buffer.from(data))
-      // } else {
-      //   throw new Error("No content for component: " + component)
-      // }
-      //
+      const generated = await MaterialTypesGenerator.generate(component)
+      return {
+        component,
+        content: generated?.code,
+        raw: generated?.raw ?? ''
+      }
 
     }
 
     async function doWrite(output: GeneratedComponentOutput) {
-      const path = `/Users/burton/projects/raven/src/components/generated-types/${output.component}.txt`
+      const dir = `/Users/burton/projects/raven/src/components/generated-types/`
+
+      //fs.writeFileSync(`${dir}/${output.component}.raw.txt`, Buffer.from(output.raw))
 
       if (output.content) {
-        fs.writeFileSync(path, Buffer.from(output.content))
+        fs.writeFileSync(`${dir}/${output.component}.ts`, Buffer.from(output.content))
       } else {
         throw new Error("No content for component: " + output.component)
       }
