@@ -1,0 +1,71 @@
+
+/**
+ * A basic button component.
+ */
+export type ElementRef = ButtonRef
+
+export type ButtonRef = Readonly<{
+  Button: ButtonRefProperties
+}>
+
+export type ButtonRefProperties = Readonly<{
+  /**
+   * The content of the button.
+   */
+  children?: React.ReactNode
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes?: Partial<Record<ButtonClassKey, string>>
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color?: 'inherit' | 'primary' | 'secondary' | 'default'
+  /**
+   * If `true`, the button will be disabled.
+   */
+  disabled?: boolean
+  /**
+   * If `true`, no elevation is used.
+   */
+  disableElevation?: boolean
+  /**
+   * If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true.
+   */
+  disableFocusRipple?: boolean
+  /**
+   * If `true`, the ripple effect will be disabled.
+   */
+  disableRipple?: boolean
+  /**
+   * Element placed after the children.
+   */
+  endIcon?: React.ReactNode
+  /**
+   * If `true`, the button will take up the full width of its container.
+   */
+  fullWidth?: boolean
+  /**
+   * The URL to link to when the button is clicked.
+   */
+  href?: string
+  /**
+   * The component used for the root node. Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType<ButtonBaseProps>
+  /**
+   * The size of the button.
+   */
+  size?: 'small' | 'medium' | 'large'
+  /**
+   * Element placed before the children.
+   */
+  startIcon?: React.ReactNode
+  /**
+   * The variant to use.
+   */
+  variant?: 'text' | 'outlined' | 'contained'
+}>
+```
+
+Note: The `ButtonClassKey` type is not defined here, but it is a union of all the possible class keys for the Button compon

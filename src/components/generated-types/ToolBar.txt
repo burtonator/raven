@@ -1,0 +1,23 @@
+
+/**
+ * The Material UI Toolbar component is used to display a set of actions or
+ * content related to the current screen. It usually appears below the app bar.
+ */
+export type ElementRef = ToolbarRef;
+
+export type ToolbarRef = Readonly<{
+  Toolbar: ToolbarRefProperties;
+}>;
+
+export type ToolbarRefProperties = Readonly<{
+  disableGutters?: boolean;
+  variant?: 'regular' | 'dense';
+  classes?: {
+    root?: string;
+    gutters?: string;
+    regular?: string;
+    dense?: string;
+  };
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
+}>;
