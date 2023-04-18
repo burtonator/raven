@@ -1,31 +1,39 @@
 
-// Snackbar provides brief messages about app processes at the bottom of the screen.
-export type ElementRef = SnackbarRef
-
 export type SnackbarRef = Readonly<{
   Snackbar: SnackbarRefProperties
 }>
 
 export type SnackbarRefProperties = Readonly<{
-  action: React.ReactElement<any, any> | React.ReactElement<any, any>[]
+  // The anchor of the snackbar.
   anchorOrigin: {
     horizontal: 'left' | 'center' | 'right'
     vertical: 'top' | 'bottom'
   }
-  autoHideDuration: number
-  ContentProps: Partial<SnackbarContentRefProperties>
-  disableWindowBlurListener: boolean
-  key: any
-  message: string | React.ReactElement<any, any>
-  onClose: (event: React.SyntheticEvent<any>, reason: string) => void
-  open: boolean
-  resumeHideDuration: number
-  TransitionComponent: React.ComponentType<any>
-  transitionDuration: number | { enter?: number; exit?: number }
-  TransitionProps: any
-}>
 
-export type SnackbarContentRefProperties = Readonly<{
-  action: React.ReactElement<any, any> | React.ReactElement<any, any>[]
-  message: string | React.ReactElement<any, any>
+  // The number of milliseconds to wait before automatically calling the onClose function.
+  autoHideDuration: number
+
+  // Replace the snackbar.
+  key: string
+
+  // The message to display.
+  message: string
+
+  // Callback fired when the component requests to be closed.
+  onClose: (event: React.SyntheticEvent<any>, reason: string) => void
+
+  // If true, the snackbar is open.
+  open: boolean
+
+  // The severity of the snackbar.
+  severity: 'success' | 'error' | 'warning' | 'info'
+
+  // The action to display.
+  action: React.ReactNode
+
+  // The component used for the transition.
+  TransitionComponent: React.ComponentType
+
+  // Props applied to the transition element.
+  TransitionProps: object
 }>

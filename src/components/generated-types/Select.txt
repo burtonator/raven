@@ -1,7 +1,4 @@
 
-// The Select component is used for collecting user provided information from a list of options.
-export type ElementRef = SelectRef
-
 export type SelectRef = Readonly<{
   Select: SelectRefProperties
 }>
@@ -9,40 +6,52 @@ export type SelectRef = Readonly<{
 export type SelectRefProperties = Readonly<{
   // The value of the component.
   value: any
-  // The default element value. Use when the component is not controlled.
+
+  // The default value. Use when the component is not controlled.
   defaultValue: any
+
   // If true, the component will be disabled.
   disabled: boolean
-  // If true, the component will be displayed in an error state.
-  error: boolean
-  // If true, the input element will be focused during the first mount.
-  autoFocus: boolean
-  // The variant to use.
-  variant: 'standard' | 'outlined' | 'filled'
-  // The width of the component.
+
+  // If true, the component will take up the full width of its container.
   fullWidth: boolean
-  // The label of the component.
+
+  // The label of the input.
   label: string
-  // The id of the input element.
-  id: string
-  // The name attribute of the input element.
+
+  // The ID of the input element.
+  inputId: string
+
+  // The variant of the input.
+  variant: 'standard' | 'outlined' | 'filled'
+
+  // The display name of the component.
   name: string
+
   // The short hint displayed in the input before the user enters a value.
   placeholder: string
-  // If true, the component will be required.
+
+  // If true, the input will be required.
   required: boolean
-  // The size of the component.
-  size: 'small' | 'medium'
-  // The input component property.
-  inputComponent: any
-  // The displayEmpty property.
-  displayEmpty: boolean
-  // The renderValue property.
-  renderValue: (value: any) => React.ReactNode
-  // The MenuProps property.
-  MenuProps: Partial<MenuProps>
-  // The IconComponent property.
-  IconComponent: React.ElementType
-  // The inputProps property.
-  inputProps: Partial<InputProps>
+
+  // The input component property `type`.
+  type: string
+
+  // The value of the `input` element, required for a controlled component.
+  inputValue: string
+
+  // The default input value, useful when not controlling the component.
+  defaultInputValue: string
+
+  // If true, the input will be readOnly.
+  readOnly: boolean
+
+  // If true, the input will be autoFocus.
+  autoFocus: boolean
+
+  // The helper text content.
+  helperText: string
+
+  // The error state of the component.
+  error: boolean
 }>

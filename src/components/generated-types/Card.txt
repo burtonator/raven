@@ -1,14 +1,9 @@
 
-// Card: A flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
-export type ElementRef = CardRef
-
 export type CardRef = Readonly<{
   Card: CardRefProperties
 }>
 
 export type CardRefProperties = Readonly<{
+  // If true, the card will use raised styling.
   raised: boolean
-  square: boolean
-  elevation: number
-  variant: 'elevation' | 'outlined'
 }>

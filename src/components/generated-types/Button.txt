@@ -1,24 +1,16 @@
 
-export type ElementRef = ButtonRef
-
 export type ButtonRef = Readonly<{
   Button: ButtonRefProperties
 }>
 
 export type ButtonRefProperties = Readonly<{
-  // The variant to use.
-  variant: 'text' | 'outlined' | 'contained'
-
-  // The size of the button.
-  size: 'small' | 'medium' | 'large'
-
   // The color of the button.
   color: 'default' | 'inherit' | 'primary' | 'secondary'
 
   // If true, the button will be disabled.
   disabled: boolean
 
-  // If true, the  keyboard focus ripple will be disabled.
+  // If true, the keyboard focus ripple will be disabled.
   disableFocusRipple: boolean
 
   // If true, the button will take up the full width of its container.
@@ -30,12 +22,15 @@ export type ButtonRefProperties = Readonly<{
   // The URL to link to when the button is clicked.
   href: string
 
-  // The component used for the root node.
-  component: React.ElementType
+  // The size of the button.
+  size: 'small' | 'medium' | 'large'
 
   // The target of the link.
   target: string
 
   // The rel attribute for the link.
   rel: string
+
+  // The variant to use.
+  variant: 'text' | 'outlined' | 'contained'
 }>

@@ -1,13 +1,19 @@
 
-// List is a container component that renders a list of items.
-export type ElementRef = ListRef
-
 export type ListRef = Readonly<{
   List: ListRefProperties
 }>
 
 export type ListRefProperties = Readonly<{
+  // Defines the `flex-direction` style property.
+  // It can be 'row', 'row-reverse', 'column', or 'column-reverse'.
+  direction: 'row' | 'row-reverse' | 'column' | 'column-reverse'
+
+  // If true, dense styling is applied.
   dense: boolean
-  disablePadding: boolean
-  subheader: string
+
+  // If true, the list will have a divider between the list items.
+  divider: boolean
+
+  // If true, the list will have a subheader.
+  subheader: boolean
 }>

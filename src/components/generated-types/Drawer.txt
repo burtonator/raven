@@ -1,17 +1,30 @@
 
-// Drawer component is a responsive drawer that can be permanently visible, or opened and closed by tapping a navigation menu icon or when the user swipes.
-export type ElementRef = DrawerRef
-
 export type DrawerRef = Readonly<{
   Drawer: DrawerRefProperties
 }>
 
 export type DrawerRefProperties = Readonly<{
+  // The anchor of the drawer.
   anchor: 'left' | 'top' | 'right' | 'bottom'
+
+  // The elevation of the drawer.
   elevation: number
-  ModalProps: object
+
+  // If true, the drawer is open.
   open: boolean
-  PaperProps: object
-  SlideProps: object
+
+  // The variant to use.
   variant: 'permanent' | 'persistent' | 'temporary'
+
+  // The duration for the transition, in milliseconds.
+  transitionDuration: number | { enter?: number, exit?: number }
+
+  // The ModalProps to be passed to the modal element.
+  ModalProps: Partial<ModalProps>
+
+  // The PaperProps to be passed to the Paper element.
+  PaperProps: Partial<PaperProps>
+
+  // The SlideProps to be passed to the Slide element.
+  SlideProps: Partial<SlideProps>
 }>

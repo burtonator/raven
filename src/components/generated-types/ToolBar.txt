@@ -1,11 +1,12 @@
 
-export type ElementRef = ToolbarRef
-
 export type ToolbarRef = Readonly<{
   Toolbar: ToolbarRefProperties
 }>
 
 export type ToolbarRefProperties = Readonly<{
-  disableGutters: boolean
+  // The variant to use.
   variant: 'regular' | 'dense'
+
+  // If true, the toolbar will have gutters.
+  disableGutters: boolean
 }>

@@ -1,51 +1,54 @@
 
-// Grid component is a responsive, fluid, and nestable layout system.
-export type ElementRef = GridRef
-
 export type GridRef = Readonly<{
   Grid: GridRefProperties
 }>
 
 export type GridRefProperties = Readonly<{
-  // Applies the theme typography styles.
+  // The system grid alignItems.
   alignItems: 'flex-start' | 'center' | 'flex-end' | 'stretch'
 
-  // Defines the align-content style property. It's applied for all screen sizes.
-  alignContent: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'stretch'
-
   // The content of the component.
+  children: React.ReactNode
+
+  // The system grid container.
   container: boolean
 
-  // If true, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*.
-  item: boolean
-
-  // Defines the flex-direction style property. It is applied for all screen sizes.
+  // The system grid direction.
   direction: 'row' | 'row-reverse' | 'column' | 'column-reverse'
 
-  // If true, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*.
+  // If true, the component will have the flex "grow" property set to 1.
+  flexGrow: boolean
+
+  // If true, the component will have the flex "shrink" property set to 1.
+  flexShrink: boolean
+
+  // The system grid item.
+  item: boolean
+
+  // Defines the space between the type "item" component.
+  spacing: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+
+  // The system grid justifyContent.
   justifyContent: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
 
-  // Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden.
-  lg: boolean | number | 'auto'
-
-  // Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden.
-  md: boolean | number | 'auto'
-
-  // Defines the number of grids the component is going to use. It's applied for the `sm` breakpoint and wider screens if not overridden.
-  sm: boolean | number | 'auto'
-
-  // Defines the space between the type `item` component. It can only be used on a type `container` component.
-  spacing: number
-
-  // Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens.
-  xl: boolean | number | 'auto'
-
-  // Defines the number of grids the component is going to use. It's applied for the `xs` breakpoint and wider screens.
-  xs: boolean | number | 'auto'
-
-  // Defines the flex-wrap style property. It's applied for all screen sizes.
+  // The system grid wrap.
   wrap: 'nowrap' | 'wrap' | 'wrap-reverse'
 
-  // If true, it sets min-width: 0 on the item. Refer to the limitations section of the documentation to better understand the use case.
+  // The system grid xs breakpoint.
+  xs: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+  // The system grid sm breakpoint.
+  sm: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+  // The system grid md breakpoint.
+  md: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+  // The system grid lg breakpoint.
+  lg: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+  // The system grid xl breakpoint.
+  xl: boolean | 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
+
+  // The system grid zeroMinWidth.
   zeroMinWidth: boolean
 }>

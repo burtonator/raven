@@ -1,34 +1,27 @@
 
-// Checkbox is used for toggling a value on or off. It can also be used in a group to select multiple values.
-export type ElementRef = CheckboxRef
-
 export type CheckboxRef = Readonly<{
   Checkbox: CheckboxRefProperties
 }>
 
 export type CheckboxRefProperties = Readonly<{
-  checked: boolean
-  // The color of the component. It supports those theme colors that make sense for this component.
-  color: 'default' | 'primary' | 'secondary'
   // If true, the component appears selected.
-  defaultChecked: boolean
+  checked: boolean
+
+  // The color of the component.
+  color: 'default' | 'primary' | 'secondary'
+
   // If true, the checkbox will be disabled.
   disabled: boolean
+
   // If true, the ripple effect will be disabled.
   disableRipple: boolean
-  // The value of the component. The DOM API casts this to a string.
-  value: any
-  // The size of the checkbox. small is equivalent to the dense checkbox styling.
-  size: 'medium' | 'small'
-  // The edge of the button that the input is anchored to. This is not used when the input is hidden.
-  inputProps: InputProps
-}>
 
-export type InputProps = Readonly<{
-  // The id of the input element. Use this property to make label and helperText accessible for screen readers.
-  id: string
-  // The name of the input element.
-  name: string
-  // The tabindex of the input element.
-  tabIndex: number
+  // The value of the component.
+  value: any
+
+  // The edge at which to display the indicator.
+  edge: 'start' | 'end'
+
+  // The size of the checkbox.
+  size: 'small' | 'medium'
 }>

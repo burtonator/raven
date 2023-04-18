@@ -1,26 +1,42 @@
 
-// MenuItem is a simple menu item component that can be used inside a Menu component. It supports text, icons, and other content as children.
-
-export type ElementRef = MenuItemRef
-
 export type MenuItemRef = Readonly<{
   MenuItem: MenuItemRefProperties
 }>
 
 export type MenuItemRefProperties = Readonly<{
-  autoFocus: boolean
   // The content of the component.
-  value: any
-  // The system prop that allows defining system overrides as well as additional CSS styles.
-  sx: SxProps<Theme>
-  // If true, the list item will be focused during the first mount.
-  focusVisibleClassName: string
-  // If true, the list item will be a button (using ButtonBase). Props intended for ButtonBase can then be applied to MenuItem.
-  button: boolean
-  // If true, the list item will show a divider.
-  divider: boolean
+  children: React.ReactNode
+
+  // Override or extend the styles applied to the component.
+  classes: object
+
+  // The component used for the root node.
+  component: React.ElementType
+
+  // The container component.
+  containerComponent: React.ElementType
+
+  // The props used for the container component.
+  containerProps: object
+
   // If true, the menu item will be disabled.
   disabled: boolean
+
   // If true, the menu item will have keyboard focus.
+  focusVisibleClassName: string
+
+  // The URL to link to when the menu item is clicked.
+  href: string
+
+  // The component used for the ListItem node.
+  ListItemClasses: object
+
+  // The main container element.
+  role: string
+
+  // The selected state of the menu item.
   selected: boolean
+
+  // The system to be used.
+  tabIndex: number
 }>

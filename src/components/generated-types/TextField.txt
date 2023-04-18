@@ -1,102 +1,105 @@
 
-// TextField component allows users to input text and provides a label and helper text for additional information.
-export type ElementRef = TextFieldRef
-
 export type TextFieldRef = Readonly<{
   TextField: TextFieldRefProperties
 }>
 
 export type TextFieldRefProperties = Readonly<{
-  // The type of input to display such as "text", "email", "password", etc.
-  type: string
+  // The adornment for the input.
+  InputProps: object
 
-  // The label text displayed above the input field.
+  // The label for the input.
   label: string
 
-  // The helper text displayed below the input field.
+  // The helper text content.
   helperText: string
 
-  // If true, the input field will be disabled.
-  disabled: boolean
-
-  // If true, the input field will be required.
-  required: boolean
-
-  // If true, the input field will be read-only.
-  readOnly: boolean
-
-  // If true, the input field will have an error state.
+  // The error state of the input.
   error: boolean
 
-  // The value of the input field.
-  value: string | number
-
-  // The default value of the input field.
-  defaultValue: string | number
-
-  // The variant to use for the input field. Can be "standard", "outlined", or "filled".
+  // The variant of the input.
   variant: 'standard' | 'outlined' | 'filled'
 
-  // The size of the input field. Can be "small" or "medium".
+  // The size of the input.
   size: 'small' | 'medium'
 
-  // The width of the input field.
-  fullWidth: boolean
+  // The color of the input.
+  color: 'primary' | 'secondary'
 
-  // The margin applied to the input field. Can be "none", "dense", or "normal".
-  margin: 'none' | 'dense' | 'normal'
+  // The type of the input.
+  type: string
 
-  // The id of the input element.
-  id: string
+  // The value of the input.
+  value: any
 
-  // The name attribute of the input element.
+  // The default value of the input.
+  defaultValue: any
+
+  // The name of the input.
   name: string
 
-  // The autoComplete attribute of the input element.
-  autoComplete: string
+  // The id of the input.
+  id: string
 
-  // The autoFocus attribute of the input element.
-  autoFocus: boolean
-
-  // The inputMode attribute of the input element.
-  inputMode: string
-
-  // The min attribute of the input element.
-  min: string
-
-  // The max attribute of the input element.
-  max: string
-
-  // The minLength attribute of the input element.
-  minLength: number
-
-  // The maxLength attribute of the input element.
-  maxLength: number
-
-  // The step attribute of the input element.
-  step: string | number
-
-  // The pattern attribute of the input element.
-  pattern: string
-
-  // The placeholder attribute of the input element.
+  // The placeholder for the input.
   placeholder: string
 
-  // The rows attribute of the input element.
+  // If true, the input will be disabled.
+  disabled: boolean
+
+  // If true, the input will be read-only.
+  readOnly: boolean
+
+  // If true, the input will be required.
+  required: boolean
+
+  // The number of rows for the input.
   rows: number
 
-  // The rowsMax attribute of the input element.
+  // The maximum number of rows for the input.
   rowsMax: number
 
-  // The rowsMin attribute of the input element.
+  // The minimum number of rows for the input.
   rowsMin: number
 
-  // The select attribute of the input element.
-  select: boolean
+  // The step value for the input.
+  step: number | string
 
-  // The tabIndex attribute of the input element.
-  tabIndex: number
+  // The minimum value for the input.
+  min: number | string
 
-  // The inputProps attribute of the input element.
-  inputProps: object
+  // The maximum value for the input.
+  max: number | string
+
+  // The input mode for the input.
+  inputMode: string
+
+  // The pattern for the input.
+  pattern: string
+
+  // The length of the input.
+  maxLength: number
+
+  // The minimum length of the input.
+  minLength: number
+
+  // The list attribute for the input.
+  list: string
+
+  // The auto-complete attribute for the input.
+  autoComplete: string
+
+  // The auto-focus attribute for the input.
+  autoFocus: boolean
+
+  // The auto-select attribute for the input.
+  selectOnFocus: boolean
+
+  // The start adornment for the input.
+  startAdornment: React.ReactNode
+
+  // The end adornment for the input.
+  endAdornment: React.ReactNode
+
+  // The margin for the input.
+  margin: 'dense' | 'none' | 'normal'
 }>

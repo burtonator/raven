@@ -1,33 +1,24 @@
 
-// Dialog component is a modal that can be used to display additional content or prompt the user for input.
-export type ElementRef = DialogRef
-
 export type DialogRef = Readonly<{
   Dialog: DialogRefProperties
 }>
 
 export type DialogRefProperties = Readonly<{
-  open: boolean
-  // Determines the max width of the dialog.
-  maxWidth: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false
-  // If true, the dialog will be full-screen.
-  fullScreen: boolean
-  // If true, the dialog stretches to maxWidth.
-  fullWidth: boolean
-  // If true, clicking the backdrop will not fire the onClose callback.
-  disableBackdropClick: boolean
-  // If true, hitting escape will not fire the onClose callback.
-  disableEscapeKeyDown: boolean
-  // If true, the backdrop is not rendered.
-  hideBackdrop: boolean
-  // If true, the dialog is closed by pressing the Esc key.
-  closeAfterTransition: boolean
-  // The elevation of the dialog.
-  elevation: number
-  // The transition duration.
-  transitionDuration: number | { enter?: number, exit?: number }
   // The id(s) of the element(s) that describe the dialog.
   'aria-describedby': string
+
   // The id(s) of the element(s) that label the dialog.
   'aria-labelledby': string
+
+  // If true, the dialog is open.
+  open: boolean
+
+  // The component used to render the body of the dialog.
+  PaperComponent: React.ComponentType
+
+  // The props used to create the transition component.
+  TransitionProps: object
+
+  // The component used for the transition.
+  TransitionComponent: React.ComponentType
 }>

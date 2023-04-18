@@ -1,27 +1,36 @@
 
-// IconButton allows users to take actions and make choices with a single tap.
-export type ElementRef = IconButtonRef
-
 export type IconButtonRef = Readonly<{
   IconButton: IconButtonRefProperties
 }>
 
 export type IconButtonRefProperties = Readonly<{
-  // The color of the button. It supports those theme colors that make sense for this component.
-  color: 'default' | 'inherit' | 'primary' | 'secondary'
-
   // If true, the button will be disabled.
   disabled: boolean
 
-  // If true, the ripple effect will be disabled.
-  disableRipple: boolean
+  // If true, the keyboard focus ripple will be disabled.
+  disableFocusRipple: boolean
 
-  // If true, the touch ripple effect will be disabled.
-  disableTouchRipple: boolean
+  // If true, the button will take up the full width of its container.
+  fullWidth: boolean
 
-  // The edge of the button. Useful when the button acts as an icon button, for instance in an App Bar.
-  edge: 'start' | 'end' | false
+  // The content of the button.
+  label: string
 
-  // The size of the button. small is equivalent to the dense button styling.
+  // The URL to link to when the button is clicked.
+  href: string
+
+  // The target of the link.
+  target: string
+
+  // The rel attribute for the link.
+  rel: string
+
+  // The size of the button.
   size: 'small' | 'medium' | 'large'
+
+  // The color of the button.
+  color: 'default' | 'inherit' | 'primary' | 'secondary'
+
+  // The variant to use.
+  variant: 'text' | 'outlined' | 'contained'
 }>
