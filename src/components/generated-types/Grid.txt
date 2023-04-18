@@ -1,24 +1,88 @@
 
 /**
- * The Grid component is used to layout and align items in a grid.
+ * The Grid component is a lightweight wrapper around the CSS Grid Layout.
+ * It's used for creating responsive and fluid layouts.
  */
+export type ElementRef = GridRef
+
 export type GridRef = Readonly<{
   Grid: GridRefProperties
 }>
 
 export type GridRefProperties = Readonly<{
-  container?: boolean
-  item?: boolean
-  xs?: boolean | number
-  sm?: boolean | number
-  md?: boolean | number
-  lg?: boolean | number
-  xl?: boolean | number
-  zeroMinWidth?: boolean
-  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse'
-  justify?: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
-  alignItems?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline'
-  alignContent?: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'space-between' | 'space-around'
-  spacing?: number
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse'
-}> & ElementRef
+  /**
+   * Defines the `align-content` style property.
+   * It's applied for all screen sizes.
+   */
+  alignContent: 'stretch' | 'center' | 'flex-start' | 'flex-end' | 'space-between' | 'space-around'
+
+  /**
+   * Defines the `align-items` style property.
+   * It's applied for all screen sizes.
+   */
+  alignItems: 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline'
+
+  /**
+   * The content of the component.
+   */
+  children: React.ReactNode
+
+  /**
+   * The width of the container.
+   */
+  container: boolean
+
+  /**
+   * If `true`, the component will have the flex *container* behavior.
+   * You should be wrapping *items* with a *container*.
+   */
+  item: boolean
+
+  /**
+   * Defines the `justify-content` style property.
+   * It's applied for all screen sizes.
+   */
+  justifyContent: 'flex-start' | 'center' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly'
+
+  /**
+   * Defines the number of grids the component is going to use.
+   * It's applied for the `lg` breakpoint and wider screens if not overridden.
+   */
+  lg: boolean | number | 'auto'
+
+  /**
+   * Defines the number of grids the component is going to use.
+   * It's applied for the `md` breakpoint and wider screens if not overridden.
+   */
+  md: boolean | number | 'auto'
+
+  /**
+   * Defines the number of grids the component is going to use.
+   * It's applied for the `sm` breakpoint and wider screens if not overridden.
+   */
+  sm: boolean | number | 'auto'
+
+  /**
+   * Defines the space between the type `item` component.
+   * It can only be used on a type `container` component.
+   */
+  spacing: number
+
+  /**
+   * Defines the `flex-wrap` style property.
+   * It's applied for all screen sizes.
+   */
+  wrap: 'nowrap' | 'wrap' | 'wrap-reverse'
+
+  /**
+   * Defines the number of grids the component is going to use.
+   * It's applied for the `xl` breakpoint and wider screens.
+   */
+  xl: boolean | number | 'auto'
+
+  /**
+   * Defines the number of grids the component is going to use.
+   * It's applied for the `xs` breakpoint and wider screens.
+   */
+  xs: boolean | number | 'auto'
+}>

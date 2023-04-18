@@ -1,12 +1,24 @@
 
 /**
- * A Card is a piece of paper with unique related data that serves as an entry point to more detailed information.
+ * The Card component is a flexible and extensible content container. It includes options for headers and footers, a wide variety of content, contextual background colors, and powerful display options.
  */
+export type ElementRef = CardRef
+
 export type CardRef = Readonly<{
   Card: CardRefProperties
 }>
 
 export type CardRefProperties = Readonly<{
-  raised?: boolean
-  variant?: 'elevation' | 'outlined'
+  /**
+   * If `true`, the card will use raised styling.
+   */
+  raised: boolean
+  /**
+   * The content of the component.
+   */
+  children: React.ReactNode
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  className: string
 }>

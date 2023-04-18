@@ -1,16 +1,26 @@
 
 /**
- * The top App bar provides content and actions related to the current screen.
- * It's used for branding, screen titles, navigation, and actions. It can transform
- * into a contextual action bar or be used as a navbar.
+ * The AppBar component is a top-level navigation and content bar that provides branding, screen titles, navigation, and actions.
  */
+export type ElementRef = AppBarRef
+
 export type AppBarRef = Readonly<{
   AppBar: AppBarRefProperties
 }>
 
 export type AppBarRefProperties = Readonly<{
-  position?: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative'
-  color?: 'inherit' | 'primary' | 'secondary' | 'transparent'
-  elevation?: number
-  variant?: 'elevation' | 'outlined'
+  /**
+   * The color of the AppBar. It supports primary, secondary, default, inherit, and transparent.
+   */
+  color: 'default' | 'inherit' | 'primary' | 'secondary' | 'transparent'
+
+  /**
+   * The positioning of the AppBar. It supports fixed, absolute, sticky, static, and relative.
+   */
+  position: 'fixed' | 'absolute' | 'sticky' | 'static' | 'relative'
+
+  /**
+   * The elevation of the AppBar. It accepts a number between 0 and 24.
+   */
+  elevation: number
 }>
