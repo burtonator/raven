@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react';
-import { AutoUI } from './AutoUI';
+import { AutoUIRenderer } from './AutoUIRenderer';
 import YAML from 'yaml';
 
 export default {
-  component: AutoUI,
+  component: AutoUIRenderer,
 } as Meta
 
 const yaml = `
@@ -204,6 +204,6 @@ export const BasicButton = () => {
   const props = YAML.parse(yaml)
 
   return (
-    <AutoUI {...props}/>
+    <AutoUIRenderer {...props}/>
   )
 }

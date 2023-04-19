@@ -1,285 +1,61 @@
+import { useState } from 'react';
+import { Backdrop, LinearProgress } from '@mui/material';
 import {ElementRef} from './generated-types/ElementRef'
-import {
-  DetailedHTMLProps,
-  Fragment,
-  HTMLAttributes,
-  ImgHTMLAttributes
-} from 'react';
-import { Component } from 'react';
-import {
-  Box,
-  AppBar,
-  Autocomplete,
-  Avatar,
-  Backdrop,
-  Badge,
-  Breadcrumbs,
-  Button,
-  ButtonGroup,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Checkbox,
-  Chip,
-  CircularProgress,
-  ClickAwayListener,
-  Collapse,
-  Container,
-  CssBaseline,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Divider,
-  Drawer,
-  Fab,
-  Fade,
-  FormControl,
-  FormControlLabel,
-  FormGroup,
-  FormHelperText,
-  FormLabel,
-  Grid,
-  Grow,
-  Hidden,
-  Icon,
-  IconButton,
-  Input,
-  InputAdornment,
-  InputBase,
-  InputLabel,
-  LinearProgress,
-  Link,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-  ListSubheader,
-  Menu,
-  MenuItem,
-  MenuList,
-  MobileStepper,
-  Modal,
-  NativeSelect,
-  NoSsr,
-  OutlinedInput,
-  Paper,
-  Popover,
-  Popper,
-  Portal,
-  Radio,
-  RadioGroup,
-  Rating,
-  ScopedCssBaseline,
-  Select,
-  Slide,
-  Slider,
-  Snackbar,
-  SnackbarContent,
-  Step,
-  StepButton,
-  StepConnector,
-  StepContent,
-  StepIcon,
-  StepLabel,
-  Stepper,
-  SvgIcon,
-  SwipeableDrawer,
-  Switch,
-  Tab,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableFooter,
-  TableHead,
-  TablePagination,
-  TableRow,
-  TableSortLabel,
-  Tabs,
-  TextField,
-  TextareaAutosize,
-  Toolbar,
-  Tooltip,
-  Typography
-} from '@mui/material';
+import { AutoUIRenderer } from './AutoUIRenderer';
+import AutoUIChat from './AutoUIChat';
+import YAML from 'yaml';
 
-export type ElementToComponentMap = {
-  readonly [key in keyof ElementRef]: JSX.Element
-}
+const SPLASH_UI_YAML = `
+---
+Box:
+    height: '100vh'
+    display: flex
+    flexDirection: column
+    justifyContent: center
+    alignItems: center
+    children:
+        - Typography:
+            variant: h1
+            children: Welcome to AutoUI
+        - Box:
+            width: '80%'
+            display: flex
+            flexDirection: column
+            alignItems: center
+            children:
+                - Typography:
+                    variant: h4
+                    align: center
+                    children: |
+                        AutoUI allows you to generate User Interfaces using AI.
+                        Just describe what you want and we will generate the page for you.
+`.trim()
 
-const elementToComponentMap: ElementToComponentMap = {
-  AppBar: AppBar,
-  Autocomplete: Autocomplete,
-  Avatar: Avatar,
-  Backdrop: Backdrop,
-  Badge: Badge,
-  Breadcrumbs: Breadcrumbs,
-  Button: Button,
-  ButtonGroup: ButtonGroup,
-  Card: Card,
-  CardActionArea: CardActionArea,
-  CardActions: CardActions,
-  CardContent: CardContent,
-  CardHeader: CardHeader,
-  CardMedia: CardMedia,
-  Checkbox: Checkbox,
-  Box: Box,
-  Chip: Chip,
-  CircularProgress: CircularProgress,
-  ClickAwayListener: ClickAwayListener,
-  Collapse: Collapse,
-  Container: Container,
-  CssBaseline: CssBaseline,
-  Dialog: Dialog,
-  DialogActions: DialogActions,
-  DialogContent: DialogContent,
-  DialogContentText: DialogContentText,
-  DialogTitle: DialogTitle,
-  Divider: Divider,
-  Drawer: Drawer,
-  // ExpansionPanel: ExpansionPanel,
-  // ExpansionPanelActions: ExpansionPanelActions,
-  // ExpansionPanelDetails: ExpansionPanelDetails,
-  // ExpansionPanelSummary: ExpansionPanelSummary,
-  Fab: Fab,
-  Fade: Fade,
-  FormControl: FormControl,
-  FormControlLabel: FormControlLabel,
-  FormGroup: FormGroup,
-  FormHelperText: FormHelperText,
-  FormLabel: FormLabel,
-  Grid: Grid,
-  // GridList: GridList,
-  // GridListTile: GridListTile,
-  // GridListTileBar: GridListTileBar,
-  Grow: Grow,
-  Hidden: Hidden,
-  Icon: Icon,
-  IconButton: IconButton,
-  Input: Input,
-  InputAdornment: InputAdornment,
-  InputBase: InputBase,
-  InputLabel: InputLabel,
-  LinearProgress: LinearProgress,
-  Link: Link,
-  List: List,
-  ListItem: ListItem,
-  ListItemAvatar: ListItemAvatar,
-  ListItemIcon: ListItemIcon,
-  ListItemSecondaryAction: ListItemSecondaryAction,
-  ListItemText: ListItemText,
-  ListSubheader: ListSubheader,
-  Menu: Menu,
-  MenuItem: MenuItem,
-  MenuList: MenuList,
-  MobileStepper: MobileStepper,
-  Modal: Modal,
-  // MuiThemeProvider: MuiThemeProvider,
-  NativeSelect: NativeSelect,
-  NoSsr: NoSsr,
-  OutlinedInput: OutlinedInput,
-  Paper: Paper,
-  Popover: Popover,
-  Popper: Popper,
-  Portal: Portal,
-  Radio: Radio,
-  RadioGroup: RadioGroup,
-  Rating: Rating,
-  // RefreshIndicator: RefreshIndicator,
-  // RootRef: RootRef,
-  ScopedCssBaseline: ScopedCssBaseline,
-  Select: Select,
-  Slide: Slide,
-  Slider: Slider,
-  Snackbar: Snackbar,
-  SnackbarContent: SnackbarContent,
-  Step: Step,
-  StepButton: StepButton,
-  StepConnector: StepConnector,
-  StepContent: StepContent,
-  StepIcon: StepIcon,
-  StepLabel: StepLabel,
-  Stepper: Stepper,
-  SvgIcon: SvgIcon,
-  SwipeableDrawer: SwipeableDrawer,
-  Switch: Switch,
-  Tab: Tab,
-  Table: Table,
-  TableBody: TableBody,
-  TableCell: TableCell,
-  TableContainer: TableContainer,
-  TableFooter: TableFooter,
-  TableHead: TableHead,
-  TablePagination: TablePagination,
-  TableRow: TableRow,
-  TableSortLabel: TableSortLabel,
-  Tabs: Tabs,
-  TextField: TextField,
-  TextareaAutosize: TextareaAutosize,
-  Toolbar: Toolbar,
-  Tooltip: Tooltip,
-  Typography: Typography,
+const SPLASH_UI = YAML.parse(SPLASH_UI_YAML)
 
-  // standard element mapping
-  // TODO: more standard element mapping... FIXME this won't work though because 'div' won't handle the children properly..
-  div: (props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => <div {...props}/>,
-  img: (props: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => <img {...props}/>,
-  span: (props: DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>) => <span {...props}/>,
-}
-const NotImplemented = () => {
-  return (
-    <div>Not implemented</div>
-  )
-}
+export default function AutoUI() {
 
-type Primitive = string | number | boolean
+  const [executing, setExecuting] = useState<boolean>(false)
 
-function isPrimitive(val: any): val is Primitive {
-  const t = typeof val
-  return t === 'string' || t === 'number' || t === 'boolean'
-}
-
-function isArrayTypeGuard(val: any): val is ReadonlyArray<Primitive | ElementRef> {
-  return Array.isArray(val)
-}
-
-export function AutoUI(props: ElementRef) {
-
-  // get the element and map it to a component...
-
-  const elementName = Object.keys(props)[0]
-
-  const Component = elementToComponentMap[elementName] ?? <div>Not implemented: {elementName} </div>
-
-  const componentProps = props[elementName]
-
-  console.log("FIXME: props: ", props)
-  console.log("FIXME: elementName: ", elementName)
-
-  const children = componentProps.children
-
-  delete componentProps.children
-
+  const [main, setMain] = useState<ElementRef | undefined>(SPLASH_UI)
 
   return (
-    <Component {...componentProps}>
+    <>
+      {executing && (
+        <div style={{position: 'absolute', top: 0, left: 0, zIndex: 10000, width: '100%'}}>
+          <LinearProgress variant="indeterminate"/>
+        </div>
+      )}
 
-      {isPrimitive(children) && <>{children}</>}
+      {executing && <Backdrop open={true}/>}
 
-      {isArrayTypeGuard(children) && children.map((child, idx) => (
-        <Fragment key={idx}>
-          {isPrimitive(child) && <>{child}</>}
-          {! isPrimitive(child) && <AutoUI {...child}/>}
-        </Fragment>
-      ))}
-    </Component>
+      {main && <AutoUIRenderer {...main}/>}
+
+      <AutoUIChat/>
+
+      <div>here</div>
+
+    </>
   )
 
 }

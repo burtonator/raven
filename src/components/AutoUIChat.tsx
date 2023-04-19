@@ -1,4 +1,8 @@
-]const SYSTEM_PROMPT = `
+import { Box, Dialog, DialogContent, Paper } from '@mui/material';
+import { useCallback } from 'react'
+import { makeStyles } from '@mui/styles';
+
+const SYSTEM_PROMPT = `
 You will act as a Software Engineer.
 
 The user will ask you for a user interface, and you will generate the UI representation in YAML.
@@ -102,3 +106,27 @@ SwipeableDrawer
 TextField
 
 `.trim()
+
+const useStyles = makeStyles({
+  paper: {
+    position: "absolute",
+    left: 0,
+    bottom: 0
+  }
+});
+export default function AutoUIChat() {
+
+  return (
+    <Paper
+      elevation={3}
+      style={{position: 'absolute', right: 10, bottom: 10, width: '400px', height: '500px'}}
+    >
+
+      <Box p={1}>
+        This is the chat
+      </Box>
+
+    </Paper>
+  )
+
+}
