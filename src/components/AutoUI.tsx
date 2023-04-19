@@ -1,7 +1,13 @@
 import {ElementRef} from './generated-types/ElementRef'
-import {Fragment} from 'react'
+import {
+  DetailedHTMLProps,
+  Fragment,
+  HTMLAttributes,
+  ImgHTMLAttributes
+} from 'react';
 import { Component } from 'react';
 import {
+  Box,
   AppBar,
   Autocomplete,
   Avatar,
@@ -124,6 +130,7 @@ const elementToComponentMap: ElementToComponentMap = {
   CardHeader: CardHeader,
   CardMedia: CardMedia,
   Checkbox: Checkbox,
+  Box: Box,
   Chip: Chip,
   CircularProgress: CircularProgress,
   ClickAwayListener: ClickAwayListener,
@@ -218,7 +225,13 @@ const elementToComponentMap: ElementToComponentMap = {
   TextareaAutosize: TextareaAutosize,
   Toolbar: Toolbar,
   Tooltip: Tooltip,
-  Typography: Typography
+  Typography: Typography,
+
+  // standard element mapping
+  // TODO: more standard element mapping... FIXME this won't work though because 'div' won't handle the children properly..
+  div: (props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => <div {...props}/>,
+  img: (props: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => <img {...props}/>,
+  span: (props: DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>) => <span {...props}/>,
 }
 const NotImplemented = () => {
   return (
@@ -246,6 +259,9 @@ export function AutoUI(props: ElementRef) {
   const Component = elementToComponentMap[elementName] ?? <div>Not implemented: {elementName} </div>
 
   const componentProps = props[elementName]
+
+  console.log("FIXME: props: ", props)
+  console.log("FIXME: elementName: ", elementName)
 
   const children = componentProps.children
 

@@ -7,225 +7,166 @@ export default {
 } as Meta
 
 const yaml = `
-Grid:
-    container: true
-    spacing: 2
-    sx:
-        marginTop: 10
-        marginBottom: 10
-    children:
-        - Grid:
-            item: true
-            xs: 12
-            sm: 6
-            md: 4
-            children:
-                - Card:
-                    sx:
-                        height: '100%'
-                        display: 'flex'
-                        flexDirection: 'column'
-                    children:
-                        - CardHeader:
-                            title: Basic
-                            titleTypographyProps:
-                                align: 'center'
-                            subheaderTypographyProps:
-                                align: 'center'
-                            subheader: $9.99/month
-                        - CardContent:
-                            sx:
-                                flexGrow: 1
-                            children:
-                                - Typography:
-                                    variant: body2
-                                    color: 'text.secondary'
-                                    children:
-                                        - "10 users included"
-                                        - br()
-                                        - "2 GB of storage"
-                                        - br()
-                                        - "Email support"
-                                        - br()
-                                        - "Help center access"
-                                - List:
-                                    sx:
-                                        marginTop: 2
-                                        bgcolor: 'background.paper'
-                                    children:
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 1"
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 2"
-                        - CardActions:
-                            sx:
-                                justifyContent: 'center'
-                            children:
-                                - Button:
-                                    size: 'large'
-                                    children: Choose Plan
-        - Grid:
-            item: true
-            xs: 12
-            sm: 6
-            md: 4
-            children:
-                - Card:
-                    sx:
-                        height: '100%'
-                        display: 'flex'
-                        flexDirection: 'column'
-                    children:
-                        - CardHeader:
-                            title: Pro
-                            titleTypographyProps:
-                                align: 'center'
-                            subheaderTypographyProps:
-                                align: 'center'
-                            subheader: $19.99/month
-                        - CardContent:
-                            sx:
-                                flexGrow: 1
-                            children:
-                                - Typography:
-                                    variant: body2
-                                    color: 'text.secondary'
-                                    children:
-                                        - "20 users included"
-                                        - br()
-                                        - "10 GB of storage"
-                                        - br()
-                                        - "Priority email support"
-                                        - br()
-                                        - "Help center access"
-                                - List:
-                                    sx:
-                                        marginTop: 2
-                                        bgcolor: 'background.paper'
-                                    children:
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 1"
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 2"
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 3"
-                        - CardActions:
-                            sx:
-                                justifyContent: 'center'
-                            children:
-                                - Button:
-                                    size: 'large'
-                                    children: Choose Plan
-        - Grid:
-            item: true
-            xs: 12
-            sm: 6
-            md: 4
-            children:
-                - Card:
-                    sx:
-                        height: '100%'
-                        display: 'flex'
-                        flexDirection: 'column'
-                    children:
-                        - CardHeader:
-                            title: Enterprise
-                            titleTypographyProps:
-                                align: 'center'
-                            subheaderTypographyProps:
-                                align: 'center'
-                            subheader: $49.99/month
-                        - CardContent:
-                            sx:
-                                flexGrow: 1
-                            children:
-                                - Typography:
-                                    variant: body2
-                                    color: 'text.secondary'
-                                    children:
-                                        - "50 users included"
-                                        - br()
-                                        - "30 GB of storage"
-                                        - br()
-                                        - "Phone and email support"
-                                        - br()
-                                        - "Help center access"
-                                        - br()
-                                        - "Advanced analytics"
-                                - List:
-                                    sx:
-                                        marginTop: 2
-                                        bgcolor: 'background.paper'
-                                    children:
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 1"
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 2"
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 3"
-                                        - ListItem:
-                                            disableGutters: true
-                                            children:
-                                                - ListItemIcon:
-                                                    children:
-                                                        - CheckCircleIcon
-                                                - ListItemText:
-                                                    primary: "Feature 4"
-                        - CardActions:
-                            sx:
-                                justifyContent: 'center'
-                            children:
-                                - Button:
-                                    size: 'large'
-                                    children: Choose Plan
+---
+Box: 
+  children: 
+    - AppBar:
+        position: fixed
+        color: primary
+        children:
+            - Toolbar:
+                variant: dense
+                disableGutters: true
+                children:
+                    - Typography:
+                        variant: h6
+                        children: "Cancer Research Platform"
+                    - IconButton:
+                        edge: end
+                        color: inherit
+                        aria-label: account
+                        children:
+                            - Avatar:
+                                alt: User Avatar
+                                src: "https://cdn.pixabay.com/photo/2016/03/31/20/27/avatar-1295773_960_720.png"
+    - List:
+        dense: true
+        children:
+            - ListItem:
+                button: true
+                selected: true
+                children:
+                    - ListItemText:
+                        primary: "Dashboard"
+                    - ListItemIcon:
+                        children:
+                            - DashboardIcon
+            - ListItem:
+                button: true
+                children:
+                    - ListItemText:
+                        primary: "Patients"
+                    - ListItemIcon:
+                        children:
+                            - PeopleIcon
+            - ListItem:
+                button: true
+                children:
+                    - ListItemText:
+                        primary: "Cases"
+                    - ListItemIcon:
+                        children:
+                            - AssignmentIcon
+            - ListItem:
+                button: true
+                children:
+                    - ListItemText:
+                        primary: "Studies"
+                    - ListItemIcon:
+                        children:
+                            - LibraryBooksIcon
+    - Grid:
+        container: true
+        spacing: 2
+        children:
+            - Grid:
+                item: true
+                md: 6
+                children:
+                    - Paper:
+                        children:
+                            - Typography:
+                                variant: h6
+                                children: "Recent Cases"
+                            - List:
+                                children:
+                                    - ListItem:
+                                        button: true
+                                        children:
+                                            - ListItemText:
+                                                primary: "Patient A"
+                                                secondary: "Breast Cancer"
+                                                primaryTypographyProps:
+                                                    variant: subtitle1
+                                                secondaryTypographyProps:
+                                                    variant: body2
+                                            - ListItemSecondaryAction:
+                                                children:
+                                                    - IconButton:
+                                                        edge: end
+                                                        children:
+                                                            - DeleteIcon
+                                    - ListItem:
+                                        button: true
+                                        children:
+                                            - ListItemText:
+                                                primary: "Patient B"
+                                                secondary: "Lung Cancer"
+                                                primaryTypographyProps:
+                                                    variant: subtitle1
+                                                secondaryTypographyProps:
+                                                    variant: body2
+                                            - ListItemSecondaryAction:
+                                                children:
+                                                    - IconButton:
+                                                        edge: end
+                                                        children:
+                                                            - DeleteIcon
+                        variant: outlined
+            - Grid:
+                item: true
+                md: 6
+                children:
+                    - Paper:
+                        children:
+                            - Typography:
+                                variant: h6
+                                children: "Upcoming Studies"
+                            - List:
+                                children:
+                                    - ListItem:
+                                        button: true
+                                        children:
+                                            - ListItemText:
+                                                primary: "Study A"
+                                                secondary: "Phase 2 Clinical Trial"
+                                                primaryTypographyProps:
+                                                    variant: subtitle1
+                                                secondaryTypographyProps:
+                                                    variant: body2
+                                            - ListItemSecondaryAction:
+                                                children:
+                                                    - IconButton:
+                                                        edge: end
+                                                        children:
+                                                            - DeleteIcon
+                                    - ListItem:
+                                        button: true
+                                        children:
+                                            - ListItemText:
+                                                primary: "Study B"
+                                                secondary: "Preclinical Research"
+                                                primaryTypographyProps:
+                                                    variant: subtitle1
+                                                secondaryTypographyProps:
+                                                    variant: body2
+                                            - ListItemSecondaryAction:
+                                                children:
+                                                    - IconButton:
+                                                        edge: end
+                                                        children:
+                                                            - DeleteIcon
+                        variant: outlined
+    - Fab:
+        color: primary
+        variant: extended
+        children:
+            - AddIcon
+        sx:
+            position: 'fixed'
+            bottom: 16
+            right: 16
+
 `
 
 // const yaml = `
