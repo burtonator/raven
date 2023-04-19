@@ -232,6 +232,7 @@ const elementToComponentMap: ElementToComponentMap = {
   div: (props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => <div {...props}/>,
   img: (props: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => <img {...props}/>,
   span: (props: DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>) => <span {...props}/>,
+  form: (props: DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement>) => <span {...props}/>,
 }
 const NotImplemented = () => {
   return (
@@ -247,9 +248,6 @@ function isPrimitiveTypeGuard(val: any): val is Primitive {
 }
 
 function isArrayTypeGuard(val: any): val is ReadonlyArray<Primitive | ElementRef> {
-
-  // FIXME YAML is not always returning children properly.
-  console.log("FIXME: isArrayTypeGuard", Array.isArray(val), val)
   return Array.isArray(val)
 }
 
@@ -259,11 +257,15 @@ export function AutoUIRenderer(props: ElementRef) {
 
   const elementName = Object.keys(props)[0]
 
+  if (! elementName) {
+    return null
+  }
+
   const Component = elementToComponentMap[elementName] ?? <div>Not implemented: {elementName} </div>
 
-  const componentProps = {...props[elementName]}
+  const componentProps = {...(props[elementName] ?? {})}
 
-  const children = [...componentProps.children]
+  const children = [...(componentProps.children ?? [])]
 
   delete componentProps.children
 
