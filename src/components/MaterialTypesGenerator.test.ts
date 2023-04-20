@@ -118,7 +118,22 @@ Typography
 
 describe('MaterialTypesGenerator', function() {
 
+  it('generate ElementRef.ts', () => {
+
+    const imports = components.map(current => `import {${current}Ref} from './${current}'`).join("\n")
+
+    const dir = `/Users/burton/projects/raven/src/components/generated-types/`
+
+    const type = components.map(current => `${current}Ref`).join(" | \n")
+
+    const content = `${imports}\n\nexport type ElementRef = ${type}`
+
+    fs.writeFileSync(`${dir}/ElementRef.ts`, Buffer.from(content))
+
+  });
+
   it('generate', async () => {
+
 
     interface GeneratedComponentOutput {
       readonly component: string

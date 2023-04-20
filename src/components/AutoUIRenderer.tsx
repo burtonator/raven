@@ -232,7 +232,8 @@ const elementToComponentMap: ElementToComponentMap = {
   div: (props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => <div {...props}/>,
   img: (props: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>) => <img {...props}/>,
   span: (props: DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>) => <span {...props}/>,
-  form: (props: DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement>) => <span {...props}/>,
+  form: (props: DetailedHTMLProps<HTMLAttributes<HTMLFormElement>, HTMLFormElement>) => <form {...props}/>,
+  main: (props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>) => <main {...props}/>,
 }
 const NotImplemented = () => {
   return (
@@ -268,6 +269,12 @@ export function AutoUIRenderer(props: ElementRef) {
   const children = [...(componentProps.children ?? [])]
 
   delete componentProps.children
+
+  if (! children || children.length === 0) {
+    return (
+      <Component {...componentProps}/>
+    )
+  }
 
   return (
     <Component {...componentProps}>

@@ -1,83 +1,79 @@
 import { Meta } from '@storybook/react';
 import { AutoUIRenderer } from './AutoUIRenderer';
 import YAML from 'yaml';
+import { CardMedia } from '@mui/material';
 
 export default {
   component: AutoUIRenderer,
 } as Meta
 
 const yaml = `
-Container:
+---
+AppBar:
+  position: "sticky"
+  color: "default"
   children:
-    - form:
+    - Toolbar:
+        variant: "dense"
         children:
-          - Grid:
-              container: true
-              spacing: 2
+          - IconButton:
+              edge: "start"
+              color: "inherit"
+              aria-label: "menu"
               children:
-
-                - Grid:
-                    item: true
-                    xs: 12
-                    sm: 6
-                    children:
-                      - TextField:
-                          label: "First Name"
-                          fullWidth: true
-
-                - Grid:
-                    item: true
-                    xs: 12
-                    sm: 6
-                    children:
-                      - TextField:
-                          label: "Last Name"
-                          fullWidth: true
-
-                - Grid:
-                    item: true
-                    xs: 12
-                    children:
-                      - TextField:
-                          label: "Street Address"
-                          fullWidth: true
-
-                - Grid:
-                    item: true
-                    xs: 12
-                    sm: 6
-                    children:
-                      - TextField:
-                          label: "City"
-                          fullWidth: true
-
-                - Grid:
-                    item: true
-                    xs: 12
-                    sm: 3
-                    children:
-                      - TextField:
-                          label: "State"
-                          fullWidth: true
-
-                - Grid:
-                    item: true
-                    xs: 12
-                    sm: 3
-                    children:
-                      - TextField:
-                          label: "Zip Code"
-                          fullWidth: true
-
-                - Grid:
-                    item: true
-                    xs: 12
-                    children:
-                      - Button:
-                          variant: "contained"
-                          color: "primary"
-                          children: "Submit"
-`
+                MenuIcon
+          - Typography:
+              variant: "h6"
+              noWrap: true
+              children: "CNN"
+          - Box:
+              flexGrow: 1
+          - Button:
+              color: "inherit"
+              children: "US"
+          - Button:
+              color: "inherit"
+              children: "World"
+          - Button:
+              color: "inherit"
+              children: "Politics"
+          - Button:
+              color: "inherit"
+              children: "Business"
+          - Button:
+              color: "inherit"
+              children: "Opinion"
+          - Button:
+              color: "inherit"
+              children: "Health"
+          - Button:
+              color: "inherit"
+              children: "Entertainment"
+          - Button:
+              color: "inherit"
+              children: "Style"
+          - Button:
+              color: "inherit"
+              children: "Travel"
+          - Button:
+              color: "inherit"
+              children: "Sports"
+          - Button:
+              color: "inherit"
+              children: "Videos"
+          - Button:
+              color: "inherit"
+              children: "Live TV"
+          - IconButton:
+              color: "inherit"
+              aria-label: "search"
+              children:
+                SearchIcon
+          - IconButton:
+              color: "inherit"
+              aria-label: "account"
+              children:
+                AccountCircleIcon`
 
 // const yaml = `
 // Grid:
@@ -109,11 +105,39 @@ Container:
 //   children:
 //     Don't Click Me
 // `
-export const BasicButton = () => {
+
+const yaml2 = `
+CardMedia:
+    component: "img"
+    height: "140"
+    image: "https://cdn.cnn.com/cnnnext/dam/assets/211001120000-01-afghanistan-1001-super-tease.jpg"
+    alt: "Afghanistan"
+`
+
+export const Basic = () => {
 
   const props = YAML.parse(yaml)
 
   return (
     <AutoUIRenderer {...props}/>
   )
+}
+
+export const BrokenCardMedia = () => {
+
+  const props = YAML.parse(yaml2)
+
+  return (
+    <AutoUIRenderer {...props}/>
+  )
+}
+
+
+export const Broken = () => {
+  return (
+    <CardMedia component='img' height="140"
+  image="https://cdn.cnn.com/cnnnext/dam/assets/211001120000-01-afghanistan-1001-super-tease.jpg"
+  alt="Afghanistan"/>
+
+)
 }

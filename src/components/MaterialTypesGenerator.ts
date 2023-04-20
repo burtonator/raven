@@ -173,6 +173,9 @@ Please make the following changes to specific types
     readonly code: string | undefined
   }
 
+
+
+
   export async function generate(component: string): Promise<Generated | undefined> {
 
     // TODO:
@@ -188,7 +191,7 @@ Please make the following changes to specific types
     //
     // -
 
-    const client = new OpenAIApi(new Configuration({apiKey: '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'}))
+    const client = new OpenAIApi(new Configuration({apiKey: 'none'}))
 
     // generate the types for the given component....
     const res = await client.createChatCompletion({
