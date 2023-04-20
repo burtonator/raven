@@ -2,6 +2,82 @@ import {
   ChatCompletionRequestMessage,
   CreateChatCompletionRequest
 } from 'openai';
+import { useCallback } from 'react';
+import { useOpenAPI } from '../useOpenAPI';
+
+// const MODEL = 'gpt-4'
+const MODEL = 'gpt-3.5-turbo'
+
+function parseGeneratedCode(text: string, type: 'yaml'): string | undefined {
+
+  const START_JS = `\`\`\`${type}`
+  const END_JS = '```'
+
+  if (text.startsWith(START_JS)) {
+    return text.substring(START_JS.length, text.length - END_JS.length - 1)
+  }
+
+  return undefined
+
+}
+
+export interface AutoUIExecution {
+  readonly code: string
+  readonly messages: ReadonlyArray<ChatCompletionRequestMessage>
+}
+
+export function useAutoUIChatExecutor() {
+
+  const openai = useOpenAPI()
+
+  return useCallback(async (directive: string): Promise<AutoUIExecution | undefined> => {
+
+    function createChatCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
+
+      return {
+        model: MODEL,
+        temperature: 0.0,
+        max_tokens: 2048,
+        top_p: 1,
+        n: 1,
+        messages: [...messages]
+      }
+
+    }
+
+    const messages: ReadonlyArray<ChatCompletionRequestMessage> = [
+      {"role": "system", "content": SYSTEM_PROMPT.trim()},
+      {
+        role: 'user',
+        content: directive
+      }
+    ]
+
+
+    const req = createChatCompletionRequest(messages)
+    console.log("Executing chat: ", JSON.stringify(req, null, '  '))
+
+    const before = Date.now()
+    const res = await openai.createChatCompletion(req)
+    const after = Date.now()
+    const duration = after - before
+    console.log("Got response: ", res)
+    if (res.data.choices.length > 0) {
+      const first = res.data.choices[0]
+      if (first.message) {
+        const code = parseGeneratedCode(first.message.content, 'yaml')
+
+        if (code) {
+          return {code, messages}
+        }
+      }
+    }
+
+    return undefined
+  }, [openai])
+
+}
+
 
 const SYSTEM_PROMPT = `
 You will act as a Software Engineer.
@@ -23,6 +99,8 @@ Rules for output generation:
 - You MAY use HTML elements like main, div, span, a, i, b, etc...
 - You JUST quote string values in YAML output
 - If the user makes any CHANGES to the generated UI, they MUST be given in JSON patch format.
+- The document should END with the YAML representation of the UI.  Do not include any other text after the YAML document.
+- NEVER explain the output. ONLY generate YAML
 
 # The React components will be mapped to YAML as follows.
 
@@ -289,29 +367,3 @@ Tooltip
 Typography
 
 `.trim()
-
-export function useAutoUIChatExecutor(question: string) {
-
-  function createChatCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
-
-    return {
-      model: MODEL,
-      temperature: 0.0,
-      max_tokens: 2048,
-      top_p: 1,
-      n: 1,
-      messages: [...messages]
-    }
-
-  }
-
-  const messages: ReadonlyArray<ChatCompletionRequestMessage> = [
-    {"role": "system", "content": SYSTEM_PROMPT.trim()},
-    {
-      role: 'user',
-      content: directive
-    }
-  ]
-
-
-}

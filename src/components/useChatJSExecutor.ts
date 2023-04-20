@@ -31,10 +31,10 @@ You are also projecting on a black background so adjust your colors.
 const MODEL = 'gpt-4'
 // const MODEL = 'gpt-3.5-turbo'
 
-export interface ScriptCompletion {
-  readonly script: string
+export interface AutoUIExecution {
+  readonly code: string
+  readonly messages: ReadonlyArray<ChatCompletionRequestMessage>
 }
-
 
 export function useChatJSExecutor() {
 
@@ -53,14 +53,14 @@ export function useChatJSExecutor() {
     return {script: text}
   }
 
-  return useCallback(async (directive: string): Promise<ScriptCompletion | undefined> => {
+  return useCallback(async (directive: string): Promise<AutoUIExecution | undefined> => {
 
     function createChatCompletionRequest(messages: ReadonlyArray<ChatCompletionRequestMessage>): CreateChatCompletionRequest {
 
       return {
         model: MODEL,
         temperature: 0.0,
-        max_tokens: 2048,
+        max_tokens: 8192,
         top_p: 1,
         n: 1,
         messages: [...messages]

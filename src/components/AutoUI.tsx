@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Backdrop, LinearProgress } from '@mui/material';
 import {ElementRef} from './generated-types/ElementRef'
 import { AutoUIRenderer } from './AutoUIRenderer';
@@ -39,6 +39,11 @@ export default function AutoUI() {
 
   const [main, setMain] = useState<ElementRef | undefined>(SPLASH_UI)
 
+  const handleCode = useCallback((code: string, type: "yaml") => {
+    const main = YAML.parse(code)
+    setMain(main)
+  }, [])
+
   return (
     <>
       {executing && (
@@ -51,9 +56,7 @@ export default function AutoUI() {
 
       {main && <AutoUIRenderer {...main}/>}
 
-      <AutoUIChat/>
-
-      <div>here</div>
+      <AutoUIChat onCode={handleCode} onExecuting={setExecuting}/>
 
     </>
   )
