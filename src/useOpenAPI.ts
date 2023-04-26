@@ -1,7 +1,7 @@
 import { Configuration, OpenAIApi } from 'openai';
 import { useMemo } from 'react';
 
-export function createConfiguration() {
+export function createOpenAIConfiguration() {
 
   function computeBrowserBasePath() {
 
@@ -17,9 +17,11 @@ export function createConfiguration() {
 
 }
 
+export function createOpenAIClient() {
+  return new OpenAIApi(createOpenAIConfiguration())
+}
 export function useOpenAPI() {
 
-
-  return useMemo(() => new OpenAIApi(createConfiguration()), []);
+  return useMemo(() => createOpenAIClient(), []);
 
 }
