@@ -131,7 +131,7 @@ export function useSmartNoteExecutor() {
 
 
     const req = createChatCompletionRequest(messages)
-    console.log("Executing chat: ", JSON.stringify(req, null, '  '))
+    console.log("Executing chat for smart notes: ", JSON.stringify(req, null, '  '))
 
     const before = Date.now()
     const res = await openai.createChatCompletion(req)
@@ -147,6 +147,6 @@ export function useSmartNoteExecutor() {
 
     return undefined
 
-  }, [openai])
+  }, [index, openai])
 
 }
